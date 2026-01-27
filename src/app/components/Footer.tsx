@@ -10,14 +10,13 @@ const SPONSORS = [
 ];
 
 const LEGAL = [
-  { label: "Mentions légales", href: "/mentions-legales" },
-  { label: "Politique de confidentialité", href: "/confidentialite" },
+  { label: "Mentions légales", href: "/mentionsLegales" },
+  { label: "Politique de confidentialité", href: "/politiqueDeConfidentialite" },
 ];
 
 const SOCIAL = [
-  { label: "Instagram", href: "https://instagram.com", icon: "IG" },
-  { label: "Facebook", href: "https://facebook.com", icon: "FB" },
-  { label: "TikTok", href: "https://tiktok.com", icon: "TT" },
+  { label: "TOO PILATES", href: "https://www.instagram.com/toopilates?igsh=ajJnODl0OWI3ZXk4", icon: "IG" },
+  { label: "Hedy Ammar", href: "https://www.instagram.com/hedy_ammar?igsh=a3dyMm84aWw4Y3J6", icon: "IG" },
 ];
 
 export default function Footer() {
@@ -37,21 +36,16 @@ export default function Footer() {
             <Link href="/" className="inline-flex items-center gap-2">
               <span className="text-lg font-semibold tracking-tight">
                 <span className="bg-gradient-to-r from-fuchsia-600 to-indigo-600 bg-clip-text text-transparent">
-                  TOO
+                  TOO 
                 </span>
-                <span className="text-gray-900 dark:text-white">PILATES</span>
+                <span className="text-gray-900 dark:text-white"> PILATES</span>
               </span>
-              <span className="rounded-full border border-fuchsia-200 bg-fuchsia-50 px-2 py-0.5 text-[10px] font-semibold text-fuchsia-700 dark:border-white/10 dark:bg-white/5 dark:text-fuchsia-200">
-                Méthode
-              </span>
+
             </Link>
 
             <p className="mt-3 max-w-md text-sm leading-6 text-gray-600 dark:text-gray-400">
-              Rejoins nos cours et retrouve l’équilibre{" "}
-              <span className="font-semibold text-gray-900 dark:text-white">
-                corps & esprit
-              </span>
-              .
+              la méthode qui allie performance,esprit et style.{" "}
+       
             </p>
 
             {/* Social */}
@@ -92,7 +86,7 @@ export default function Footer() {
                   href="mailto:contact@toopilates.com"
                   className="underline-offset-4 hover:text-fuchsia-700 hover:underline dark:hover:text-fuchsia-300"
                 >
-                  contact@toopilates.com
+                  hedyammar111@gmail.com
                 </a>
               </p>
               <p>
@@ -103,7 +97,7 @@ export default function Footer() {
                   href="tel:+21600000000"
                   className="underline-offset-4 hover:text-fuchsia-700 hover:underline dark:hover:text-fuchsia-300"
                 >
-                  +216 00 000 000
+                  +216 56134950
                 </a>
               </p>
             </div>
@@ -128,40 +122,6 @@ export default function Footer() {
               ))}
             </ul>
 
-          </div>
-        </div>
-
-        {/* Sponsors */}
-        <div className="mt-10 rounded-2xl border border-gray-200 bg-white/70 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div>
-              <p className="text-sm font-semibold text-gray-900 dark:text-white">
-                Ils nous font confiance
-              </p>
-              <p className="mt-1 text-xs text-gray-600 dark:text-gray-400">
-                Merci à nos partenaires qui soutiennent TOOPILATES.
-              </p>
-            </div>
-
-            <ul className="flex flex-wrap items-center gap-3">
-              {SPONSORS.map((sponsor) => (
-                <li key={sponsor.name}>
-                  <Link
-                    href="/sponsors"
-                    className="group flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-2 shadow-sm transition hover:-translate-y-[1px] hover:border-fuchsia-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-fuchsia-400/40 dark:border-white/10 dark:bg-gray-950 dark:hover:border-white/20 dark:focus:ring-fuchsia-300/30"
-                    aria-label={`Voir les sponsors (ex: ${sponsor.name})`}
-                  >
-                    <Image
-                      src={sponsor.logo}
-                      alt={sponsor.name}
-                      width={92}
-                      height={40}
-                      className="h-10 w-auto object-contain grayscale transition group-hover:grayscale-0"
-                    />
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 
