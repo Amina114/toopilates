@@ -20,8 +20,8 @@ function itemClass(active: boolean) {
   return [
     "flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm transition",
     active
-      ? "bg-gray-100 text-gray-900 dark:bg-white/10 dark:text-white"
-      : "text-gray-700 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-200 dark:hover:bg-white/5",
+      ? "bg-black/[0.04] text-gray-900"
+      : "text-gray-700 hover:bg-black/[0.03] hover:text-gray-900",
   ].join(" ");
 }
 
@@ -31,11 +31,16 @@ export default function Header() {
   const panelRef = useRef<HTMLDivElement | null>(null);
 
   const activeLabel = useMemo(() => {
-    const found = MENU_ITEMS.find((i) => i.href === pathname);
+    if (!pathname) return "Menu";
+    const found = MENU_ITEMS.find((i) => {
+      if (i.href === pathname) return true;
+      if (i.href !== "/" && pathname.startsWith(i.href + "/")) return true;
+      return false;
+    });
     return found?.label ?? "Menu";
   }, [pathname]);
 
-  // Fermer si on clique en dehors
+  // Close on outside click
   useEffect(() => {
     function onDown(e: MouseEvent) {
       if (!open) return;
@@ -46,7 +51,7 @@ export default function Header() {
     return () => window.removeEventListener("mousedown", onDown);
   }, [open]);
 
-  // Fermer avec ESC
+  // Close on ESC
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
@@ -56,68 +61,85 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200/60 bg-white/80 backdrop-blur dark:border-white/10 dark:bg-gray-950/70">
+    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/85 backdrop-blur">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="flex items-center justify-between py-3">
-          {/* Logo LEFT */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/Logo-TOO-Pilates noir.png"
-            alt="TOO PILATES"
-            width={520}
-            height={160}
-            priority
-            className="h-16 md:h-20 w-auto object-contain"
-          />
-        </Link>
+        <div className="flex items-center justify-between py-2 md:py-3">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/Logo TOO Pilates.svg"
+              alt="TOO PILATES"
+              width={140}
+              height={60}
+              priority
+              className="h-10 md:h-12 w-auto transition-opacity hover:opacity-80"
+            />
+          </Link>
 
-
-          {/* Right side: current page + hamburger */}
+          {/* Right side */}
           <div className="relative" ref={panelRef}>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="header-menu"
-              className="group inline-flex items-center gap-3 rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-fuchsia-400/40 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20 dark:focus:ring-fuchsia-300/30"
+              className={[
+                "group inline-flex items-center gap-3 rounded-full",
+                "border border-black/10 bg-white/90 px-4 py-2",
+                "shadow-sm transition-all",
+                "hover:bg-white hover:shadow-md",
+                "focus:outline-none focus:ring-2 focus:ring-black/10",
+              ].join(" ")}
             >
-              <span className="hidden sm:inline text-gray-600 dark:text-gray-300">
+              <span className="hidden sm:inline text-[11px] uppercase tracking-[0.18em] text-gray-700">
                 {activeLabel}
               </span>
 
-              {/* Hamburger icon */}
+              {/* Minimal hamburger */}
               <span className="relative h-4 w-6">
                 <span
                   className={[
-                    "absolute left-0 top-0 h-[2px] w-6 rounded bg-gray-900 transition dark:bg-white",
+                    "absolute left-0 top-0 h-[2px] w-6 rounded bg-gray-900 transition",
                     open ? "translate-y-[7px] rotate-45" : "",
                   ].join(" ")}
                 />
                 <span
                   className={[
-                    "absolute left-0 top-[7px] h-[2px] w-6 rounded bg-gray-900 transition dark:bg-white",
+                    "absolute left-0 top-[7px] h-[2px] w-6 rounded bg-gray-900 transition",
                     open ? "opacity-0" : "opacity-100",
                   ].join(" ")}
                 />
                 <span
                   className={[
-                    "absolute left-0 top-[14px] h-[2px] w-6 rounded bg-gray-900 transition dark:bg-white",
+                    "absolute left-0 top-[14px] h-[2px] w-6 rounded bg-gray-900 transition",
                     open ? "-translate-y-[7px] -rotate-45" : "",
                   ].join(" ")}
                 />
               </span>
             </button>
 
-            {/* Dropdown menu */}
+            {/* Dropdown */}
             {open && (
               <div
                 id="header-menu"
-                className="absolute right-0 mt-3 w-[280px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl dark:border-white/10 dark:bg-gray-950"
+                className={[
+                  "absolute right-0 mt-3 w-[320px] overflow-hidden rounded-3xl",
+                  "border border-black/10 bg-white shadow-xl",
+                ].join(" ")}
               >
-                <div className="px-3 py-3">
-                  <p className="px-2 pb-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
-                    Navigation
-                  </p>
+                <div className="px-4 py-4">
+                  <div className="flex items-center justify-between px-1 pb-3">
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-gray-500">
+                      Navigation
+                    </p>
+                    <button
+                      onClick={() => setOpen(false)}
+                      className="text-xs text-gray-500 hover:text-gray-900 transition"
+                      aria-label="Fermer le menu"
+                    >
+                      Fermer
+                    </button>
+                  </div>
 
                   <nav className="flex flex-col gap-1">
                     {MENU_ITEMS.map((item) => {
@@ -131,7 +153,7 @@ export default function Header() {
                         >
                           <span className="whitespace-nowrap">{item.label}</span>
                           {active && (
-                            <span className="text-[10px] font-semibold text-fuchsia-700 dark:text-fuchsia-300">
+                            <span className="text-[10px] font-semibold text-gray-900">
                               Actif
                             </span>
                           )}
@@ -141,9 +163,12 @@ export default function Header() {
                   </nav>
                 </div>
 
-                {/* Footer mini dans le menu */}
-                <div className="border-t border-gray-200/70 bg-gray-50 px-4 py-3 text-xs text-gray-600 dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
-                  <span className="font-semibold">TOO PILATES</span> — la méthode qui allie performance,esprit et style.
+                {/* Mini footer (luxury minimal) */}
+                <div className="border-t border-black/5 bg-black/[0.02] px-5 py-3">
+                  <p className="text-[11px] tracking-wide text-gray-600">
+                    <span className="font-semibold text-gray-900">TOO PILATES</span> — une
+                    méthode qui allie performance, esprit et style.
+                  </p>
                 </div>
               </div>
             )}
