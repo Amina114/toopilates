@@ -69,7 +69,11 @@ export default function LivrePage() {
             <div className="text-center mb-12">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">Commander le Livret TooPilates</h1>
                 <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-                    Le livret de Pilates, rédigé par le coach <strong>Hedy Ammar</strong>, fondateur du concept <strong>TooPilates</strong>, est un guide complet et innovant pour découvrir et pratiquer le Pilates de manière efficace. Il propose des exercices adaptés à tous les niveaux, des conseils pour améliorer la posture et la souplesse, ainsi qu’une approche unique développée par TooPilates.
+                Le livret <strong>TooPilates</strong>, conçu par le coach <strong>Hedy Ammar</strong>, fondateur du concept <strong>TooPilates</strong>,
+                transmet bien plus qu’une pratique : il partage <strong>une méthode</strong>, <strong>une logique du mouvement</strong> et{" "}
+                <strong>une philosophie corporelle</strong>.
+                Il ne s’agit pas de reproduire des exercices, mais de comprendre <strong>comment</strong> et <strong>pourquoi</strong> le corps bouge —
+                pour construire un corps <strong>stable</strong>, <strong>mobile</strong> et <strong>conscient</strong>.
                 </p>
             </div>
 
@@ -178,25 +182,40 @@ export default function LivrePage() {
                 <div className="bg-white shadow-lg rounded-2xl p-6 border border-gray-100">
                     <h2 className="text-2xl font-semibold mb-3">Pourquoi ce livret ?</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        Découvrez le Pilates de manière progressive et sécurisée. Chaque exercice est expliqué en détail avec des conseils pour améliorer votre posture, votre force et votre souplesse.
+                    Parce que TooPilates n’est pas une méthode standardisée. Ce livret te permet de découvrir une approche structurée qui relie{" "}
+                    <strong>biomécanique</strong>, <strong>respiration</strong>, <strong>chaînes musculaires</strong> et{" "}
+                    <strong>conscience corporelle</strong>.
+                    <br /><br />
+                    Il t’aide à renforcer en <strong>amplitude maîtrisée</strong>, sans rigidité ni contrainte, et à construire une pratique orientée{" "}
+                    <strong>durabilité</strong>, <strong>performance</strong> et <strong>équilibre</strong>.
                     </p>
+
                 </div>
 
                 <div className="bg-white shadow-lg rounded-2xl p-6 border border-gray-100">
                     <h2 className="text-2xl font-semibold mb-3">Pour qui ?</h2>
                     <p className="text-gray-600 leading-relaxed">
-                        Ce livret s’adresse à tous : débutants, intermédiaires ou confirmés, souhaitant pratiquer le Pilates chez soi ou compléter leurs cours.
+                    Ce livret s’adresse à celles et ceux qui veulent <strong>comprendre leur corps</strong> et mieux bouger :{" "}
+                    pratiquants (débutants à avancés), sportifs, et coachs souhaitant approfondir une méthode <strong>moderne</strong> et{" "}
+                    <strong>structurée</strong>.
+                    <br /><br />
+                    Aucun niveau prérequis : la progression est pensée pour s’adapter à chaque physionomie.
                     </p>
+
                 </div>
             </div>
 
             <div className="bg-white shadow-lg rounded-2xl p-6 border border-gray-100">
                 <h2 className="text-2xl font-semibold mb-3">Contenu du livret</h2>
                 <ul className="list-disc list-inside text-gray-600 space-y-2">
-                    <li>Exercices détaillés pour chaque niveau</li>
-                    <li>Conseils sur la posture et l’alignement</li>
-                    <li>Approche unique TooPilates pour progresser efficacement</li>
-                    <li>Illustrations et explications claires</li>
+                <li>Les fondations de la <strong>Logique Physionomie</strong></li>
+                <li>Les <strong>trois chaînes musculaires</strong> fondamentales</li>
+                <li>Renforcement en <strong>amplitude maximale contrôlée</strong></li>
+                <li>Principes de <strong>respiration</strong> TooPilates</li>
+                <li>Structure et <strong>progression</strong> d’une séance</li>
+                <li>Système TooPilates et ses <strong>niveaux d’évolution</strong></li>
+                <li>Dimension <strong>pédagogique</strong>, <strong>sensorielle</strong> et <strong>émotionnelle</strong> du mouvement</li>
+                <li>Philosophie : <strong>équilibre</strong>, <strong>longévité</strong> et <strong>conscience corporelle</strong></li>
                 </ul>
             </div>
 

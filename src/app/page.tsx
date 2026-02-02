@@ -2,103 +2,164 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Step = 1 | 2 | 3 | 4;
 
 export default function Home() {
-  const [openStep, setOpenStep] = useState<Step | null>(null);
+  // On stocke toutes les étapes ouvertes
+  const [openSteps, setOpenSteps] = useState<Step[]>([]);
 
+  // Ouvre une étape sans fermer les précédentes
   const toggle = (step: Step) => {
-    setOpenStep((prev) => (prev === step ? null : step));
+    setOpenSteps((prev) => (prev.includes(step) ? prev : [...prev, step]));
   };
 
   return (
-    <section className="min-h-[90vh] flex items-center">
-      <div className="max-w-3xl mx-auto px-6 py-20">
+    <section className="min-h-[90vh] bg-[#F7F6F3]">
+      <div className="max-w-3xl mx-auto px-6 py-24">
         {/* HERO */}
-        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
-          Too Pilates
-        </h1>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#1F2933]">
+            Too Pilates
+          </h1>
 
-        <p className="text-gray-600 text-lg leading-relaxed mb-16">
-          Une méthode qui allie <strong>performance</strong>, <strong>esprit</strong> et{" "}
-          <strong>style</strong>.  
-          Un mouvement conscient, précis et fluide, pensé pour durer.
-        </p>
+          <p className="mt-6 text-lg leading-relaxed text-[#4B5563]">
+            Une méthode qui allie <strong>performance</strong>,{" "}
+            <strong>conscience</strong> et{" "}
+            <strong>élégance du mouvement</strong>.
+            Too Pilates propose une lecture intelligente du corps,
+            où chaque geste a un sens, une intention et une structure
+            pensée pour durer.
+          </p>
+        </motion.div>
 
-        {/* QUESTION 1 */}
-        <div className="mb-12">
-          <button
-            onClick={() => toggle(1)}
-            className="text-xl font-medium hover:opacity-60 transition"
-          >
-            Et si le mouvement était bien plus qu'un simple exercice ?
-          </button>
+        {/* QUESTIONS */}
+        <div className="mt-20 space-y-12">
+          {/* QUESTION 1 */}
+          <div>
+            <button
+              onClick={() => toggle(1)}
+              className="text-xl font-medium text-[#1F2933] hover:text-[#3F4F3C] transition"
+            >
+              Et si le mouvement était bien plus qu&apos;un simple exercice ?
+            </button>
 
-          {openStep === 1 && (
-            <p className="mt-4 text-gray-700 leading-relaxed max-w-xl">
-              Too Pilates est une méthode qui ne cherche pas à faire répéter des gestes,
-              mais à <strong>comprendre</strong>, <strong>ressentir</strong> et{" "}
-              <strong>habiter</strong> le mouvement.
-            </p>
+            <AnimatePresence>
+              {openSteps.includes(1) && (
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="mt-4 text-[#4B5563] leading-relaxed max-w-xl"
+                >
+                  Too Pilates ne cherche pas à faire reproduire des formes,
+                  mais à apprendre à <strong>lire le corps</strong>.
+                  Chaque mouvement est guidé par la conscience, le ressenti
+                  et la compréhension, afin de construire un geste{" "}
+                  <strong>juste</strong>, <strong>efficace</strong> et{" "}
+                  <strong>habité</strong>.
+                </motion.p>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* QUESTION 2 */}
+          {openSteps.includes(1) && (
+            <div>
+              <button
+                onClick={() => toggle(2)}
+                className="text-xl font-medium text-[#1F2933] hover:text-[#3F4F3C] transition"
+              >
+                Qu&apos;est-ce qui rend Too Pilates différent ?
+              </button>
+
+              <AnimatePresence>
+                {openSteps.includes(2) && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="mt-4 text-[#4B5563] leading-relaxed max-w-xl"
+                  >
+                    Too Pilates repose sur la{" "}
+                    <strong>Logique Physionomie</strong>,
+                    une approche pédagogique qui relie{" "}
+                    <strong>biomécanique</strong>,{" "}
+                    <strong>respiration</strong> et{" "}
+                    <strong>chaînes musculaires</strong>.
+                    Cette logique permet d’organiser le corps dans le mouvement,
+                    de renforcer en <strong>amplitude maîtrisée</strong>
+                    et de respecter la physionomie de chacun.
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
+          )}
+
+          {/* QUESTION 3 */}
+          {openSteps.includes(2) && (
+            <div>
+              <button
+                onClick={() => toggle(3)}
+                className="text-xl font-medium text-[#1F2933] hover:text-[#3F4F3C] transition"
+              >
+                Pourquoi cette méthode transforme le corps et l&apos;esprit ?
+              </button>
+
+              <AnimatePresence>
+                {openSteps.includes(3) && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="mt-4 text-[#4B5563] leading-relaxed max-w-xl"
+                  >
+                    Parce que chaque séance suit une{" "}
+                    <strong>progression précise</strong> :
+                    la conscience précède l’effort, la stabilité soutient
+                    l’amplitude et le souffle guide la force.
+                    Le corps se transforme durablement,
+                    et le mouvement devient une{" "}
+                    <strong>expérience corporelle, sensorielle et émotionnelle</strong>.
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
           )}
         </div>
 
-        {/* QUESTION 2 */}
-        {(openStep === 1 || openStep === 2) && (
-          <div className="mb-12">
-            <button
-              onClick={() => toggle(2)}
-              className="text-xl font-medium hover:opacity-60 transition"
+        {/* CTA FINAL */}
+        <AnimatePresence>
+          {openSteps.includes(3) && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 12 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="mt-20"
             >
-              Qu'est-ce qui rend Too Pilates différent ?
-            </button>
-
-            {openStep === 2 && (
-              <p className="mt-4 text-gray-700 leading-relaxed max-w-xl">
-                Too Pilates repose sur la <strong>Logique Physionomie</strong> :
-                une approche globale qui relie biomécanique, respiration et chaînes
-                musculaires pour créer un mouvement <strong>intelligent et durable</strong>.
+              <p className="text-2xl font-medium text-[#1F2933] mb-6">
+                Et si tu pouvais comprendre la méthode dans sa globalité,
+                pas seulement la pratiquer ?
               </p>
-            )}
-          </div>
-        )}
 
-        {/* QUESTION 3 */}
-        {(openStep === 2 || openStep === 3) && (
-          <div className="mb-12">
-            <button
-              onClick={() => toggle(3)}
-              className="text-xl font-medium hover:opacity-60 transition"
-            >
-              Pourquoi cette méthode transforme le corps et l'esprit ?
-            </button>
-
-            {openStep === 3 && (
-              <p className="mt-4 text-gray-700 leading-relaxed max-w-xl">
-                Parce qu'ici, la respiration guide la force, la stabilité crée
-                la liberté, et chaque séance devient une{" "}
-                <strong>expérience corporelle et émotionnelle</strong>.
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* QUESTION FINALE + CTA */}
-        {openStep === 3 && (
-          <div className="mt-20">
-            <p className="text-2xl font-medium mb-6">
-              Et si tu pouvais accéder à toute la méthode, pas à pas ?
-            </p>
-
-            <Link
-              href="/livret"
-              className="inline-block text-lg font-semibold border-b-2 border-black pb-1 hover:opacity-60 transition"
-            >
-              Découvrir le livret Too Pilates
-            </Link>
-          </div>
-        )}
+              <Link
+                href="/livret"
+                className="inline-block text-lg font-semibold text-[#3F4F3C] border-b-2 border-[#9CAF88] pb-1 hover:opacity-70 transition"
+              >
+                Découvrir le livret pédagogique Too Pilates
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
