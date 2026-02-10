@@ -1,32 +1,62 @@
+"use client";
+
+import React from "react";
+import { motion, cubicBezier } from "framer-motion";
+
 export default function CoachesPage() {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 14, filter: "blur(4px)" },
+    show: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration: 0.65, ease: cubicBezier(0.25, 0.46, 0.45, 0.94), delay: i * 0.06 },
+    }),
+  };
+
   return (
-    <section className="min-h-[80vh] bg-gray-50">
-      <div className="max-w-3xl mx-auto px-6 py-16">
-        <div className="bg-white rounded-2xl shadow-sm p-8 space-y-6">
-        <h1 className="text-3xl font-bold text-gray-900">
-          Devenir coach Too Pilates®
-        </h1>
+    <section className="">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#9CAF88]/20 blur-3xl" />
+        <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#3F4F3C]/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(156,175,136,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(63,79,60,0.10),transparent_55%)]" />
+      </div>
 
-          <p className="text-gray-600 leading-relaxed">
-            Seuls les coachs formés et certifiés <strong>Too Pilates®</strong> sont
-            autorisés à enseigner la méthode.
-          </p>
+      <div className="relative mx-auto max-w-5xl px-6 py-16 min-h-[80vh]">
+        <motion.div initial="hidden" animate="show" variants={fadeUp} className="text-center mb-8">
+          <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
+            <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+            <span className="text-[11px] tracking-wide text-gray-700">Too Pilates • Certification</span>
+          </motion.div>
 
-          <p className="text-gray-600 leading-relaxed">
-            Pour toute demande d’inscription ou d’information, veuillez contacter :
-          </p>
+          <motion.h1 variants={fadeUp} custom={1} className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-[#1F2933]">
+           Formation Too Pilates®
+          </motion.h1>
 
-          <p className="font-medium text-gray-900">
-            hedyammar111@gmail.com
-          </p>
-                    <p className="font-medium text-gray-900">
-             +216 56 134 950
-          </p>
+          <motion.p variants={fadeUp} custom={2} className="mt-4 text-gray-700 max-w-2xl mx-auto">
+            Seuls les coachs formés et certifiés <strong>Too Pilates®</strong> sont autorisés à enseigner la méthode.
+            <br className="my-2" />
+          </motion.p>
+        </motion.div>
 
-          <p className="text-sm text-gray-500">
-            Un formulaire d’inscription sera bientôt accessible sur le site.
-          </p>
-        </div>
+        <motion.div initial="hidden" animate="show" variants={fadeUp} custom={3} className="mb-8">
+          <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 md:p-8">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-xl md:text-2xl font-semibold text-[#1F2933]">Informations & contact</h2>
+                <p className="mt-1 text-gray-600">Pour toute demande d’inscription ou d’information, veuillez contacter :</p>
+              </div>
+
+
+            </div>
+
+            <div className="mt-6 space-y-3">
+              <p className="font-medium text-gray-900">hedyammar111@gmail.com</p>
+              <p className="font-medium text-gray-900">+216 56 134 950</p>
+              <p className="text-sm text-gray-500">Un formulaire d’inscription sera bientôt accessible sur le site.</p>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -127,7 +127,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="mt-8 flex flex-col gap-3 border-t border-gray-200/60 pt-6 text-xs text-gray-500 dark:border-white/10 dark:text-gray-400 md:flex-row md:items-center md:justify-between">
-          <p>© {year} TOOPILATES. Tous droits réservés.</p>
+          <p>© {year} TOO PILATES. Tous droits réservés.</p>
 
           <div className="flex flex-wrap items-center gap-2">
             <span>Fait avec ♥ — Tunis</span>

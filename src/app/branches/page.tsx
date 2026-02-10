@@ -90,7 +90,7 @@ export default function BranchesPage() {
   }, [displayedBranches.length, loadMoreBranches]);
 
   return (
-    <section className="min-h-[80vh] bg-gray-50">
+    <section className="min-h-[80vh] bg-[#F7F6F3]">
       <div className="max-w-5xl mx-auto px-6 py-16 space-y-10">
         <div className="bg-white rounded-2xl shadow-sm p-6">
           <h1 className="text-3xl font-bold text-gray-900">

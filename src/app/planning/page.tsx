@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion, cubicBezier } from "framer-motion";
+
 const PLACES = [
   {
     name: "Gym Way Aouina",
@@ -28,13 +30,28 @@ const PLACES = [
   },
 ];
 
+type Selected = { place: string; day: string; time: string } | null;
+
 export default function PlanningPage() {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<{
-    place: string;
-    day: string;
-    time: string;
-  } | null>(null);
+  const [selected, setSelected] = useState<Selected>(null);
+
+  const fadeUp = useMemo(
+    () => ({
+      hidden: { opacity: 0, y: 14, filter: "blur(4px)" },
+      show: (i = 0) => ({
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        transition: {
+          duration: 0.65,
+          ease: cubicBezier(0.25, 0.46, 0.45, 0.94),
+          delay: i * 0.06,
+        },
+      }),
+    }),
+    []
+  );
 
   const openModal = (place: string, day: string, time: string) => {
     setSelected({ place, day, time });
@@ -47,90 +64,186 @@ export default function PlanningPage() {
   };
 
   return (
-    <section className="min-h-[80vh] bg-gray-50">
-      <div className="max-w-4xl mx-auto px-6 py-4">
-        <div className="bg-white rounded-2xl shadow-sm p-4 mb-4">
-          <h1 className="text-3xl font-bold text-gray-900">
+    <section className="relative pb-20">
+      {/* Background (comme Avis) */}
+      <div className="pointer-events-none fixed inset-0 top-0 h-screen">
+        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#9CAF88]/20 blur-3xl" />
+        <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#3F4F3C]/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(156,175,136,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(63,79,60,0.10),transparent_55%)]" />
+      </div>
+
+      <div className="relative mx-auto max-w-5xl px-6 py-16 z-10">
+        {/* Header */}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          className="text-center mb-10"
+        >
+          <motion.div
+            variants={fadeUp}
+            custom={0}
+            className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur"
+          >
+            <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+            <span className="text-[11px] tracking-wide text-gray-700">
+              Planning cours • Too Pilates
+            </span>
+          </motion.div>
+
+          <motion.h1
+            variants={fadeUp}
+            custom={1}
+            className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-[#1F2933]"
+          >
             Planning des cours Too Pilates®
-          </h1>
-          <div className="w-8 h-1 bg-primary rounded-full mt-6" />
-        </div>
+          </motion.h1>
 
+          <motion.p
+            variants={fadeUp}
+            custom={2}
+            className="mt-4 text-gray-700 max-w-2xl mx-auto"
+          >
+            Choisis un studio, puis un créneau. Pour réserver, tu passes par téléphone.
+          </motion.p>
+        </motion.div>
+
+        {/* Cards */}
         <div className="grid gap-6">
-          {PLACES.map((place) => (
-            <div key={place.name} className="bg-white rounded-2xl shadow-sm p-8">
-              <h2 className="text-xl font-semibold text-gray-900">
-                {place.name}
-              </h2>
+          {PLACES.map((place, placeIdx) => (
+            <motion.div
+              key={place.name}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: placeIdx * 0.05 }}
+              className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 md:p-8"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h2 className="text-xl md:text-2xl font-semibold text-[#1F2933]">
+                    {place.name}
+                  </h2>
+                  <p className="mt-1 text-sm text-gray-600">
+                    Clique sur un créneau pour voir la réservation.
+                  </p>
+                </div>
 
-              <div className="mt-4 space-y-3">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm">
+                  <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+                </span>
+              </div>
+
+              <div className="mt-6 grid gap-3">
                 {place.schedules.map((s, idx) => (
-                  <button
+                  <motion.button
                     key={`${s.day}-${idx}`}
+                    whileHover={{ y: -1 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => openModal(place.name, s.day, s.time)}
-                    className="w-full flex items-center justify-between rounded-xl bg-gray-50 px-4 py-3 hover:bg-gray-100 transition"
+                    className={[
+                      "w-full rounded-2xl border border-black/10 bg-white/70 backdrop-blur",
+                      "px-4 py-4 shadow-sm hover:bg-white/85 transition",
+                      "flex items-center justify-between gap-3",
+                    ].join(" ")}
                   >
-                    <span className="font-medium text-gray-900">{s.day}</span>
-                    <span className="text-gray-600">{s.time}</span>
-                  </button>
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#3F4F3C]/10 border border-black/10">
+                        <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+                      </span>
+                      <div className="text-left">
+                        <p className="font-semibold text-[#1F2933]">{s.day}</p>
+                        <p className="text-sm text-gray-600">{s.time}</p>
+                      </div>
+                    </div>
+
+                    <span className="text-xs font-semibold text-white bg-[#3F4F3C] px-3 py-2 rounded-full shadow-sm">
+                      Réserver
+                    </span>
+                  </motion.button>
                 ))}
               </div>
 
-              <p className="text-sm text-gray-500 mt-4">
+              <p className="text-xs text-gray-600 mt-5">
                 * Les horaires peuvent être modifiés.
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Modal */}
-      {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4"
-          onClick={closeModal}
-        >
-          <div
-            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-lg"
-            onClick={(e) => e.stopPropagation()}
+      {/* Modal (AnimatePresence + style Avis) */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
           >
-            <h3 className="text-xl font-semibold text-gray-900">
-              Réservation
-            </h3>
+            <div className="absolute inset-0 bg-black/40" />
 
-            {selected && (
-              <p className="text-gray-600 mt-2 leading-relaxed">
-                <span className="font-medium text-gray-900">
-                  {selected.place}
-                </span>{" "}
-                — {selected.day} ({selected.time})
+            <motion.div
+              initial={{ opacity: 0, y: 12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 12, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="relative w-full max-w-md rounded-3xl border border-black/10 bg-white/80 backdrop-blur p-6 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <h3 className="text-xl md:text-2xl font-semibold text-[#1F2933]">
+                    Réservation
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-600">
+                    Contacte-nous pour confirmer ta place.
+                  </p>
+                </div>
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm">
+                  <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+                </span>
+              </div>
+
+              {selected && (
+                <div className="mt-5 rounded-2xl border border-black/10 bg-white/70 p-4">
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    <span className="font-semibold text-[#1F2933]">
+                      {selected.place}
+                    </span>{" "}
+                    — {selected.day} ({selected.time})
+                  </p>
+                </div>
+              )}
+
+              <p className="text-gray-700 mt-5">
+                Pour réserver, contactez :{" "}
+                <span className="font-semibold text-[#1F2933]">28582502</span>
               </p>
-            )}
 
-            <p className="text-gray-700 mt-4">
-              Pour réserver, contactez :{" "}
-              <span className="font-semibold">28582502</span>
-            </p>
+              <div className="mt-6 flex gap-3 justify-end">
+                <motion.button
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={closeModal}
+                  className="rounded-full px-5 py-3 bg-white/70 border border-black/10 shadow-sm hover:bg-white/85 transition text-sm font-semibold text-[#1F2933]"
+                >
+                  Fermer
+                </motion.button>
 
-            <div className="mt-6 flex gap-3 justify-end">
-              <button
-                onClick={closeModal}
-                className="rounded-xl px-4 py-2 bg-gray-100 hover:bg-gray-200 transition"
-              >
-                Fermer
-              </button>
-
-              {/* Optionnel : bouton appel direct sur mobile */}
-              <a
-                href="tel:28582502"
-                className="rounded-xl px-4 py-2 bg-primary text-white hover:opacity-90 transition"
-              >
-                Appeler
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+                <motion.a
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  href="tel:28582502"
+                  className="rounded-full px-5 py-3 bg-[#3F4F3C] text-white shadow-md hover:opacity-95 transition text-sm font-semibold"
+                >
+                  Appeler
+                </motion.a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

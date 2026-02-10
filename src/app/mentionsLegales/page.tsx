@@ -1,6 +1,6 @@
 export default function CoachesPage() {
   return (
-    <section className="min-h-[80vh] bg-gray-50 flex items-center">
+    <section className="min-h-[80vh] bg-[#F7F6F3] flex items-center">
       <div className="max-w-3xl mx-auto px-6 py-16">
         <div className="bg-white rounded-2xl shadow-sm p-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-6">

@@ -40,7 +40,6 @@ export default function Header() {
     return found?.label ?? "Menu";
   }, [pathname]);
 
-  // Close on outside click
   useEffect(() => {
     function onDown(e: MouseEvent) {
       if (!open) return;
@@ -51,7 +50,6 @@ export default function Header() {
     return () => window.removeEventListener("mousedown", onDown);
   }, [open]);
 
-  // Close on ESC
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
@@ -91,8 +89,11 @@ export default function Header() {
                 "focus:outline-none focus:ring-2 focus:ring-black/10",
               ].join(" ")}
             >
-              <span className="hidden sm:inline text-[11px] uppercase tracking-[0.18em] text-gray-700">
-                {activeLabel}
+              {/* ✅ Nouveau style: plus clean, moins “PLANNING” */}
+              <span className="hidden sm:flex flex-col leading-none text-left">
+                <span className="text-sm font-medium tracking-normal text-gray-900">
+                  {activeLabel}
+                </span>
               </span>
 
               {/* Minimal hamburger */}
@@ -129,7 +130,7 @@ export default function Header() {
               >
                 <div className="px-4 py-4">
                   <div className="flex items-center justify-between px-1 pb-3">
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-gray-500">
+                    <p className="text-[11px] tracking-wide text-gray-500">
                       Navigation
                     </p>
                     <button
@@ -163,11 +164,10 @@ export default function Header() {
                   </nav>
                 </div>
 
-                {/* Mini footer (luxury minimal) */}
                 <div className="border-t border-black/5 bg-black/[0.02] px-5 py-3">
                   <p className="text-[11px] tracking-wide text-gray-600">
-                    <span className="font-semibold text-gray-900">TOO PILATES</span> — une
-                    méthode qui allie performance, esprit et style.
+                    <span className="font-semibold text-gray-900">TOO PILATES</span>{" "}
+                    — une méthode qui allie performance, esprit et style.
                   </p>
                 </div>
               </div>
