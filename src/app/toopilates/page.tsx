@@ -77,32 +77,99 @@ export default function Home() {
             Too Pilates — pédagogie moderne
           </h1>
 
-          <p className="mt-6 text-lg leading-relaxed text-[#4B5563]">
-            Une méthode qui allie <strong>performance</strong>,{" "}
-            <strong>esprit</strong> et <strong>style</strong>.
-            <br />
-            Too Pilates propose une pratique structurée du{" "}
-            <strong>Pilates</strong> fondée sur la{" "}
-            <strong>Logique Physionomie</strong> : biomécanique, respiration,
-            physiologie et chaînes musculaires, pour construire un{" "}
-            <strong>mouvement juste</strong>, efficace et durable.
-          </p>
+          <p className="mt-6 text-lg leading-relaxed text-[#4B5563] max-w-2xl">
+            La méthode Pilates authentique a été fondée par <strong>Joseph Pilates</strong> et repose sur des fondamentaux précis.  
+            Mais pour transmettre avec sens aux nouvelles générations, il faut avant tout une <strong>logique pédagogique</strong>.
+            <br /><br />
+            C’est cette logique que <strong>Too Pilates</strong> traduit.
+                  </p>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.7, ease: "easeOut" }}
+          className="mt-8 flex justify-center"
+        >
+          <motion.div
+            className="relative inline-flex items-center gap-3 px-2 py-2"
+            whileHover={{ y: -2 }}
+            transition={{ type: "spring", stiffness: 220, damping: 18 }}
+          >
+            {/* Pilates */}
+            <motion.span
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-base md:text-lg font-semibold text-[#1F2933]"
+            >
+              Pilates
+            </motion.span>
 
-          {/* Petits points SEO (bénéfices clairs) */}
-          <ul className="mt-6 space-y-2 text-[#4B5563] leading-relaxed">
-            <li>
-              • Améliorer la <strong>posture</strong> et l’alignement
-            </li>
-            <li>
-              • Développer la <strong>force profonde</strong> (gainage / core)
-            </li>
-            <li>
-              • Gagner en <strong>mobilité</strong> et en amplitude maîtrisée
-            </li>
-            <li>
-              • Réduire les <strong>tensions</strong> et mieux respirer
-            </li>
-          </ul>
+            {/* + */}
+            <motion.span
+              initial={{ scale: 0.6, opacity: 0 }}
+              animate={{ scale: [1, 1.12, 1], opacity: 1 }}
+              transition={{ delay: 0.15, duration: 0.7, times: [0, 0.6, 1] }}
+              className="text-base md:text-lg text-gray-500"
+            >
+              +
+            </motion.span>
+
+            {/* Pédagogie */}
+            <motion.span
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+              className="text-base md:text-lg font-semibold text-[#1F2933]"
+            >
+              Pédagogie
+            </motion.span>
+
+            {/* = */}
+            <motion.span
+              initial={{ scale: 0.6, opacity: 0 }}
+              animate={{ scale: [1, 1.12, 1], opacity: 1 }}
+              transition={{ delay: 0.35, duration: 0.7, times: [0, 0.6, 1] }}
+              className="text-base md:text-lg text-gray-400"
+            >
+              =
+            </motion.span>
+
+            {/* Too Pilates + underline animée */}
+            <span className="relative">
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.45, duration: 0.6 }}
+                className="text-base md:text-lg font-extrabold text-[#3F4F3C]"
+              >
+                 Too Pilates®
+              </motion.span>
+
+              <motion.span
+                aria-hidden="true"
+                className="absolute left-0 -bottom-1 h-[2px] w-full bg-[#9CAF88]"
+                initial={{ scaleX: 0, transformOrigin: "left" }}
+                animate={{ scaleX: [0, 1, 1, 0] }}
+                transition={{
+                  delay: 0.7,
+                  duration: 2.8,
+                  repeat: Infinity,
+                  repeatDelay: 0.8,
+                  ease: "easeInOut",
+                }}
+              />
+            </span>
+
+            {/* glow doux derrière Too Pilates */}
+            <motion.div
+              aria-hidden="true"
+              className="absolute -inset-2 rounded-full bg-[#9CAF88]/20 blur-xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0.15, 0.35, 0.15] }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
+        </motion.div>
         </motion.div>
 
         {/* QUESTIONS (format “FAQ progressive”) */}
