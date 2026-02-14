@@ -58,23 +58,29 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="min-h-[90vh] bg-[#F7F6F3]">
+    <section className="relative pb-20">
       {/* JSON-LD SEO */}
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: faqJsonLd }}
       />
+            {/* Background "Pilates luxe" */}
+      <div className="pointer-events-none fixed inset-0 top-0 h-screen">
+        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#9CAF88]/20 blur-3xl" />
+        <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#3F4F3C]/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(156,175,136,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(63,79,60,0.10),transparent_55%)]" />
+      </div>
 
-      <div className="max-w-3xl mx-auto px-6 py-24">
-        {/* HERO */}
+        <div className="relative mx-auto max-w-3xl px-6 py-24 z-10">
+          {/* HERO */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#1F2933]">
-            Too Pilates — pédagogie moderne
+            Pédagogie moderne
           </h1>
 
           <p className="mt-6 text-lg leading-relaxed text-[#4B5563] max-w-2xl">
