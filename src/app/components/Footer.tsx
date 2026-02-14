@@ -34,19 +34,35 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-5">
             <Link href="/" className="inline-flex items-center gap-2">
-              <span className="text-lg font-semibold tracking-tight">
-                <span className="bg-gradient-to-r from-fuchsia-600 to-indigo-600 bg-clip-text text-transparent">
-                  TOO 
-                </span>
-                <span className="text-gray-900 dark:text-white"> PILATES</span>
-              </span>
 
             </Link>
 
-            <p className="mt-3 max-w-md text-sm leading-6 text-gray-600 dark:text-gray-400">
-              la méthode qui allie performance,esprit et style.{" "}
-       
-            </p>
+{/* Brand / Newsletter style Oysho */}
+<div className="md:col-span-5">
+  <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white leading-tight">
+    Rejoignez la communauté  
+    <span className="block font-semibold">Too Pilates</span>
+  </h2>
+
+        {/* champ email */}
+        <div className="mt-8 max-w-md">
+          <input
+            type="email"
+            placeholder="Saisissez votre e-mail"
+            className="w-full border-b border-gray-400 bg-transparent py-3 outline-none text-sm"
+          />
+
+          <div className="mt-4 flex items-center justify-between">
+            <button className="bg-gray-200 px-6 py-3 text-sm text-gray-600 rounded-md">
+              Rejoindre
+            </button>
+
+            <button className="text-sm underline text-gray-600 hover:text-black">
+              Me désinscrire
+            </button>
+          </div>
+        </div>
+      </div>
 
             {/* Social */}
             <div className="mt-5 flex flex-wrap gap-2">

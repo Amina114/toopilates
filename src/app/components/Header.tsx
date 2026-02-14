@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-
 const MENU_ITEMS = [
+  { label: "Too Pilates", href: "/toopilates" },
   { label: "Accueil", href: "/accueil" },
   { label: "Branches TOO PILATES", href: "/branches" },
   { label: "Coachs officiels", href: "/coachs" },
@@ -57,15 +57,35 @@ export default function Header() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+  const [isTransparent, setIsTransparent] = useState(true);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 60) {
+        setIsTransparent(false);
+      } else {
+        setIsTransparent(true);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/85 backdrop-blur">
-      <div className="mx-auto max-w-6xl px-4">
+        <header
+          className={[
+            "fixed top-0 left-0 w-full z-50 transition-all duration-500",
+            isTransparent
+              ? "bg-transparent border-transparent text-white"
+              : "bg-white/90 backdrop-blur border-b border-black/5 text-black",
+          ].join(" ")}
+        >      <div className="mx-auto max-w-6xl px-4">
         <div className="flex items-center justify-between py-2 md:py-3">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/Logo TOO Pilates.svg"
+              src={isTransparent ? "/logo-white.svg" : "/Logo TOO Pilates.svg"}
               alt="TOO PILATES"
               width={140}
               height={60}
