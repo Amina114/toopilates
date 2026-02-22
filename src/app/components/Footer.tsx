@@ -23,10 +23,10 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-gray-200/60 bg-gradient-to-b from-white to-gray-50 text-gray-700 dark:border-white/10 dark:from-gray-950 dark:to-gray-950 dark:text-gray-200">
+    <footer className="relative overflow-hidden border-t border-[#075f7f]/30 bg-gradient-to-b from-white to-gray-50 text-[#13192e] dark:border-white/10 dark:from-gray-950 dark:to-gray-950 dark:text-gray-200">
       {/* Décor léger */}
-      <div className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-fuchsia-200/30 blur-3xl dark:bg-fuchsia-500/10" />
-      <div className="pointer-events-none absolute -bottom-24 right-10 h-64 w-64 rounded-full bg-indigo-200/30 blur-3xl dark:bg-indigo-500/10" />
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[#087389]/30 blur-3xl dark:bg-[#033844]/10" />
+      <div className="pointer-events-none absolute -bottom-24 right-10 h-64 w-64 rounded-full bg-[#43bac0]/30 blur-3xl dark:bg-[#033844]/10" />
 
       <div className="relative mx-auto max-w-6xl px-4 py-12">
         {/* Top */}
@@ -39,21 +39,21 @@ export default function Footer() {
 
 {/* Brand / Newsletter style Oysho */}
 <div className="md:col-span-5">
-  <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white leading-tight">
+  <h2 className="text-3xl md:text-4xl font-light text-[#13192e] dark:text-white leading-tight">
     Rejoignez la communauté  
-    <span className="block font-semibold">Too Pilates</span>
+    <span className="block font-semibold">Too Pilates ®️</span>
   </h2>
 
         {/* champ email */}
         <div className="mt-8 max-w-md">
-          <input
+            <input
             type="email"
             placeholder="Saisissez votre e-mail"
-            className="w-full border-b border-gray-400 bg-transparent py-3 outline-none text-sm"
+            className="w-full border-b border-[#075f7f]/40 bg-transparent py-3 outline-none text-sm text-[#075f7f]"
           />
 
           <div className="mt-4 flex items-center justify-between">
-            <button className="bg-gray-200 px-6 py-3 text-sm text-gray-600 rounded-md">
+            <button className="bg-[#43bac0]/10 px-6 py-3 text-sm text-[#033844] rounded-md">
               Rejoindre
             </button>
 
@@ -73,12 +73,12 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={s.label}
-                  className="group inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-3 py-2 text-xs font-medium shadow-sm backdrop-blur transition hover:-translate-y-[1px] hover:border-fuchsia-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-fuchsia-400/40 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20 dark:focus:ring-fuchsia-300/30"
+                  className="group inline-flex items-center gap-2 rounded-full border border-[#075f7f]/20 bg-white/80 px-3 py-2 text-xs font-medium shadow-sm backdrop-blur transition hover:-translate-y-[1px] hover:border-[#087389] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#087389]/40 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20 dark:focus:ring-[#087389]/30"
                 >
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-600 to-indigo-600 text-[10px] font-bold text-white">
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-[#099da2] to-[#033844] text-[10px] font-bold text-white">
                     {s.icon}
                   </span>
-                  <span className="text-gray-700 dark:text-gray-200">
+                    <span className="text-[#13192e] dark:text-gray-200">
                     {s.label}
                   </span>
                 </Link>
@@ -89,7 +89,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="md:col-span-4">
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+            <h3 className="text-sm font-semibold text-[#13192e] dark:text-white">
               Contact
             </h3>
 
@@ -100,7 +100,7 @@ export default function Footer() {
                 </span>{" "}
                 <a
                   href="mailto:contact@toopilates.com"
-                  className="underline-offset-4 hover:text-fuchsia-700 hover:underline dark:hover:text-fuchsia-300"
+                  className="underline-offset-4 hover:text-[#087389] hover:underline dark:hover:text-[#087389]"
                 >
                   hedyammar111@gmail.com
                 </a>
@@ -111,7 +111,7 @@ export default function Footer() {
                 </span>{" "}
                 <a
                   href="tel:+21600000000"
-                  className="underline-offset-4 hover:text-fuchsia-700 hover:underline dark:hover:text-fuchsia-300"
+                  className="underline-offset-4 hover:text-[#087389] hover:underline dark:hover:text-[#087389]"
                 >
                   +216 56134950
                 </a>
@@ -122,7 +122,7 @@ export default function Footer() {
 
           {/* Légal */}
           <div className="md:col-span-3 mt-7 min-w-[220px] md:mt-0">
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
+            <h4 className="text-sm font-semibold text-[#13192e] dark:text-white">
               Légal
             </h4>
             <ul className="mt-3 space-y-1.5 text-xs">
@@ -130,7 +130,7 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="block whitespace-nowrap text-gray-600 underline-offset-4 transition hover:text-fuchsia-700 hover:underline dark:text-gray-400 dark:hover:text-fuchsia-300"
+                    className="block whitespace-nowrap text-[#075f7f] underline-offset-4 transition hover:text-[#087389] hover:underline dark:text-gray-400 dark:hover:text-[#087389]"
                   >
                     {item.label}
                   </Link>
@@ -142,15 +142,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-8 flex flex-col gap-3 border-t border-gray-200/60 pt-6 text-xs text-gray-500 dark:border-white/10 dark:text-gray-400 md:flex-row md:items-center md:justify-between">
-          <p>© {year} TOO PILATES. Tous droits réservés.</p>
+        <div className="mt-8 flex flex-col gap-3 border-t border-[#075f7f]/30 pt-6 text-xs text-[#075f7f] dark:border-white/10 dark:text-gray-400 md:flex-row md:items-center md:justify-between">
+          <p>© {year} TOO PILATES ®️. Tous droits réservés.</p>
 
           <div className="flex flex-wrap items-center gap-2">
             <span>Fait avec ♥ — Tunis</span>
             <span className="hidden md:inline">•</span>
             <Link
               href="/contact"
-              className="underline-offset-4 transition hover:text-fuchsia-700 hover:underline dark:hover:text-fuchsia-300"
+              className="underline-offset-4 transition hover:text-[#087389] hover:underline dark:hover:text-[#087389]"
             >
               Contact
             </Link>

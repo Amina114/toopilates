@@ -127,9 +127,9 @@ export default function LivrePage() {
 
       {/* Background "Pilates luxe" */}
       <div className="pointer-events-none fixed inset-0 top-0 h-screen">
-        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#9CAF88]/20 blur-3xl" />
-        <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#3F4F3C]/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(156,175,136,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(63,79,60,0.10),transparent_55%)]" />
+        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#087389]/20 blur-3xl" />
+        <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#033844]/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(8,115,137,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(3,56,68,0.10),transparent_55%)]" />
       </div>
 
       <div className="relative mx-auto max-w-5xl px-6 py-16 z-10">
@@ -141,7 +141,7 @@ export default function LivrePage() {
           className="text-center mb-12"
         >
           <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+            <span className="h-2 w-2 rounded-full bg-[#033844]" />
             <span className="text-[11px] tracking-wide text-gray-700">
               Livret pédagogique • Too Pilates
             </span>
@@ -203,7 +203,7 @@ export default function LivrePage() {
 
             <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
-                <h2 className="text-xl md:text-2xl font-semibold text-[#1F2933]">
+                <h2 className="text-xl md:text-2xl font-semibold text-[#13192e]">
                   Formulaire de commande
                 </h2>
                 <p className="mt-1 text-gray-600">
@@ -222,8 +222,8 @@ export default function LivrePage() {
                 className={[
                   "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3",
                   "text-sm font-semibold text-white shadow-md",
-                  "bg-[#3F4F3C] hover:opacity-95 transition",
-                  "focus:outline-none focus:ring-2 focus:ring-[#9CAF88]/50",
+                  "bg-[#033844] hover:opacity-95 transition",
+                  "focus:outline-none focus:ring-2 focus:ring-[#087389]/50",
                 ].join(" ")}
               >
                 {showForm ? "Fermer le formulaire" : "Commander le livret"}

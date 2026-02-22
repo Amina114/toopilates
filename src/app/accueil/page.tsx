@@ -97,19 +97,19 @@ export default function AvisPage() {
     return (
         <section className="relative pb-20">
             <div className="pointer-events-none fixed inset-0 top-0 h-screen">
-                <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#9CAF88]/20 blur-3xl" />
-                <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#3F4F3C]/10 blur-3xl" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(156,175,136,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(63,79,60,0.10),transparent_55%)]" />
+                <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#087389]/20 blur-3xl" />
+                <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#033844]/10 blur-3xl" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(8,115,137,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(3,56,68,0.10),transparent_55%)]" />
             </div>
 
             <div className="relative mx-auto max-w-5xl px-6 py-16 z-10">
                 <motion.div initial="hidden" animate="show" variants={fadeUp} className="text-center mb-8">
                     <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
-                        <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+                        <span className="h-2 w-2 rounded-full bg-[#033844]" />
                         <span className="text-[11px] tracking-wide text-gray-700">Avis adhérents • Too Pilates</span>
                     </motion.div>
 
-                    <motion.h1 variants={fadeUp} custom={1} className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-[#1F2933]">Avis adhérents – Too Pilates</motion.h1>
+                    <motion.h1 variants={fadeUp} custom={1} className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]">Avis adhérents – Too Pilates</motion.h1>
                     <motion.p variants={fadeUp} custom={2} className="mt-4 text-gray-700 max-w-2xl mx-auto">Merci à nos adhérents pour leurs retours. Partage ton expérience avec Too Pilates.</motion.p>
                 </motion.div>
 
@@ -117,7 +117,7 @@ export default function AvisPage() {
                     <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 md:p-8">
                         <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                             <div>
-                                <h2 className="text-xl md:text-2xl font-semibold text-[#1F2933]">Laisser un avis</h2>
+                                <h2 className="text-xl md:text-2xl font-semibold text-[#13192e]">Laisser un avis</h2>
                                 <p className="mt-1 text-gray-600">Ton retour nous aide à améliorer l'expérience Too Pilates.</p>
                             </div>
 
@@ -129,7 +129,7 @@ export default function AvisPage() {
                                 className={[
                                     "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3",
                                     "text-sm font-semibold text-white shadow-md",
-                                    "bg-[#3F4F3C] hover:opacity-95 transition",
+                                    "bg-[#033844] hover:opacity-95 transition",
                                 ].join(" ")}
                             >
                                 {showForm ? "Fermer le formulaire" : "Donner un avis"}
@@ -221,11 +221,11 @@ export default function AvisPage() {
                         <motion.div key={avis.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.04 }} className="relative rounded-3xl border border-black/10 bg-white/75 p-6 shadow-sm">
                             <div className="flex items-start justify-between gap-3">
                                 <div>
-                                    <p className="font-semibold text-[#1F2933]">{avis.prenom} {avis.nom}</p>
+                                    <p className="font-semibold text-[#13192e]">{avis.prenom} {avis.nom}</p>
                                     <p className="text-sm text-gray-600">{avis.email} • <span className="text-sm text-gray-500">{avis.date}</span></p>
                                 </div>
                                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm">
-                                    <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+                                    <span className="h-2 w-2 rounded-full bg-[#033844]" />
                                 </span>
                             </div>
                             <p className="mt-3 text-gray-700 leading-relaxed">{avis.message}</p>

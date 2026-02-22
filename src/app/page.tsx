@@ -125,30 +125,36 @@ export default function Home() {
       </section>
 
       {/* GALLERY CAROUSEL */}
-      <section className="py-10 bg-white relative">
-        <div className="mx-auto max-w-6xl px-6 relative">
+      <section className="bg-white relative overflow-hidden">
+        <div className="w-full relative">
 
           <button
-            onClick={() => galleryRef.current?.scrollBy({ left: -350, behavior: "smooth" })}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow p-2"
+            onClick={() => galleryRef.current?.scrollBy({ left: -600, behavior: "smooth" })}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow p-2"
           >
             <ChevronLeft size={22} />
           </button>
 
           <button
-            onClick={() => galleryRef.current?.scrollBy({ left: 350, behavior: "smooth" })}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow p-2"
+            onClick={() => galleryRef.current?.scrollBy({ left: 600, behavior: "smooth" })}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 rounded-full shadow p-2"
           >
             <ChevronRight size={22} />
           </button>
 
-          <div ref={galleryRef} className="flex gap-6 overflow-hidden">
+          <div ref={galleryRef} className="flex overflow-hidden">
             {[...GALLERY, ...GALLERY].map((img, i) => (
-              <div key={i} className="relative min-w-[320px] h-[320px] rounded-3xl overflow-hidden">
-                <Image src={img.src} alt="" fill className="object-cover" />
+              <div key={i} className="relative min-w-screen h-[80vh]">
+                <Image
+                  src={img.src}
+                  alt=""
+                  fill
+                  className="object-cover"
+                />
               </div>
             ))}
           </div>
+
         </div>
       </section>
 

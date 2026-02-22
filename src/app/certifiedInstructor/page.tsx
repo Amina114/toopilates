@@ -17,19 +17,19 @@ export default function CoachesPage() {
   return (
     <section className="">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#9CAF88]/20 blur-3xl" />
-        <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#3F4F3C]/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(156,175,136,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(63,79,60,0.10),transparent_55%)]" />
+        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#087389]/20 blur-3xl" />
+        <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#033844]/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(8,115,137,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(3,56,68,0.10),transparent_55%)]" />
       </div>
 
       <div className="relative mx-auto max-w-5xl px-6 py-16 min-h-[80vh]">
         <motion.div initial="hidden" animate="show" variants={fadeUp} className="text-center mb-8">
-          <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+            <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
+            <span className="h-2 w-2 rounded-full bg-[#033844]" />
             <span className="text-[11px] tracking-wide text-gray-700">Too Pilates • Certification</span>
           </motion.div>
 
-          <motion.h1 variants={fadeUp} custom={1} className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-[#1F2933]">
+          <motion.h1 variants={fadeUp} custom={1} className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]">
            Formation Too Pilates®
           </motion.h1>
 
@@ -43,7 +43,7 @@ export default function CoachesPage() {
           <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 md:p-8">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h2 className="text-xl md:text-2xl font-semibold text-[#1F2933]">Informations & contact</h2>
+                <h2 className="text-xl md:text-2xl font-semibold text-[#13192e]">Informations & contact</h2>
                 <p className="mt-1 text-gray-600">Pour toute demande d’inscription ou d’information, veuillez contacter :</p>
               </div>
 
