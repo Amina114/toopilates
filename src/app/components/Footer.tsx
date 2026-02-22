@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-
+import { Instagram } from "lucide-react";
 const SPONSORS = [
   { name: "SVR", logo: "/sponsors/svr.png" },
   { name: "CitySport", logo: "/sponsors/citysport.jpg" },
@@ -75,9 +75,9 @@ export default function Footer() {
                   aria-label={s.label}
                   className="group inline-flex items-center gap-2 rounded-full border border-[#075f7f]/20 bg-white/80 px-3 py-2 text-xs font-medium shadow-sm backdrop-blur transition hover:-translate-y-[1px] hover:border-[#087389] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#087389]/40 dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20 dark:focus:ring-[#087389]/30"
                 >
-                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-[#099da2] to-[#033844] text-[10px] font-bold text-white">
-                    {s.icon}
-                  </span>
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 text-white">
+                      <Instagram size={14} />
+                    </span>
                     <span className="text-[#13192e] dark:text-gray-200">
                     {s.label}
                   </span>
@@ -85,39 +85,35 @@ export default function Footer() {
               ))}
             </div>
 
-          </div>
+           </div>
 
           {/* Contact */}
           <div className="md:col-span-4">
-            <h3 className="text-sm font-semibold text-[#13192e] dark:text-white">
+            <h3 className="text-sm font-semibold text-[#13192e]">
               Contact
             </h3>
 
-            <div className="mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+            <div className="mt-4 space-y-2 text-sm text-gray-700">
               <p>
-                <span className="font-medium text-gray-800 dark:text-gray-200">
-                  Email:
-                </span>{" "}
+                <span className="font-medium">Email:</span>{" "}
                 <a
-                  href="mailto:contact@toopilates.com"
-                  className="underline-offset-4 hover:text-[#087389] hover:underline dark:hover:text-[#087389]"
+                  href="mailto:hedyammar111@gmail.com"
+                  className="hover:underline"
                 >
                   hedyammar111@gmail.com
                 </a>
               </p>
+
               <p>
-                <span className="font-medium text-gray-800 dark:text-gray-200">
-                  Téléphone:
-                </span>{" "}
+                <span className="font-medium">Téléphone:</span>{" "}
                 <a
-                  href="tel:+21600000000"
-                  className="underline-offset-4 hover:text-[#087389] hover:underline dark:hover:text-[#087389]"
+                  href="tel:+21656134950"
+                  className="hover:underline"
                 >
                   +216 56134950
                 </a>
               </p>
             </div>
-
           </div>
 
           {/* Légal */}
