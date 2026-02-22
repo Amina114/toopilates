@@ -12,7 +12,7 @@ type VisualTab = "pyramid" | "flow" | "triangle";
 function Pill({ children }: { children: React.ReactNode }) {
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
-      <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+      <span className="h-2 w-2 rounded-full bg-[#033844]" />
       <span className="text-[11px] tracking-wide text-gray-700">{children}</span>
     </span>
   );
@@ -61,7 +61,7 @@ function StatChip({ title, desc }: { title: string; desc: string }) {
       <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-white/60 to-white/30 pointer-events-none" />
       <div className="relative">
         <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm mb-3">
-          <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+          <span className="h-2 w-2 rounded-full bg-[#033844]" />
         </span>
         <h3 className="text-lg font-semibold text-[#1F2933]">{title}</h3>
         <p className="mt-3 text-gray-700 leading-relaxed">{desc}</p>
@@ -271,7 +271,7 @@ function Tabs({ value, onChange }: { value: VisualTab; onChange: (v: VisualTab) 
             {active && (
               <motion.span
                 layoutId="tabIndicator"
-                className="absolute inset-0 rounded-full bg-[#3F4F3C]"
+                className="absolute inset-0 rounded-full bg-[#033844]"
                 transition={{ type: "spring", stiffness: 450, damping: 35 }}
               />
             )}
@@ -316,8 +316,8 @@ export default function PedagogicalFramework() {
     <section className="relative pb-20">
       {/* Background (same site) */}
       <div className="pointer-events-none fixed inset-0 top-0 h-screen">
-        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#9CAF88]/20 blur-3xl" />
-        <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#3F4F3C]/10 blur-3xl" />
+        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#087389]/20 blur-3xl" />
+        <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#033844]/10 blur-3xl" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(156,175,136,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(63,79,60,0.10),transparent_55%)]" />
       </div>
 
@@ -342,7 +342,7 @@ export default function PedagogicalFramework() {
           <motion.div variants={fadeUp} custom={3} className="mt-7 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/livret"
-              className="inline-flex items-center gap-2 rounded-full bg-[#3F4F3C] px-5 py-3 text-sm font-semibold text-white shadow-md hover:opacity-95 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-[#033844] px-5 py-3 text-sm font-semibold text-white shadow-md hover:opacity-95 transition"
             >
               Découvrir le livret <span aria-hidden>→</span>
             </Link>
@@ -399,7 +399,7 @@ export default function PedagogicalFramework() {
         </div>
 
         {/* ligne animée bas */}
-        <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#3F4F3C] group-hover:w-full transition-all duration-500" />
+        <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#033844] group-hover:w-full transition-all duration-500" />
       </motion.div>
     ))}
   </motion.div>
@@ -412,7 +412,7 @@ export default function PedagogicalFramework() {
             subtitle="Un seul visuel à la fois pour garder une lecture claire."
             rightSlot={
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm">
-                <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
+                <span className="h-2 w-2 rounded-full bg-[#033844]" />
               </span>
             }
           >
@@ -496,7 +496,7 @@ export default function PedagogicalFramework() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 href="/livret"
-                className="inline-flex items-center gap-2 rounded-full bg-[#3F4F3C] px-5 py-3 text-sm font-semibold text-white shadow-md hover:opacity-95 transition"
+                className="inline-flex items-center gap-2 rounded-full bg-[#033844] px-5 py-3 text-sm font-semibold text-white shadow-md hover:opacity-95 transition"
               >
                 Découvrir le livret <span aria-hidden>→</span>
               </Link>

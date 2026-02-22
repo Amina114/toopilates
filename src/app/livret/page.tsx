@@ -333,12 +333,12 @@ export default function LivrePage() {
                       className={[
                         "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3",
                         "text-sm font-semibold text-white shadow-md",
-                        "bg-[#3F4F3C] hover:opacity-95 transition w-full md:w-auto",
-                        "focus:outline-none focus:ring-2 focus:ring-[#9CAF88]/50",
+                        "bg-[#033844] hover:opacity-95 transition w-full md:w-auto",
+                        "focus:outline-none focus:ring-2 focus:ring-[#087389]/50",
                       ].join(" ")}
                     >
                       Envoyer la demande
-                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-white/80" />
+                    <span className="inline-block h-[6px] w-[6px] rounded-full bg-white/80" />
                     </motion.button>
 
                     <p className="text-xs text-gray-600 leading-relaxed">
