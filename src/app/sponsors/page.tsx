@@ -33,9 +33,7 @@ export default function SponsorsPage() {
 
       <div className="relative mx-auto max-w-7xl px-6">
         <div className="mb-14 max-w-3xl">
-          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#087389]">
-            Too Pilates®
-          </p>
+
 
           <h1 className="text-4xl font-semibold tracking-tight text-[#13192e] md:text-5xl">
             Les sponsors
