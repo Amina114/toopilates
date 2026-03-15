@@ -23,21 +23,26 @@ export default function CoachesPage() {
       </div>
 
       <div className="relative mx-auto max-w-5xl px-6 py-16 min-h-[80vh]">
-        <motion.div initial="hidden" animate="show" variants={fadeUp} className="text-center mb-8">
-            <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-[#033844]" />
-            <span className="text-[11px] tracking-wide text-gray-700">Too Pilates • Certification</span>
-          </motion.div>
+      <motion.div initial="hidden" animate="show" variants={fadeUp} className="text-center mb-8">
 
-          <motion.h1 variants={fadeUp} custom={1} className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]">
-           Formation Too Pilates®
-          </motion.h1>
+        <motion.h1
+          variants={fadeUp}
+          custom={1}
+          className="text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]"
+        >
+          Formation Too Pilates®
+        </motion.h1>
 
-          <motion.p variants={fadeUp} custom={2} className="mt-4 text-gray-700 max-w-2xl mx-auto">
-            Seuls les coachs formés et certifiés <strong>Too Pilates®</strong> sont autorisés à enseigner la méthode.
-            <br className="my-2" />
-          </motion.p>
-        </motion.div>
+        <motion.p
+          variants={fadeUp}
+          custom={2}
+          className="mt-4 text-gray-700 max-w-2xl mx-auto"
+        >
+          Seuls les coachs formés et certifiés <strong>Too Pilates®</strong> sont autorisés à enseigner la méthode.
+          <br className="my-2" />
+        </motion.p>
+
+      </motion.div>
 
         <motion.div initial="hidden" animate="show" variants={fadeUp} custom={3} className="mb-8">
           <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 md:p-8">

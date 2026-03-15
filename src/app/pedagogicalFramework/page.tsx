@@ -79,7 +79,7 @@ function ProgressPyramid() {
         viewBox="0 0 720 320"
         className="w-full h-auto"
         role="img"
-        aria-label="Pyramide de progression Too Pilates"
+        aria-label="Pyramide de progression Too Pilates®"
       >
         <polygon points="60,280 660,280 610,230 110,230" fill="rgba(63,79,60,0.08)" />
         <polygon points="110,230 610,230 565,185 155,185" fill="rgba(63,79,60,0.10)" />
@@ -115,7 +115,7 @@ function PedagogyTriangle() {
         viewBox="0 0 720 360"
         className="w-full h-auto"
         role="img"
-        aria-label="Triangle des axes pédagogiques Too Pilates"
+        aria-label="Triangle des axes pédagogiques Too Pilates®"
       >
         <polygon
           points="360,60 120,310 600,310"
@@ -126,7 +126,7 @@ function PedagogyTriangle() {
 
         <circle cx="360" cy="225" r="10" fill="rgba(63,79,60,0.45)" />
         <text x="378" y="230" fontSize="13" fill="rgba(31,41,51,0.60)">
-          TOO Pilates
+          Too Pilates®
         </text>
 
         <circle cx="360" cy="60" r="7" fill="rgba(63,79,60,0.55)" />
@@ -325,7 +325,7 @@ export default function PedagogicalFramework() {
         {/* Top pill */}
         <motion.div initial="hidden" animate="show" variants={fadeUp} className="mb-8 flex justify-center">
           <motion.div variants={fadeUp} custom={0}>
-            <Pill>Cadre pédagogique • Too Pilates</Pill>
+            <Pill>Cadre pédagogique • Too Pilates®</Pill>
           </motion.div>
         </motion.div>
 
@@ -478,7 +478,7 @@ export default function PedagogicalFramework() {
         <motion.div initial="hidden" animate="show" variants={fadeUp} custom={6} className="mt-8 md:mt-10">
           <Card
             title="Une méthode vivante"
-            subtitle="Too Pilates vise un corps stable, mobile et intelligent — en respectant la structure et l’énergie du corps."
+            subtitle="Too Pilates® vise un corps stable, mobile et intelligent — en respectant la structure et l’énergie du corps."
           >
             <div className="mt-6 grid sm:grid-cols-3 gap-3">
               {[
@@ -578,7 +578,7 @@ export default function PedagogicalFramework() {
           </div>
 
           <p className="mt-6 text-sm text-[#6B7280]">
-            Synthèse inspirée du livret Too Pilates (progression, axes pédagogiques, structure de séance, transmission).
+            Synthèse inspirée du livret Too Pilates® (progression, axes pédagogiques, structure de séance, transmission).
           </p>
         </motion.div>
       </div>

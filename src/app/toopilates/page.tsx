@@ -2,18 +2,21 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { Plus, Minus } from "lucide-react";
 
 type Step = 1 | 2 | 3 | 4;
 
 export default function Home() {
-  const [openSteps, setOpenSteps] = useState<Step[]>([]);
+  const [openSteps, setOpenSteps] = useState<Step[]>([1]);
 
   const toggle = (step: Step) => {
-    setOpenSteps((prev) => (prev.includes(step) ? prev : [...prev, step]));
+    setOpenSteps((prev) =>
+      prev.includes(step) ? prev.filter((s) => s !== step) : [...prev, step]
+    );
   };
 
-  // FAQ Schema (SEO) — rendu côté client (OK), idéalement aussi côté serveur si possible
   const faqJsonLd = useMemo(() => {
     const data = {
       "@context": "https://schema.org",
@@ -21,15 +24,15 @@ export default function Home() {
       mainEntity: [
         {
           "@type": "Question",
-          name: "Qu’est-ce que Too Pilates ?",
+          name: "Qu’est-ce que Too Pilates® ?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Too Pilates est une méthode de Pilates moderne fondée sur la Logique Physionomie : biomécanique, respiration, chaînes musculaires et pédagogie précise pour un mouvement juste, puissant et élégant.",
+            text: "Too Pilates® est une méthode de Pilates moderne fondée sur la Logique Physionomie : biomécanique, respiration, chaînes musculaires et pédagogie précise pour un mouvement juste, puissant et élégant.",
           },
         },
         {
           "@type": "Question",
-          name: "À qui s’adresse la méthode Too Pilates ?",
+          name: "À qui s’adresse la méthode Too Pilates® ?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "À toutes les personnes qui veulent améliorer posture, mobilité, force profonde (core), respiration et stabilité, quel que soit le niveau, avec une pratique structurée et adaptée à la morphologie.",
@@ -37,7 +40,7 @@ export default function Home() {
         },
         {
           "@type": "Question",
-          name: "Quels résultats attendre avec Too Pilates ?",
+          name: "Quels résultats attendre avec Too Pilates® ?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "Un corps plus fort et plus mobile, une posture affinée, une meilleure conscience corporelle, moins de tensions, une progression durable, et une pratique plus sûre grâce à la précision technique.",
@@ -58,192 +61,199 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="relative pb-20">
-      {/* JSON-LD SEO */}
+    <section className="relative overflow-hidden bg-[#f8f6f1] pb-24">
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: faqJsonLd }}
       />
-            {/* Background "Pilates luxe" */}
-      <div className="pointer-events-none fixed inset-0 top-0 h-screen">
-        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#087389]/20 blur-3xl" />
+
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#087389]/15 blur-3xl" />
         <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#033844]/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(8,115,137,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(3,56,68,0.10),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.8),transparent_42%),radial-gradient(circle_at_80%_30%,rgba(8,115,137,0.12),transparent_48%),radial-gradient(circle_at_70%_85%,rgba(3,56,68,0.08),transparent_54%)]" />
       </div>
 
-        <div className="relative mx-auto max-w-3xl px-6 py-24 z-10">
-          {/* HERO */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]">
-            Pédagogie moderne
-          </h1>
-
-          <p className="mt-6 text-lg leading-relaxed text-[#075f7f] max-w-2xl">
-            La méthode Pilates authentique a été fondée par <strong>Joseph Pilates</strong> et repose sur des fondamentaux précis.  
-            Mais pour transmettre avec sens aux nouvelles générations, il faut avant tout une <strong>logique pédagogique</strong>.
-            <br /><br />
-            C’est cette logique que <strong>Too Pilates</strong> traduit.
-                  </p>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.7, ease: "easeOut" }}
-          className="mt-8 flex justify-center"
-        >
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-20">
+        {/* HERO */}
+        <div className="grid items-center gap-12 md:grid-cols-2">
           <motion.div
-            className="relative inline-flex items-center gap-3 px-2 py-2"
-            whileHover={{ y: -2 }}
-            transition={{ type: "spring", stiffness: 220, damping: 18 }}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {/* Pilates */}
-            <motion.span
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-base md:text-lg font-semibold text-[#13192e]"
-            >
-              Pilates
-            </motion.span>
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]">
+              Pédagogie moderne
+            </h1>
 
-            {/* + */}
-            <motion.span
-              initial={{ scale: 0.6, opacity: 0 }}
-              animate={{ scale: [1, 1.12, 1], opacity: 1 }}
-              transition={{ delay: 0.15, duration: 0.7, times: [0, 0.6, 1] }}
-              className="text-base md:text-lg text-gray-500"
-            >
-              +
-            </motion.span>
+            <p className="mt-6 text-lg leading-relaxed text-[#075f7f] max-w-2xl">
+              La méthode Pilates authentique a été fondée par{" "}
+              <strong>Joseph Pilates</strong> et repose sur des fondamentaux précis.
+              Mais pour transmettre avec sens aux nouvelles générations, il faut
+              avant tout une <strong>logique pédagogique</strong>.
+              <br />
+              <br />
+              C’est cette logique que <strong>Too Pilates®</strong> traduit.
+            </p>
 
-            {/* Pédagogie */}
-            <motion.span
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-              className="text-base md:text-lg font-semibold text-[#13192e]"
-            >
-              Pédagogie
-            </motion.span>
-
-            {/* = */}
-            <motion.span
-              initial={{ scale: 0.6, opacity: 0 }}
-              animate={{ scale: [1, 1.12, 1], opacity: 1 }}
-              transition={{ delay: 0.35, duration: 0.7, times: [0, 0.6, 1] }}
-              className="text-base md:text-lg text-gray-400"
-            >
-              =
-            </motion.span>
-
-            {/* Too Pilates + underline animée */}
-            <span className="relative">
-              <motion.span
-                 initial={{ opacity: 0 }}
-                 animate={{ opacity: 1 }}
-                 transition={{ delay: 0.45, duration: 0.6 }}
-                 className="text-base md:text-lg font-extrabold text-[#033844]"
-              >
-                 Too Pilates®
-              </motion.span>
-
-              <motion.span
-                aria-hidden="true"
-                className="absolute left-0 -bottom-1 h-[2px] w-full bg-[#087389]"
-                initial={{ scaleX: 0, transformOrigin: "left" }}
-                animate={{ scaleX: [0, 1, 1, 0] }}
-                transition={{
-                  delay: 0.7,
-                  duration: 2.8,
-                  repeat: Infinity,
-                  repeatDelay: 0.8,
-                  ease: "easeInOut",
-                }}
-              />
-            </span>
-
-            {/* glow doux derrière Too Pilates */}
             <motion.div
-              aria-hidden="true"
-              className="absolute -inset-2 rounded-full bg-[#087389]/20 blur-xl"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [0.15, 0.35, 0.15] }}
-              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
-        </motion.div>
-        </motion.div>
-
-        {/* QUESTIONS (format “FAQ progressive”) */}
-        <div className="mt-20 space-y-12">
-          {/* QUESTION 1 */}
-          <div>
-            <button
-              onClick={() => toggle(1)}
-              aria-expanded={openSteps.includes(1)}
-              className="text-xl font-medium text-[#13192e] hover:text-[#033844] transition text-left"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35, duration: 0.7, ease: "easeOut" }}
+              className="mt-8"
             >
-              1) Qu’est-ce que Too Pilates, exactement ?
-            </button>
+              <div className="inline-flex flex-wrap items-center gap-3 rounded-full border border-[#033844]/10 bg-white/80 px-5 py-3 shadow-sm backdrop-blur">
+                <span className="text-base md:text-lg font-semibold text-[#13192e]">
+                  Pilates
+                </span>
+                <span className="text-base md:text-lg text-gray-500">+</span>
+                <span className="text-base md:text-lg font-semibold text-[#13192e]">
+                  Pédagogie
+                </span>
+                <span className="text-base md:text-lg text-gray-400">=</span>
+                <span className="text-base md:text-lg font-extrabold text-[#033844]">
+                  Too Pilates®
+                </span>
+              </div>
+            </motion.div>
+          </motion.div>
 
-            <AnimatePresence>
-              {openSteps.includes(1) && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="mt-4 text-[#075f7f] leading-relaxed max-w-xl"
-                >
-                  <p>
-                    Il y a des méthodes que l’on suit… et d’autres que l’on{" "}
-                    <strong>ressent</strong>.
-                    Too Pilates est né d’une quête du geste juste : une pratique
-                    à la fois <strong>puissante</strong> et{" "}
-                    <strong>douce</strong>, <strong>technique</strong> mais{" "}
-                    <strong>accessible</strong>, élégante sans être
-                    superficielle.
-                  </p>
-                  <p className="mt-3">
-                    Ici, on ne “reproduit” pas un mouvement : on apprend à{" "}
-                    <strong>comprendre le corps</strong>, à organiser la posture,
-                    et à construire une progression claire.
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative"
+          >
+            <div className="relative h-[360px] overflow-hidden rounded-[32px] shadow-2xl md:h-[520px]">
+              <Image
+                src="/home/gallery1.jpeg"
+                alt="Too Pilates® pédagogie"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent" />
+            </div>
+
+            <div className="absolute -bottom-6 left-6 rounded-3xl bg-white/90 px-5 py-4 shadow-lg backdrop-blur">
+              <p className="text-sm uppercase tracking-[0.25em] text-[#087389]">
+                Transmission
+              </p>
+              <p className="mt-1 text-lg font-semibold text-[#13192e]">
+                Une méthode claire, précise et vivante
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* IMAGE + INTRO VISUELLE */}
+        <div className="mt-20 grid gap-8 md:grid-cols-[1.1fr_0.9fr] items-center">
+          <div className="relative h-[320px] overflow-hidden rounded-[28px] shadow-xl">
+            <Image
+              src="/home/gallery2.jpg"
+              alt="Méthode Too Pilates®"
+              fill
+              className="object-cover"
+            />
           </div>
 
-          {/* QUESTION 2 */}
-          {openSteps.includes(1) && (
-            <div>
+          <div className="rounded-[28px] border border-white/60 bg-white/80 p-8 shadow-lg backdrop-blur">
+            <p className="text-sm uppercase tracking-[0.3em] text-[#087389]">
+              Vision
+            </p>
+            <h2 className="mt-3 text-2xl md:text-3xl font-semibold text-[#13192e]">
+              Une autre façon de transmettre le Pilates
+            </h2>
+            <p className="mt-4 leading-relaxed text-[#075f7f]">
+              Ici, la pédagogie ne surcharge pas la méthode : elle la rend plus
+              lisible, plus cohérente, et plus accessible. La structure reste
+              exigeante, mais la lecture devient plus fluide.
+            </p>
+          </div>
+        </div>
+
+        {/* QUESTIONS */}
+        <div className="mt-24">
+          <div className="mb-10 max-w-2xl">
+
+            <h2 className="mt-3 text-3xl md:text-4xl font-semibold text-[#13192e]">
+              Comprendre Too Pilates®
+            </h2>
+          </div>
+
+          <div className="space-y-5">
+            {/* QUESTION 1 */}
+            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur">
+              <button
+                onClick={() => toggle(1)}
+                aria-expanded={openSteps.includes(1)}
+                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+              >
+                <span className="text-xl font-medium text-[#13192e]">
+                  1) Qu’est-ce que Too Pilates®, exactement ?
+                </span>
+                <span className="text-[#087389]">
+                  {openSteps.includes(1) ? <Minus size={20} /> : <Plus size={20} />}
+                </span>
+              </button>
+
+              <AnimatePresence>
+                {openSteps.includes(1) && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="px-6 pb-6 text-[#075f7f] leading-relaxed"
+                  >
+                    <p>
+                      Il y a des méthodes que l’on suit… et d’autres que l’on{" "}
+                      <strong>ressent</strong>. Too Pilates® est né d’une quête du
+                      geste juste : une pratique à la fois <strong>puissante</strong>{" "}
+                      et <strong>douce</strong>, <strong>technique</strong> mais{" "}
+                      <strong>accessible</strong>, élégante sans être
+                      superficielle.
+                    </p>
+                    <p className="mt-3">
+                      Ici, on ne “reproduit” pas un mouvement : on apprend à{" "}
+                      <strong>comprendre le corps</strong>, à organiser la posture,
+                      et à construire une progression claire.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* QUESTION 2 */}
+            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur">
               <button
                 onClick={() => toggle(2)}
                 aria-expanded={openSteps.includes(2)}
-                className="text-xl font-medium text-[#13192e] hover:text-[#033844] transition text-left"
+                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
               >
-                2) Pourquoi la Logique Physionomie change la façon de pratiquer ?
+                <span className="text-xl font-medium text-[#13192e]">
+                  2) Pourquoi la Logique Physionomie change la façon de pratiquer ?
+                </span>
+                <span className="text-[#087389]">
+                  {openSteps.includes(2) ? <Minus size={20} /> : <Plus size={20} />}
+                </span>
               </button>
 
               <AnimatePresence>
                 {openSteps.includes(2) && (
                   <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="mt-4 text-[#075f7f] leading-relaxed max-w-xl"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="px-6 pb-6 text-[#075f7f] leading-relaxed"
                   >
                     <p>
                       La <strong>Logique Physionomie</strong> relie plusieurs
                       dimensions pour optimiser le mouvement :
-                      <strong> biomécanique</strong>,{" "}
-                      <strong>physiologie</strong>, <strong>psychologie</strong>{" "}
-                      et <strong>chaînes musculaires</strong>.
+                      <strong> biomécanique</strong>, <strong>physiologie</strong>,{" "}
+                      <strong>psychologie</strong> et{" "}
+                      <strong>chaînes musculaires</strong>.
                     </p>
                     <p className="mt-3">
                       Concrètement : on respecte la morphologie, on renforce en{" "}
@@ -255,33 +265,36 @@ export default function Home() {
                 )}
               </AnimatePresence>
             </div>
-          )}
 
-          {/* QUESTION 3 */}
-          {openSteps.includes(2) && (
-            <div>
+            {/* QUESTION 3 */}
+            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur">
               <button
                 onClick={() => toggle(3)}
                 aria-expanded={openSteps.includes(3)}
-                className="text-xl font-medium text-[#13192e] hover:text-[#033844] transition text-left"
+                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
               >
-                3) Quels bénéfices concrets pour le corps et l’esprit ?
+                <span className="text-xl font-medium text-[#13192e]">
+                  3) Quels bénéfices concrets pour le corps et l’esprit ?
+                </span>
+                <span className="text-[#087389]">
+                  {openSteps.includes(3) ? <Minus size={20} /> : <Plus size={20} />}
+                </span>
               </button>
 
               <AnimatePresence>
                 {openSteps.includes(3) && (
                   <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="mt-4 text-[#075f7f] leading-relaxed max-w-xl"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="px-6 pb-6 text-[#075f7f] leading-relaxed"
                   >
                     <p>
                       Parce que la méthode suit une{" "}
-                      <strong>progression précise</strong> :
-                      la conscience précède l’effort, la respiration guide la
-                      force, et la stabilité soutient l’amplitude.
+                      <strong>progression précise</strong> : la conscience précède
+                      l’effort, la respiration guide la force, et la stabilité
+                      soutient l’amplitude.
                     </p>
                     <p className="mt-3">
                       Résultat : un corps plus <strong>aligné</strong>, plus{" "}
@@ -293,34 +306,36 @@ export default function Home() {
                 )}
               </AnimatePresence>
             </div>
-          )}
 
-          {/* QUESTION 4 */}
-          {openSteps.includes(3) && (
-            <div>
+            {/* QUESTION 4 */}
+            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur">
               <button
                 onClick={() => toggle(4)}
                 aria-expanded={openSteps.includes(4)}
-                className="text-xl font-medium text-[#13192e] hover:text-[#033844] transition text-left"
+                className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
               >
-                4) À qui s’adresse Too Pilates (débutant, sport, reprise) ?
+                <span className="text-xl font-medium text-[#13192e]">
+                  4) À qui s’adresse Too Pilates® (débutant, sport, reprise) ?
+                </span>
+                <span className="text-[#087389]">
+                  {openSteps.includes(4) ? <Minus size={20} /> : <Plus size={20} />}
+                </span>
               </button>
 
               <AnimatePresence>
                 {openSteps.includes(4) && (
                   <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="mt-4 text-[#075f7f] leading-relaxed max-w-xl"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35 }}
+                    className="px-6 pb-6 text-[#075f7f] leading-relaxed"
                   >
                     <p>
-                      À toutes les personnes qui veulent progresser avec une
-                      méthode <strong>structurée</strong> et{" "}
-                      <strong>adaptée</strong> : débutants, sportifs, reprise
-                      après pause, recherche de posture, mobilité, gainage,
-                      respiration.
+                      À toutes les personnes qui veulent progresser avec une méthode{" "}
+                      <strong>structurée</strong> et <strong>adaptée</strong> :
+                      débutants, sportifs, reprise après pause, recherche de
+                      posture, mobilité, gainage, respiration.
                     </p>
                     <p className="mt-3">
                       L’objectif : construire un mouvement{" "}
@@ -331,7 +346,7 @@ export default function Home() {
                 )}
               </AnimatePresence>
             </div>
-          )}
+          </div>
         </div>
 
         {/* CTA FINAL */}
@@ -344,22 +359,24 @@ export default function Home() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="mt-20"
             >
-              <p className="text-2xl font-medium text-[#13192e] mb-6">
-                Livret pédagogie complet 
-              </p>
+              <div className="rounded-[32px] bg-[#033844] px-8 py-10 text-white shadow-2xl">
+                <p className="text-2xl font-medium mb-4">
+                  Livret pédagogie complet
+                </p>
 
-              <Link
-                href="/livret"
-                className="inline-block text-lg font-semibold text-[#033844] border-b-2 border-[#087389] pb-1 hover:opacity-70 transition"
-              >
-                Too Pilates
-              </Link>
+                <Link
+                  href="/livret"
+                  className="inline-block rounded-full bg-[#E6D3A3] px-6 py-3 text-sm font-bold text-[#13192e] transition hover:opacity-90"
+                >
+                  Too Pilates®
+                </Link>
 
-              <p className="mt-5 text-[#075f7f] leading-relaxed max-w-xl">
-                Un livret complet : principes, logique physionomie, repères
-                d’enseignement, intention du geste, respiration, organisation du
-                corps et progression.
-              </p>
+                <p className="mt-5 max-w-2xl leading-relaxed text-white/80">
+                  Un livret complet : principes, logique physionomie, repères
+                  d’enseignement, intention du geste, respiration, organisation du
+                  corps et progression.
+                </p>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

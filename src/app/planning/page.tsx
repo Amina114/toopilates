@@ -87,7 +87,7 @@ export default function PlanningPage() {
           >
             <span className="h-2 w-2 rounded-full bg-[#033844]" />
             <span className="text-[11px] tracking-wide text-gray-700">
-              Planning cours • Too Pilates
+              Planning cours • Too Pilates®
             </span>
           </motion.div>
 

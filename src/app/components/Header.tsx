@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 const MENU_ITEMS = [
-  { label: "Too Pilates", href: "/toopilates" },
+  { label: "Too Pilates®", href: "/toopilates" },
   { label: "Accueil", href: "/accueil" },
-  { label: "Branches TOO PILATES", href: "/branches" },
+  { label: "Branches Too Pilates®", href: "/branches" },
   { label: "Coachs officiels", href: "/coachs" },
   { label: "Sponsors", href: "/sponsors" },
-  { label: "Too Pilates Certified Instructor", href: "/certifiedInstructor" },
-  { label: "Livret TOO PILATES", href: "/livret" },
+  { label: "Too Pilates® Certified Instructor", href: "/certifiedInstructor" },
+  { label: "Livret Too Pilates®", href: "/livret" },
   { label: "Pedagogical Framework", href: "/pedagogicalFramework" },
   { label: "Planning", href: "/planning" },
 ];
@@ -85,8 +85,8 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src={isTransparent ? "/logo-white.svg" : "/Logo TOO Pilates.svg"}
-              alt="TOO PILATES"
+              src={isTransparent ? "/logo-white.svg" : "/Logo Too Pilates.svg"}
+              alt="Too Pilates®"
               width={140}
               height={60}
               priority
@@ -186,7 +186,7 @@ export default function Header() {
 
                 <div className="border-t border-black/5 bg-black/[0.02] px-5 py-3">
                   <p className="text-[11px] tracking-wide text-gray-600">
-                    <span className="font-semibold text-gray-900">TOO PILATES</span>{" "}
+                    <span className="font-semibold text-gray-900">Too Pilates®</span>{" "}
                     — une méthode qui allie performance, esprit et style.
                   </p>
                 </div>

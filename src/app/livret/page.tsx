@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion, cubicBezier } from "framer-motion";
 
 const gouvernorats = [
@@ -47,7 +48,11 @@ const fadeUp = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.65, ease: cubicBezier(0.25, 0.46, 0.45, 0.94), delay: i * 0.06 },
+    transition: {
+      duration: 0.65,
+      ease: cubicBezier(0.25, 0.46, 0.45, 0.94),
+      delay: i * 0.06,
+    },
   }),
 };
 
@@ -99,7 +104,14 @@ export default function LivrePage() {
     });
     localStorage.setItem("commandesLivret", JSON.stringify(commandes));
 
-    setForm({ sexe: "", age: "", gouvernorat: "", nom: "", prenom: "", email: "" });
+    setForm({
+      sexe: "",
+      age: "",
+      gouvernorat: "",
+      nom: "",
+      prenom: "",
+      email: "",
+    });
     setSuccess(true);
   };
 
@@ -107,10 +119,10 @@ export default function LivrePage() {
     const data = {
       "@context": "https://schema.org",
       "@type": "Product",
-      name: "Livret pédagogique Too Pilates",
+      name: "Livret pédagogique Too Pilates®",
       description:
-        "Livret complet Too Pilates : Logique Physionomie, biomécanique, respiration, chaînes musculaires, progression et pédagogie du mouvement.",
-      brand: { "@type": "Brand", name: "Too Pilates" },
+        "Livret complet Too Pilates® : Logique Physionomie, biomécanique, respiration, chaînes musculaires, progression et pédagogie du mouvement.",
+      brand: { "@type": "Brand", name: "Too Pilates®" },
       category: "Pilates",
     };
     return JSON.stringify(data);
@@ -118,84 +130,100 @@ export default function LivrePage() {
 
   return (
     <section className="relative pb-20">
-      {/* JSON-LD SEO */}
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: contentJsonLd }}
       />
 
-      {/* Background "Pilates luxe" */}
       <div className="pointer-events-none fixed inset-0 top-0 h-screen">
         <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#087389]/20 blur-3xl" />
         <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#033844]/10 blur-3xl" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(8,115,137,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(3,56,68,0.10),transparent_55%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-5xl px-6 py-16 z-10">
+      <div className="relative mx-auto max-w-6xl px-6 py-16 z-10">
         {/* HERO */}
-        <motion.div
-          initial="hidden"
-          animate="show"
-          variants={fadeUp}
-          className="text-center mb-12"
-        >
-          <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-[#033844]" />
-            <span className="text-[11px] tracking-wide text-gray-700">
-              Livret pédagogique • Too Pilates
-            </span>
-          </motion.div>
-
-      
-
-          <motion.p
-            variants={fadeUp}
-            custom={2}
-            className="mt-5 text-gray-700 max-w-2xl mx-auto text-lg leading-relaxed"
-          >
-            Le livret <strong>Too Pilates</strong>, conçu par le coach{" "}
-            <strong>Hedy Ammar</strong>, fondateur du concept{" "}
-            <strong>Too Pilates</strong>, transmet bien plus qu'une pratique :
-            il partage <strong>une méthode</strong>, <strong>une logique</strong>{" "}
-            du mouvement et une <strong>philosophie corporelle</strong>.
-            <br />
-            <span className="text-gray-600">
-              Comprendre <strong>comment</strong> et <strong>pourquoi</strong>{" "}
-              le corps bouge — pour construire un corps{" "}
-              <strong>stable</strong>, <strong>mobile</strong> et{" "}
-              <strong>conscient</strong>.
-            </span>
-          </motion.p>
-
-          {/* mini highlights */}
+        <div className="grid items-center gap-10 md:grid-cols-2 mb-14">
           <motion.div
+            initial="hidden"
+            animate="show"
             variants={fadeUp}
-            custom={3}
-            className="mt-8 flex flex-wrap justify-center gap-2"
+            className="text-left"
           >
-            {[
-              "Posture & alignement",
-              "Force profonde (core)",
-              "Mobilité & amplitude maîtrisée",
-              "Respiration & présence",
-            ].map((t) => (
-              <span
-                key={t}
-                className="rounded-full bg-white/70 px-3 py-1.5 text-sm text-gray-700 border border-black/10 shadow-sm"
-              >
-                {t}
+            <motion.h1
+              variants={fadeUp}
+              custom={1}
+              className="text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]"
+            >
+              Livret pédagogique Too Pilates®
+            </motion.h1>
+
+            <motion.p
+              variants={fadeUp}
+              custom={2}
+              className="mt-5 text-gray-700 max-w-2xl text-lg leading-relaxed"
+            >
+              Le livret <strong>Too Pilates®</strong>, conçu par le coach{" "}
+              <strong>Hedy Ammar</strong>, fondateur du concept{" "}
+              <strong>Too Pilates®</strong>, transmet bien plus qu'une pratique :
+              il partage <strong>une méthode</strong>, <strong>une logique</strong>{" "}
+              du mouvement et une <strong>philosophie corporelle</strong>.
+              <br />
+              <span className="text-gray-600">
+                Comprendre <strong>comment</strong> et <strong>pourquoi</strong>{" "}
+                le corps bouge — pour construire un corps{" "}
+                <strong>stable</strong>, <strong>mobile</strong> et{" "}
+                <strong>conscient</strong>.
               </span>
-            ))}
+            </motion.p>
+
+            <motion.div
+              variants={fadeUp}
+              custom={3}
+              className="mt-8 flex flex-wrap gap-2"
+            >
+              {[
+                "Posture & alignement",
+                "Force profonde (core)",
+                "Mobilité & amplitude maîtrisée",
+                "Respiration & présence",
+              ].map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full bg-white/70 px-3 py-1.5 text-sm text-gray-700 border border-black/10 shadow-sm"
+                >
+                  {t}
+                </span>
+              ))}
+            </motion.div>
           </motion.div>
-        </motion.div>
+
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={fadeUp}
+            custom={4}
+            className="relative"
+          >
+            <div className="relative h-[320px] md:h-[460px] overflow-hidden rounded-[32px] shadow-2xl">
+              <Image
+                src="/home/gallery2.jpg"
+                alt="Livret pédagogique Too Pilates"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-black/10" />
+            </div>
+          </motion.div>
+        </div>
 
         {/* FORM CARD */}
         <motion.div
           initial="hidden"
           animate="show"
           variants={fadeUp}
-          custom={4}
+          custom={5}
           className="mb-12"
         >
           <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 md:p-8">
@@ -242,11 +270,12 @@ export default function LivrePage() {
                   className="relative mt-6 overflow-hidden"
                 >
                   <div className="grid md:grid-cols-2 gap-4">
-                    {/* Sexe */}
                     <Field label="Sexe" error={errors.sexe}>
                       <select
                         value={form.sexe}
-                        onChange={(e) => setForm({ ...form, sexe: e.target.value })}
+                        onChange={(e) =>
+                          setForm({ ...form, sexe: e.target.value })
+                        }
                         className={inputClass(!!errors.sexe)}
                       >
                         <option value="">Sélectionner</option>
@@ -255,7 +284,6 @@ export default function LivrePage() {
                       </select>
                     </Field>
 
-                    {/* Age */}
                     <Field label="Âge" error={errors.age}>
                       <input
                         type="number"
@@ -271,7 +299,6 @@ export default function LivrePage() {
                       />
                     </Field>
 
-                    {/* Gouvernorat */}
                     <Field label="Gouvernorat" error={errors.gouvernorat}>
                       <select
                         value={form.gouvernorat}
@@ -289,18 +316,18 @@ export default function LivrePage() {
                       </select>
                     </Field>
 
-                    {/* Nom */}
                     <Field label="Nom" error={errors.nom}>
                       <input
                         type="text"
                         placeholder="Votre nom"
                         value={form.nom}
-                        onChange={(e) => setForm({ ...form, nom: e.target.value })}
+                        onChange={(e) =>
+                          setForm({ ...form, nom: e.target.value })
+                        }
                         className={inputClass(!!errors.nom)}
                       />
                     </Field>
 
-                    {/* Prenom */}
                     <Field label="Prénom" error={errors.prenom}>
                       <input
                         type="text"
@@ -313,13 +340,14 @@ export default function LivrePage() {
                       />
                     </Field>
 
-                    {/* Email */}
                     <Field label="Email" error={errors.email}>
                       <input
                         type="email"
                         placeholder="ex: nom@gmail.com"
                         value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        onChange={(e) =>
+                          setForm({ ...form, email: e.target.value })
+                        }
                         className={inputClass(!!errors.email)}
                       />
                     </Field>
@@ -338,7 +366,7 @@ export default function LivrePage() {
                       ].join(" ")}
                     >
                       Envoyer la demande
-                    <span className="inline-block h-[6px] w-[6px] rounded-full bg-white/80" />
+                      <span className="inline-block h-[6px] w-[6px] rounded-full bg-white/80" />
                     </motion.button>
 
                     <p className="text-xs text-gray-600 leading-relaxed">
@@ -355,9 +383,7 @@ export default function LivrePage() {
                         transition={{ duration: 0.4, ease: "easeOut" }}
                         className="mt-4 rounded-2xl border border-[#9CAF88]/40 bg-[#9CAF88]/15 px-4 py-3 text-[#1F2933]"
                       >
-                        <p className="font-semibold">
-                          ✅ Commande envoyée !
-                        </p>
+                        <p className="font-semibold">✅ Commande envoyée !</p>
                         <p className="text-sm text-gray-700">
                           Nous allons vous contacter rapidement pour validation.
                         </p>
@@ -370,6 +396,37 @@ export default function LivrePage() {
           </div>
         </motion.div>
 
+        {/* IMAGE SECTION */}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          custom={6}
+          className="mb-12"
+        >
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="relative h-[260px] md:h-[340px] overflow-hidden rounded-[28px] shadow-xl">
+              <Image
+                src="/home/gallery3.jpeg"
+                alt="Méthode Too Pilates"
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6">
+              <h2 className="text-2xl font-semibold text-[#1F2933]">
+                Une méthode à lire, comprendre et transmettre
+              </h2>
+              <p className="mt-3 text-gray-700 leading-relaxed">
+                Ce livret donne une vision claire de l’approche Too Pilates®,
+                avec une logique structurée qui relie pédagogie, sensation,
+                respiration et organisation du mouvement.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
         {/* INFO SECTIONS */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <QuestionCard
@@ -379,36 +436,36 @@ export default function LivrePage() {
             openQuestion={openQuestion}
             setOpenQuestion={setOpenQuestion}
           >
-            Parce que Too Pilates n'est pas une méthode standardisée. Ce livret te permet de découvrir une approche qui relie <strong>biomécanique</strong>, <strong>respiration</strong>, <strong>chaînes musculaires</strong> et <strong>conscience corporelle</strong>. Il t'aide à renforcer en <strong>amplitude maîtrisée</strong>, sans rigidité ni contrainte, pour une pratique orientée <strong>durabilité</strong>, <strong>performance</strong> et <strong>équilibre</strong>.
+            Parce que Too Pilates® n'est pas une méthode standardisée. Ce livret te permet de découvrir une approche qui relie <strong>biomécanique</strong>, <strong>respiration</strong>, <strong>chaînes musculaires</strong> et <strong>conscience corporelle</strong>. Il t'aide à renforcer en <strong>amplitude maîtrisée</strong>, sans rigidité ni contrainte, pour une pratique orientée <strong>durabilité</strong>, <strong>performance</strong> et <strong>équilibre</strong>.
           </QuestionCard>
 
-          <QuestionCard 
+          <QuestionCard
             id="pourqui"
-            question="Pour qui ?" 
+            question="Pour qui ?"
             subtitle="Débutants, pratiquants, sportifs, coachs."
             openQuestion={openQuestion}
             setOpenQuestion={setOpenQuestion}
           >
-          Ce livret s’adresse à toutes les personnes qui souhaitent découvrir ou approfondir la <strong>méthode Too Pilates®</strong>, 
-          une œuvre pédagogique déposée, structurée pour l’<strong>enseignement</strong>, la <strong>formation</strong> et la <strong>transmission</strong>.
+            Ce livret s’adresse à toutes les personnes qui souhaitent découvrir ou approfondir la <strong>méthode Too Pilates®</strong>,
+            une œuvre pédagogique déposée, structurée pour l’<strong>enseignement</strong>, la <strong>formation</strong> et la <strong>transmission</strong>.
 
-          <ul className="mt-3 list-disc list-inside space-y-2">
-            <li><strong>Pratiquants</strong> (débutants à avancés)</li>
-            <li><strong>Sportifs</strong></li>
-            <li><strong>Coachs / instructeurs</strong></li>
-            <li><strong>Personnes en reprise</strong></li>
-          </ul>
+            <ul className="mt-3 list-disc list-inside space-y-2">
+              <li><strong>Pratiquants</strong> (débutants à avancés)</li>
+              <li><strong>Sportifs</strong></li>
+              <li><strong>Coachs / instructeurs</strong></li>
+              <li><strong>Personnes en reprise</strong></li>
+            </ul>
 
-          <p className="mt-3">
-            Aucun prérequis : la progression est pensée pour s’adapter à chaque physionomie, avec une logique pédagogique qui guide la pratique.
-          </p>
+            <p className="mt-3">
+              Aucun prérequis : la progression est pensée pour s’adapter à chaque physionomie, avec une logique pédagogique qui guide la pratique.
+            </p>
           </QuestionCard>
         </div>
 
-        <QuestionCard 
+        <QuestionCard
           id="contenu"
-          question="Contenu du livret" 
-          subtitle="Les piliers de la méthode Too Pilates."
+          question="Contenu du livret"
+          subtitle="Les piliers de la méthode Too Pilates®."
           openQuestion={openQuestion}
           setOpenQuestion={setOpenQuestion}
         >
@@ -416,9 +473,9 @@ export default function LivrePage() {
             <li>Les fondations de la <strong>Logique Physionomie</strong></li>
             <li>Les <strong>trois chaînes musculaires</strong> fondamentales</li>
             <li>Renforcement en <strong>amplitude maximale contrôlée</strong></li>
-            <li>Principes de <strong>respiration</strong> Too Pilates</li>
+            <li>Principes de <strong>respiration</strong> Too Pilates®</li>
             <li>Structure et <strong>progression</strong> d'une séance</li>
-            <li>Système Too Pilates et ses <strong>niveaux d'évolution</strong></li>
+            <li>Système Too Pilates® et ses <strong>niveaux d'évolution</strong></li>
             <li>Dimension <strong>pédagogique</strong>, <strong>sensorielle</strong> et <strong>émotionnelle</strong> du mouvement</li>
             <li>Philosophie : <strong>équilibre</strong>, <strong>longévité</strong> et <strong>conscience corporelle</strong></li>
           </ul>
@@ -428,7 +485,7 @@ export default function LivrePage() {
   );
 }
 
-/* ---------- UI helpers (sans libs externes) ---------- */
+/* ---------- UI helpers ---------- */
 
 function inputClass(isError: boolean) {
   return [
@@ -468,41 +525,6 @@ function Field({
         )}
       </AnimatePresence>
     </div>
-  );
-}
-
-function InfoCard({
-  title,
-  subtitle,
-  children,
-}: {
-  title: string;
-  subtitle?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6"
-    >
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-white/60 to-white/30 pointer-events-none" />
-      <div className="relative">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <h2 className="text-2xl font-semibold text-[#1F2933]">{title}</h2>
-            {subtitle && <p className="mt-1 text-sm text-gray-600">{subtitle}</p>}
-          </div>
-          <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-[#3F4F3C]" />
-          </span>
-        </div>
-
-        <div className="mt-4 text-gray-700 leading-relaxed">{children}</div>
-      </div>
-    </motion.div>
   );
 }
 
@@ -564,7 +586,9 @@ function QuestionCard({
               className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
             >
               <div className="flex items-start justify-between gap-4 mb-4">
-                <h2 className="text-2xl md:text-3xl font-semibold text-[#1F2933]">{question}</h2>
+                <h2 className="text-2xl md:text-3xl font-semibold text-[#1F2933]">
+                  {question}
+                </h2>
                 <button
                   onClick={() => setOpenQuestion(null)}
                   className="text-2xl text-gray-500 hover:text-gray-700 transition"

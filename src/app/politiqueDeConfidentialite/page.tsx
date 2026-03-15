@@ -6,7 +6,7 @@ export default function PrivacyPolicyPage() {
           <h1 className="text-3xl font-bold">Politique de confidentialité</h1>
 
           <p className="text-gray-600">
-            Cette politique décrit comment <strong>TOO PILATES</strong> collecte,
+            Cette politique décrit comment <strong>Too Pilates®</strong> collecte,
             utilise et protège vos données personnelles.
           </p>
 

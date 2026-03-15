@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef, useCallback } from "react";
 
@@ -30,15 +31,15 @@ const ALL_BRANCHES = [
   },
   {
     slug: "masterclass",
-    title: "Masterclass TOO Pilates",
+    title: "Masterclass Too Pilates®",
     subtitle: "L'exigence dans l'immersion",
     image: "/branches/masterclass.jpg",
     definition:
-      "Les Masterclass sont des sessions longues et immersives, conçues pour explorer la méthode TOO Pilates en profondeur.",
+      "Les Masterclass sont des sessions longues et immersives, conçues pour explorer la méthode Too Pilates® en profondeur.",
   },
   {
     slug: "reformer",
-    title: "Reformer TOO Pilates",
+    title: "Reformer Too Pilates®",
     subtitle: "L'appareil emblématique revisité",
     image: "/branches/reformer.jpg",
     definition:
@@ -47,15 +48,17 @@ const ALL_BRANCHES = [
 ];
 
 export default function BranchesPage() {
-  const [displayedBranches, setDisplayedBranches] = useState(ALL_BRANCHES.slice(0, 2));
+  const [displayedBranches, setDisplayedBranches] = useState(
+    ALL_BRANCHES.slice(0, 2)
+  );
   const [isLoading, setIsLoading] = useState(false);
-  const observerTarget = useRef(null);
+  const observerTarget = useRef<HTMLDivElement | null>(null);
 
   const loadMoreBranches = useCallback(() => {
     if (isLoading) return;
 
     setIsLoading(true);
-    // Simulate network delay
+
     setTimeout(() => {
       setDisplayedBranches((prev) => {
         const nextIndex = prev.length;
@@ -71,39 +74,54 @@ export default function BranchesPage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && displayedBranches.length < ALL_BRANCHES.length) {
+        if (
+          entries[0].isIntersecting &&
+          displayedBranches.length < ALL_BRANCHES.length
+        ) {
           loadMoreBranches();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 }
     );
 
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
+    const currentTarget = observerTarget.current;
+    if (currentTarget) {
+      observer.observe(currentTarget);
     }
 
     return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
+      if (currentTarget) {
+        observer.unobserve(currentTarget);
       }
     };
   }, [displayedBranches.length, loadMoreBranches]);
 
   return (
-    <section className="min-h-[80vh] bg-[#F7F6F3]">
-      <div className="max-w-5xl mx-auto px-6 py-16 space-y-10">
-        <div className="bg-white rounded-2xl shadow-sm p-6">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Les Branches Officielles TOO Pilates
+    <section className="relative min-h-[100vh] overflow-hidden bg-[#F7F6F3] py-16">
+      {/* Background */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-32 -left-24 h-[420px] w-[420px] rounded-full bg-[#087389]/10 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-[#033844]/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.8),transparent_42%),radial-gradient(circle_at_80%_30%,rgba(8,115,137,0.10),transparent_48%),radial-gradient(circle_at_70%_85%,rgba(3,56,68,0.08),transparent_54%)]" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-6">
+        {/* Hero */}
+        <div className="mb-14 max-w-4xl">
+
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]">
+            Les Branches Officielles
           </h1>
-          <p className="text-gray-600 mt-2 max-w-2xl">
-            TOO Pilates se décline en plusieurs branches complémentaires,
+
+          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-gray-700">
+            Too Pilates® se décline en plusieurs branches complémentaires,
             chacune pensée pour explorer le mouvement sous un angle spécifique,
             dans le respect de la logique physionomie.
           </p>
         </div>
 
-        <div className="grid gap-8">
+        {/* Grid */}
+        <div className="grid gap-8 md:grid-cols-2">
           {displayedBranches.map((branch) => (
             <BranchCard
               key={branch.slug}
@@ -116,17 +134,20 @@ export default function BranchesPage() {
           ))}
         </div>
 
-        {/* Loading indicator */}
+        {/* Loading */}
         {isLoading && (
-          <div className="flex justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+          <div className="flex justify-center py-10">
+            <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#087389]/20 border-t-[#033844]" />
           </div>
         )}
 
-        {/* Intersection observer target */}
+        {/* Infinite trigger */}
         {displayedBranches.length < ALL_BRANCHES.length && (
-          <div ref={observerTarget} className="py-8 text-center text-gray-500">
-            Scroll pour voir plus...
+          <div
+            ref={observerTarget}
+            className="py-10 text-center text-sm uppercase tracking-[0.2em] text-gray-500"
+          >
+            Scroll pour voir plus
           </div>
         )}
       </div>
@@ -134,7 +155,7 @@ export default function BranchesPage() {
   );
 }
 
-/* COMPONENT */
+/* CARD */
 function BranchCard({
   slug,
   title,
@@ -149,15 +170,44 @@ function BranchCard({
   definition: string;
 }) {
   return (
-    <Link href={`/branches/${slug}`} className="block">
-      <div className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition">
-        <img src={image} alt={title} className="h-56 w-full object-cover" />
-        <div className="p-6 space-y-3">
-          <h2 className="text-2xl font-semibold text-gray-900">{title}</h2>
-          <p className="text-gray-500 italic">{subtitle}</p>
-          <p className="text-gray-700 leading-relaxed">{definition}</p>
+    <Link href={`/branches/${slug}`} className="block group">
+      <article className="overflow-hidden rounded-[32px] border border-black/10 bg-white/80 shadow-xl backdrop-blur transition duration-300 group-hover:-translate-y-1 group-hover:shadow-2xl">
+        <div className="relative h-[300px] w-full overflow-hidden">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+
+          <div className="absolute left-6 top-6">
+            <span className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-white backdrop-blur">
+              Branche Too Pilates®
+            </span>
+          </div>
         </div>
-      </div>
+
+        <div className="p-7">
+          <p className="text-sm uppercase tracking-[0.24em] text-[#087389]">
+            {subtitle}
+          </p>
+
+          <h2 className="mt-3 text-2xl font-semibold text-[#13192e]">
+            {title}
+          </h2>
+
+          <p className="mt-4 leading-relaxed text-gray-700">
+            {definition}
+          </p>
+
+          <div className="mt-6">
+            <span className="inline-flex items-center rounded-full bg-[#033844] px-5 py-3 text-sm font-semibold text-white transition group-hover:opacity-90">
+              Découvrir la branche
+            </span>
+          </div>
+        </div>
+      </article>
     </Link>
   );
 }

@@ -48,12 +48,12 @@ export default function AvisPage() {
     };
 
     useEffect(() => {
-        const stored = JSON.parse(localStorage.getItem("avisToo Pilates") || "[]") as Avis[];
+        const stored = JSON.parse(localStorage.getItem("avisToo Pilates®") || "[]") as Avis[];
         setAvisList(stored);
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("avisToo Pilates", JSON.stringify(avisList));
+        localStorage.setItem("avisToo Pilates®", JSON.stringify(avisList));
     }, [avisList]);
 
     const validate = () => {
@@ -103,22 +103,22 @@ export default function AvisPage() {
             </div>
 
             <div className="relative mx-auto max-w-5xl px-6 py-16 z-10">
-                <motion.div initial="hidden" animate="show" variants={fadeUp} className="text-center mb-8">
-                    <motion.div variants={fadeUp} custom={0} className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
-                        <span className="h-2 w-2 rounded-full bg-[#033844]" />
-                        <span className="text-[11px] tracking-wide text-gray-700">Avis adhérents • Too Pilates</span>
-                    </motion.div>
+            <motion.div initial="hidden" animate="show" variants={fadeUp} className="text-center mb-8">
+                <motion.h1 variants={fadeUp} custom={1} className="text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]">
+                    Avis adhérents – Too Pilates®
+                </motion.h1>
 
-                    <motion.h1 variants={fadeUp} custom={1} className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]">Avis adhérents – Too Pilates</motion.h1>
-                    <motion.p variants={fadeUp} custom={2} className="mt-4 text-gray-700 max-w-2xl mx-auto">Merci à nos adhérents pour leurs retours. Partage ton expérience avec Too Pilates.</motion.p>
-                </motion.div>
+                <motion.p variants={fadeUp} custom={2} className="mt-4 text-gray-700 max-w-2xl mx-auto">
+                    Merci à nos adhérents pour leurs retours. Partage ton expérience avec Too Pilates®.
+                </motion.p>
+            </motion.div>
 
                 <motion.div initial="hidden" animate="show" variants={fadeUp} custom={3} className="mb-8">
                     <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 md:p-8">
                         <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                             <div>
                                 <h2 className="text-xl md:text-2xl font-semibold text-[#13192e]">Laisser un avis</h2>
-                                <p className="mt-1 text-gray-600">Ton retour nous aide à améliorer l'expérience Too Pilates.</p>
+                                <p className="mt-1 text-gray-600">Ton retour nous aide à améliorer l'expérience Too Pilates®.</p>
                             </div>
 
                             <motion.button

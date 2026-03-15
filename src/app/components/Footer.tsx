@@ -15,7 +15,7 @@ const LEGAL = [
 ];
 
 const SOCIAL = [
-  { label: "TOO PILATES", href: "https://www.instagram.com/toopilates?igsh=ajJnODl0OWI3ZXk4", icon: "IG" },
+  { label: "Too Pilates®", href: "https://www.instagram.com/toopilates?igsh=ajJnODl0OWI3ZXk4", icon: "IG" },
   { label: "Hedy Ammar", href: "https://www.instagram.com/hedy_ammar?igsh=a3dyMm84aWw4Y3J6", icon: "IG" },
 ];
 
@@ -41,7 +41,7 @@ export default function Footer() {
 <div className="md:col-span-5">
   <h2 className="text-3xl md:text-4xl font-light text-[#13192e] dark:text-white leading-tight">
     Rejoignez la communauté  
-    <span className="block font-semibold">Too Pilates ®️</span>
+    <span className="block font-semibold">Too Pilates® ®️</span>
   </h2>
 
         {/* champ email */}
@@ -139,7 +139,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="mt-8 flex flex-col gap-3 border-t border-[#075f7f]/30 pt-6 text-xs text-[#075f7f] dark:border-white/10 dark:text-gray-400 md:flex-row md:items-center md:justify-between">
-          <p>© {year} TOO PILATES ®️. Tous droits réservés.</p>
+          <p>© {year} Too Pilates® ®️. Tous droits réservés.</p>
 
           <div className="flex flex-wrap items-center gap-2">
             <span>Fait avec ♥ — Tunis</span>

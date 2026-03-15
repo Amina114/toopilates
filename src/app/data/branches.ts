@@ -109,7 +109,7 @@ export const BRANCHES: Branch[] = [
 
   {
     slug: "masterclass-too-pilates",
-    title: "Masterclass Too Pilates",
+    title: "Masterclass Too Pilates®",
     subtitle: "L’exigence dans l’immersion",
     image: "https://via.placeholder.com/600x400?text=Masterclass+Too+Pilates",
     definition:
@@ -134,7 +134,7 @@ export const BRANCHES: Branch[] = [
 
   {
     slug: "reformer-too-pilates",
-    title: "Reformer Too Pilates",
+    title: "Reformer Too Pilates®",
     subtitle: "L’appareil emblématique revisité",
     image: "https://via.placeholder.com/600x400?text=Reformer+Too+Pilates",
     definition:
