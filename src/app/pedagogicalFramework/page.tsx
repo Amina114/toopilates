@@ -34,7 +34,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur overflow-hidden">
+    <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
       <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-white/60 to-white/30 pointer-events-none" />
       {(title || subtitle || rightSlot) && (
         <div className="relative px-6 pt-6 md:px-8 md:pt-8">
@@ -57,7 +57,7 @@ function Card({
 
 function StatChip({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 overflow-hidden">
+    <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
       <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-white/60 to-white/30 pointer-events-none" />
       <div className="relative">
         <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm mb-3">
@@ -209,7 +209,7 @@ function Accordion({
   const contentId = useId();
 
   return (
-    <div className="rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur overflow-hidden">
+    <div className="rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
       <button
         onClick={() => setOpenId(isOpen ? null : id)}
         className="w-full text-left px-6 py-5 flex items-start justify-between gap-6"
@@ -377,8 +377,8 @@ export default function PedagogicalFramework() {
           bg-white/70 backdrop-blur
           shadow-lg
           p-6 md:p-7
-          hover:shadow-xl
-          transition
+          hover:shadow-xl hover:-translate-y-1
+          transition duration-300
           overflow-hidden
         "
       >
@@ -486,7 +486,10 @@ export default function PedagogicalFramework() {
                 { t: "Adapter", d: "Ajuster les consignes, la charge, l’amplitude." },
                 { t: "Harmoniser", d: "Relier souffle, centre et qualité du geste." },
               ].map((x) => (
-                <div key={x.t} className="rounded-2xl border border-black/10 bg-white/70 p-4 shadow-sm">
+                <div
+                  key={x.t}
+                  className="rounded-2xl border border-black/10 bg-white/70 p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+                >
                   <p className="font-semibold text-[#1F2933]">{x.t}</p>
                   <p className="mt-1 text-sm text-[#4B5563] leading-relaxed">{x.d}</p>
                 </div>
@@ -513,9 +516,6 @@ export default function PedagogicalFramework() {
         {/* Accordions */}
         <motion.div id="details" initial="hidden" animate="show" variants={fadeUp} custom={7} className="mt-12 md:mt-16">
           <p className="text-xs uppercase tracking-[0.22em] text-[#6B7280]">Détails pédagogiques</p>
-          <p className="mt-2 text-sm text-[#6B7280] max-w-2xl">
-            Ouvre une section pour lire les principes. (Animation + lecture plus fluide.)
-          </p>
 
           <div className="mt-4 space-y-4">
             <Accordion

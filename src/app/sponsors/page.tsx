@@ -32,7 +32,7 @@ export default function SponsorsPage() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">
-        <div className="mb-14 max-w-3xl">
+        <div className="mb-14 mt-10 md:mt-16 max-w-3xl">
 
 
           <h1 className="text-4xl font-semibold tracking-tight text-[#13192e] md:text-5xl">

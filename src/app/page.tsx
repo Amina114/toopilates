@@ -13,11 +13,11 @@ const GALLERY = [
 ];
 
 const MENU_ITEMS = [
-  { label: "Too Pilates®", href: "/toopilates", featured: true },
   { label: "Accueil", href: "/accueil" },
   { label: "Branches", href: "/branches" },
   { label: "Coachs", href: "/coachs" },
   { label: "Sponsors", href: "/sponsors" },
+  { label: "Too Pilates®", href: "/toopilates", featured: true },
   { label: "Too Pilates® Certified Instructor", href: "/certifiedInstructor" },
   { label: "Livret Too Pilates®", href: "/livret" },
   { label: "Pedagogical Framework", href: "/pedagogicalFramework" },
@@ -36,39 +36,41 @@ const NAV_IMAGES = [
   { src: "/home/liste/DSC07316.JPG", alt: "Pilates 5" },
 ];
 
+const useAutoScroll = (ref: React.RefObject<HTMLDivElement | null>) => {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let interval: ReturnType<typeof setInterval>;
+
+    const start = () => {
+      interval = setInterval(() => {
+        el.scrollLeft += 0.5;
+        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) {
+          el.scrollLeft = 0;
+        }
+      }, 20);
+    };
+
+    const stop = () => clearInterval(interval);
+
+    start();
+    el.addEventListener("mouseenter", stop);
+    el.addEventListener("mouseleave", start);
+
+    return () => {
+      stop();
+      el.removeEventListener("mouseenter", stop);
+      el.removeEventListener("mouseleave", start);
+    };
+  }, [ref]);
+};
+
 export default function Home() {
   const navRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
 
-  const useAutoScroll = (ref: React.RefObject<HTMLDivElement>) => {
-    useEffect(() => {
-      const el = ref.current;
-      if (!el) return;
-
-      let interval: ReturnType<typeof setInterval>;
-
-      const start = () => {
-        interval = setInterval(() => {
-          el.scrollLeft += 1;
-          if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) {
-            el.scrollLeft = 0;
-          }
-        }, 25);
-      };
-
-      const stop = () => clearInterval(interval);
-
-      start();
-      el.addEventListener("mouseenter", stop);
-      el.addEventListener("mouseleave", start);
-
-      return () => {
-        stop();
-        el.removeEventListener("mouseenter", stop);
-        el.removeEventListener("mouseleave", start);
-      };
-    }, [ref]);
-  };
+  useAutoScroll(galleryRef);
 
   return (
     <main className="bg-[#faf8f4] text-[#13192e]">
@@ -86,8 +88,6 @@ export default function Home() {
 
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <div className="text-center max-w-4xl">
-
-
             <h1 className="text-white text-4xl md:text-6xl xl:text-7xl font-semibold tracking-tight leading-tight">
               Philosophie de transmission
             </h1>
@@ -148,12 +148,16 @@ export default function Home() {
             ref={navRef}
             className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar"
           >
-            {MENU_ITEMS.map((item, idx) => {
+            {MENU_ITEMS.map((item) => {
               const isFeatured = item.label === "Too Pilates®";
+
+              const nonFeaturedIndex = MENU_ITEMS
+                .filter((menuItem) => menuItem.label !== "Too Pilates®")
+                .findIndex((menuItem) => menuItem.label === item.label);
 
               const img = isFeatured
                 ? FEATURED_LOGO
-                : NAV_IMAGES[(idx - 1 + NAV_IMAGES.length) % NAV_IMAGES.length];
+                : NAV_IMAGES[nonFeaturedIndex % NAV_IMAGES.length];
 
               return (
                 <Link
@@ -172,39 +176,24 @@ export default function Home() {
                     alt={img.alt}
                     fill
                     className={[
-                      isFeatured ? "object-contain bg-[#d9d9d9]" : "object-cover",
+                      isFeatured
+                        ? "object-contain bg-transparent p-6"
+                        : "object-cover",
                       "transition-transform duration-700 group-hover:scale-105",
                     ].join(" ")}
                   />
 
                   {!isFeatured && (
-                    <div className="absolute inset-0 bg-black/20 transition duration-500 group-hover:bg-black/30" />
+                    <div className="absolute inset-0 bg-black/45 transition duration-500 group-hover:bg-black/55" />
                   )}
 
-                  {isFeatured && (
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10" />
-                  )}
-
-                  <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
-                    <div>
-                      <span
-                        className={[
-                          "block uppercase transition-all duration-300",
-                          isFeatured
-                            ? "text-[#E6D3A3] text-xl md:text-2xl font-extrabold tracking-[0.28em] drop-shadow-md"
-                            : "text-[#E6D3A3] text-sm md:text-base font-semibold tracking-[0.22em] group-hover:tracking-[0.28em]",
-                        ].join(" ")}
-                      >
+                  {!isFeatured && (
+                    <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
+                      <span className="inline-block rounded-full bg-black/45 px-4 py-2 text-white text-sm md:text-base font-semibold tracking-[0.18em] shadow-lg backdrop-blur-sm">
                         {item.label}
                       </span>
-
-                      {isFeatured && (
-                        <span className="mt-4 inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-white/85 backdrop-blur">
-                          Signature de la méthode
-                        </span>
-                      )}
                     </div>
-                  </div>
+                  )}
                 </Link>
               );
             })}
@@ -215,8 +204,6 @@ export default function Home() {
       {/* GALLERY CAROUSEL */}
       <section className="bg-white relative overflow-hidden py-6">
         <div className="mx-auto max-w-[1600px] relative">
-
-
           <button
             onClick={() =>
               galleryRef.current?.scrollBy({ left: -700, behavior: "smooth" })
@@ -253,8 +240,6 @@ export default function Home() {
       {/* VIDEO */}
       <section className="py-14 bg-[#faf8f4] border-t border-black/5">
         <div className="mx-auto max-w-7xl px-6">
-
-
           <div className="overflow-hidden rounded-[32px] shadow-2xl border border-black/5 bg-black">
             <video
               className="w-full h-[70vh] object-cover"

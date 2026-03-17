@@ -102,7 +102,7 @@ export default function Home() {
               transition={{ delay: 0.35, duration: 0.7, ease: "easeOut" }}
               className="mt-8"
             >
-              <div className="inline-flex flex-wrap items-center gap-3 rounded-full border border-[#033844]/10 bg-white/80 px-5 py-3 shadow-sm backdrop-blur">
+              <div className="inline-flex flex-wrap items-center gap-3 rounded-full border border-[#033844]/10 bg-white/80 px-5 py-3 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <span className="text-base md:text-lg font-semibold text-[#13192e]">
                   Pilates
                 </span>
@@ -124,18 +124,18 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative"
           >
-            <div className="relative h-[360px] overflow-hidden rounded-[32px] shadow-2xl md:h-[520px]">
+            <div className="group relative h-[360px] overflow-hidden rounded-[32px] shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[520px]">
               <Image
                 src="/home/gallery1.jpeg"
                 alt="Too Pilates® pédagogie"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent" />
             </div>
 
-            <div className="absolute -bottom-6 left-6 rounded-3xl bg-white/90 px-5 py-4 shadow-lg backdrop-blur">
+            <div className="absolute -bottom-6 left-6 rounded-3xl bg-white/90 px-5 py-4 shadow-lg backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl">
               <p className="text-sm uppercase tracking-[0.25em] text-[#087389]">
                 Transmission
               </p>
@@ -148,16 +148,16 @@ export default function Home() {
 
         {/* IMAGE + INTRO VISUELLE */}
         <div className="mt-20 grid gap-8 md:grid-cols-[1.1fr_0.9fr] items-center">
-          <div className="relative h-[320px] overflow-hidden rounded-[28px] shadow-xl">
+          <div className="group relative h-[320px] overflow-hidden rounded-[28px] shadow-xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
             <Image
               src="/home/gallery2.jpg"
               alt="Méthode Too Pilates®"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
 
-          <div className="rounded-[28px] border border-white/60 bg-white/80 p-8 shadow-lg backdrop-blur">
+          <div className="rounded-[28px] border border-white/60 bg-white/80 p-8 shadow-lg backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
             <p className="text-sm uppercase tracking-[0.3em] text-[#087389]">
               Vision
             </p>
@@ -175,7 +175,6 @@ export default function Home() {
         {/* QUESTIONS */}
         <div className="mt-24">
           <div className="mb-10 max-w-2xl">
-
             <h2 className="mt-3 text-3xl md:text-4xl font-semibold text-[#13192e]">
               Comprendre Too Pilates®
             </h2>
@@ -183,7 +182,7 @@ export default function Home() {
 
           <div className="space-y-5">
             {/* QUESTION 1 */}
-            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur">
+            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl">
               <button
                 onClick={() => toggle(1)}
                 aria-expanded={openSteps.includes(1)}
@@ -225,7 +224,7 @@ export default function Home() {
             </div>
 
             {/* QUESTION 2 */}
-            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur">
+            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl">
               <button
                 onClick={() => toggle(2)}
                 aria-expanded={openSteps.includes(2)}
@@ -267,7 +266,7 @@ export default function Home() {
             </div>
 
             {/* QUESTION 3 */}
-            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur">
+            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl">
               <button
                 onClick={() => toggle(3)}
                 aria-expanded={openSteps.includes(3)}
@@ -308,7 +307,7 @@ export default function Home() {
             </div>
 
             {/* QUESTION 4 */}
-            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur">
+            <div className="overflow-hidden rounded-[24px] border border-[#033844]/10 bg-white/85 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl">
               <button
                 onClick={() => toggle(4)}
                 aria-expanded={openSteps.includes(4)}
@@ -359,7 +358,7 @@ export default function Home() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="mt-20"
             >
-              <div className="rounded-[32px] bg-[#033844] px-8 py-10 text-white shadow-2xl">
+              <div className="rounded-[32px] bg-[#033844] px-8 py-10 text-white shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
                 <p className="text-2xl font-medium mb-4">
                   Livret pédagogie complet
                 </p>

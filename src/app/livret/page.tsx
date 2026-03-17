@@ -205,16 +205,16 @@ export default function LivrePage() {
             custom={4}
             className="relative"
           >
-            <div className="relative h-[320px] md:h-[460px] overflow-hidden rounded-[32px] shadow-2xl">
-              <Image
-                src="/home/gallery2.jpg"
-                alt="Livret pédagogique Too Pilates"
-                fill
-                className="object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-black/10" />
-            </div>
+        <div className="relative h-[320px] md:h-[460px] overflow-hidden rounded-[32px] shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+          <Image
+            src="/home/gallery2.jpg"
+            alt="Livret pédagogique Too Pilates"
+            fill
+            className="object-cover transition-transform duration-700 hover:scale-105"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/10" />
+        </div>
           </motion.div>
         </div>
 
@@ -226,7 +226,7 @@ export default function LivrePage() {
           custom={5}
           className="mb-12"
         >
-          <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 md:p-8">
+          <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 md:p-8 transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-white/60 to-white/30 pointer-events-none" />
 
             <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -405,7 +405,7 @@ export default function LivrePage() {
           className="mb-12"
         >
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="relative h-[260px] md:h-[340px] overflow-hidden rounded-[28px] shadow-xl">
+            <div className="relative h-[260px] md:h-[340px] overflow-hidden rounded-[28px] shadow-xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
               <Image
                 src="/home/gallery3.jpeg"
                 alt="Méthode Too Pilates"
@@ -414,7 +414,7 @@ export default function LivrePage() {
               />
             </div>
 
-            <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6">
+            <div className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
               <h2 className="text-2xl font-semibold text-[#1F2933]">
                 Une méthode à lire, comprendre et transmettre
               </h2>
@@ -553,7 +553,7 @@ function QuestionCard({
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         onClick={() => setOpenQuestion(id)}
-        className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 cursor-pointer hover:bg-white/85 transition"
+        className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 cursor-pointer hover:bg-white/85 transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
       >
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-white/60 to-white/30 pointer-events-none" />
         <div className="relative">

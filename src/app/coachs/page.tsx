@@ -34,8 +34,7 @@ export default function CoachesPage() {
 
       <div className="relative mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className="mb-14 max-w-3xl">
- 
+        <div className="mb-14 mt-10 md:mt-16 max-w-3xl">
 
           <h1 className="text-4xl font-semibold tracking-tight text-[#13192e] md:text-5xl">
             Les coachs
@@ -79,14 +78,6 @@ export default function CoachesPage() {
                   {coach.description}
                 </p>
 
-                <div className="mt-6">
-                  <Link
-                    href={coach.href}
-                    className="inline-flex items-center rounded-full bg-[#033844] px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-                  >
-                    En savoir plus
-                  </Link>
-                </div>
               </div>
             </article>
           ))}
