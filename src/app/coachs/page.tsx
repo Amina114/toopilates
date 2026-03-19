@@ -33,14 +33,13 @@ export default function CoachesPage() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">
-        {/* Header */}
-        <div className="mb-14 mt-10 md:mt-16 max-w-3xl">
-
+        {/* HEADER CENTRÉ */}
+        <div className="mb-14 mt-10 md:mt-16 max-w-3xl mx-auto text-center">
           <h1 className="text-4xl font-semibold tracking-tight text-[#13192e] md:text-5xl">
             Les coachs
           </h1>
 
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-gray-700">
+          <p className="mt-5 text-lg leading-relaxed text-gray-700">
             Les coachs Too Pilates® incarnent l’esprit de la méthode : une
             pratique précise, consciente et structurée du mouvement. Leur rôle
             est d’accompagner chaque personne dans la compréhension de son
@@ -48,7 +47,7 @@ export default function CoachesPage() {
           </p>
         </div>
 
-        {/* Coaches list */}
+        {/* LIST */}
         <div className="grid gap-8 md:grid-cols-2">
           {COACHES.map((coach) => (
             <article
@@ -65,7 +64,8 @@ export default function CoachesPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
               </div>
 
-              <div className="p-8">
+              {/* CONTENU CENTRÉ */}
+              <div className="p-8 text-center">
                 <p className="text-sm uppercase tracking-[0.25em] text-[#087389]">
                   {coach.role}
                 </p>
@@ -77,7 +77,6 @@ export default function CoachesPage() {
                 <p className="mt-4 leading-relaxed text-gray-700">
                   {coach.description}
                 </p>
-
               </div>
             </article>
           ))}

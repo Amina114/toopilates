@@ -159,31 +159,67 @@ function PedagogyTriangle() {
 
 function SessionFlow() {
   const steps = [
-    { n: "01", label: "Activation consciente", desc: "Posture, souffle, appuis, centre." },
-    { n: "02", label: "Mouvement structuré", desc: "Chaînes, transitions, contrôle." },
-    { n: "03", label: "Renforcement intelligent", desc: "Précision, coordination, force fluide." },
-    { n: "04", label: "Amplitude & mobilité", desc: "Mobilité active guidée par la respiration." },
-    { n: "05", label: "Intégration finale", desc: "Retour au calme, ancrage et stabilité." },
+    {
+      n: "01",
+      label: "Activation consciente",
+      desc: "Posture, souffle, appuis et centre.",
+    },
+    {
+      n: "02",
+      label: "Mouvement structuré",
+      desc: "Chaînes musculaires, transitions et contrôle.",
+    },
+    {
+      n: "03",
+      label: "Renforcement intelligent",
+      desc: "Précision, coordination et force fluide.",
+    },
+    {
+      n: "04",
+      label: "Amplitude & mobilité",
+      desc: "Mobilité active guidée par la respiration.",
+    },
+    {
+      n: "05",
+      label: "Intégration finale",
+      desc: "Retour au calme, ancrage et stabilité.",
+    },
   ];
 
   return (
-    <div className="mt-6 space-y-4">
-      {steps.map((s, idx) => (
-        <div key={s.n} className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-full border border-black/10 bg-white/70 backdrop-blur flex items-center justify-center text-sm font-semibold text-[#1F2933] shadow-sm">
-            {s.n}
-          </div>
+    <div className="mt-6">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        {steps.map((step, index) => (
+          <div
+            key={step.n}
+            className="group relative overflow-hidden rounded-[26px] border border-black/10 bg-white/80 p-5 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+          >
+            <div className="absolute inset-0 bg-gradient-to-b from-white/60 to-white/10 opacity-0 transition group-hover:opacity-100" />
 
-          <div className="flex-1">
-            <div className="flex items-center gap-3">
-              <p className="font-semibold text-[#1F2933]">{s.label}</p>
-              {idx < steps.length - 1 && <span className="text-xs text-[#9CA3AF]">→</span>}
+            <div className="relative">
+              <div className="flex items-center justify-between">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-[#033844] text-sm font-semibold text-white shadow-sm">
+                  {step.n}
+                </span>
+
+                <span className="text-[10px] uppercase tracking-[0.22em] text-[#087389]">
+                  Étape
+                </span>
+              </div>
+
+              <h4 className="mt-5 text-base font-semibold leading-snug text-[#1F2933]">
+                {step.label}
+              </h4>
+
+              <p className="mt-3 text-sm leading-relaxed text-[#4B5563]">
+                {step.desc}
+              </p>
             </div>
-            <p className="mt-1 text-sm text-[#4B5563]">{s.desc}</p>
-            <div className="h-px bg-black/5 mt-3" />
+
+            <div className="absolute bottom-0 left-0 h-[3px] w-0 bg-[#033844] transition-all duration-500 group-hover:w-full" />
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

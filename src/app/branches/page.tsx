@@ -11,7 +11,7 @@ const ALL_BRANCHES = [
     subtitle: "La légèreté au service du contrôle",
     image: "/branches/suspension.jpg",
     definition:
-      "L'utilisation de sangles de suspension permet de travailler en décharge partielle du poids du corps, tout en sollicitant fortement la stabilité et le gainage.",
+      "Un travail en décharge partielle pour renforcer la stabilité et le gainage.",
   },
   {
     slug: "bands",
@@ -19,7 +19,7 @@ const ALL_BRANCHES = [
     subtitle: "Résistance ciblée et mobilité renforcée",
     image: "/branches/bands.jpg",
     definition:
-      "Les bandes élastiques introduisent une résistance progressive permettant d'intensifier le travail musculaire tout en respectant les articulations.",
+      "Une résistance progressive pour intensifier le travail sans brutalité.",
   },
   {
     slug: "stick",
@@ -27,7 +27,7 @@ const ALL_BRANCHES = [
     subtitle: "L'alignement et la structure révélés",
     image: "/branches/stick.jpg",
     definition:
-      "Le bâton permet de guider les alignements, de sécuriser les appuis et d'offrir des variantes éducatives aux exercices classiques.",
+      "Le bâton guide les alignements et sécurise les appuis.",
   },
   {
     slug: "masterclass",
@@ -35,7 +35,7 @@ const ALL_BRANCHES = [
     subtitle: "L'exigence dans l'immersion",
     image: "/branches/masterclass.jpg",
     definition:
-      "Les Masterclass sont des sessions longues et immersives, conçues pour explorer la méthode Too Pilates® en profondeur.",
+      "Des sessions immersives pour approfondir la méthode avec précision.",
   },
   {
     slug: "reformer",
@@ -43,7 +43,7 @@ const ALL_BRANCHES = [
     subtitle: "L'appareil emblématique revisité",
     image: "/branches/reformer.jpg",
     definition:
-      "Le Reformer permet un travail global en résistance, en mobilité et en contrôle grâce à des ressorts réglables.",
+      "Un travail global en résistance, mobilité et contrôle sur appareil.",
   },
 ];
 
@@ -106,21 +106,17 @@ export default function BranchesPage() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">
-        {/* Hero */}
-        <div className="mb-14 max-w-4xl">
-
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]">
+        <div className="mb-14 mt-10 md:mt-16 max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl font-semibold tracking-tight text-[#13192e] md:text-5xl">
             Les Branches Officielles
           </h1>
 
-          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-gray-700">
-            Too Pilates® se décline en plusieurs branches complémentaires,
-            chacune pensée pour explorer le mouvement sous un angle spécifique,
-            dans le respect de la logique physionomie.
+          <p className="mt-5 text-lg leading-relaxed text-gray-700">
+            Too Pilates® réunit plusieurs branches complémentaires, chacune
+            pensée pour explorer le mouvement sous un angle spécifique.
           </p>
         </div>
 
-        {/* Grid */}
         <div className="grid gap-8 md:grid-cols-2">
           {displayedBranches.map((branch) => (
             <BranchCard
@@ -134,14 +130,12 @@ export default function BranchesPage() {
           ))}
         </div>
 
-        {/* Loading */}
         {isLoading && (
           <div className="flex justify-center py-10">
             <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#087389]/20 border-t-[#033844]" />
           </div>
         )}
 
-        {/* Infinite trigger */}
         {displayedBranches.length < ALL_BRANCHES.length && (
           <div
             ref={observerTarget}
@@ -155,7 +149,6 @@ export default function BranchesPage() {
   );
 }
 
-/* CARD */
 function BranchCard({
   slug,
   title,
@@ -188,7 +181,7 @@ function BranchCard({
           </div>
         </div>
 
-        <div className="p-7">
+        <div className="p-7 text-center">
           <p className="text-sm uppercase tracking-[0.24em] text-[#087389]">
             {subtitle}
           </p>

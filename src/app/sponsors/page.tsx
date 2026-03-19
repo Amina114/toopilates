@@ -32,20 +32,20 @@ export default function SponsorsPage() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6">
-        <div className="mb-14 mt-10 md:mt-16 max-w-3xl">
-
-
+        {/* HEADER CENTRÉ */}
+        <div className="mb-14 mt-10 md:mt-16 max-w-3xl mx-auto text-center">
           <h1 className="text-4xl font-semibold tracking-tight text-[#13192e] md:text-5xl">
             Les sponsors
           </h1>
 
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-gray-700">
+          <p className="mt-5 text-lg leading-relaxed text-gray-700">
             Les sponsors Too Pilates® accompagnent le développement du projet et
             participent à la diffusion d’une approche du mouvement fondée sur la
             qualité, l’exigence et la transmission.
           </p>
         </div>
 
+        {/* GRID */}
         <div className="grid gap-8 md:grid-cols-2">
           {SPONSORS.map((sponsor) => (
             <article
@@ -62,7 +62,7 @@ export default function SponsorsPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/5 to-transparent" />
               </div>
 
-              <div className="p-8">
+              <div className="p-8 text-center">
                 <p className="text-sm uppercase tracking-[0.25em] text-[#087389]">
                   {sponsor.role}
                 </p>
