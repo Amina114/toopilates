@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import sponsorsData from "@/data/sponsors.json";
 
 const GALLERY = [
   { src: "/home/gallery1.jpeg", alt: "Too Pilates® 1" },
@@ -29,13 +30,27 @@ const FEATURED_LOGO = {
   alt: "Too Pilates®",
 };
 
+type Sponsor = {
+  src: string;
+  alt: string;
+  description: string;
+};
+
 const NAV_IMAGES = [
   { src: "/home/liste/DSC07330.JPG", alt: "Pilates 2" },
   { src: "/home/liste/DSC07329.JPG", alt: "Pilates 3" },
   { src: "/home/liste/DSC07319.JPG", alt: "Pilates 4" },
   { src: "/home/liste/DSC07316.JPG", alt: "Pilates 5" },
 ];
-
+const SPONSORS: Sponsor[] = (sponsorsData as { sponsors: Sponsor[] }).sponsors;
+const styles = {
+  partners: {
+    animation: "partners 25s linear infinite",
+  },
+  gallery: {
+    animation: "galleryScroll 35s linear infinite",
+  },
+};
 const useAutoScroll = (ref: React.RefObject<HTMLDivElement | null>) => {
   useEffect(() => {
     const el = ref.current;
@@ -68,9 +83,7 @@ const useAutoScroll = (ref: React.RefObject<HTMLDivElement | null>) => {
 
 export default function Home() {
   const navRef = useRef<HTMLDivElement>(null);
-  const galleryRef = useRef<HTMLDivElement>(null);
 
-  useAutoScroll(galleryRef);
 
   return (
     <main className="bg-[#faf8f4] text-[#13192e]">
@@ -203,36 +216,52 @@ export default function Home() {
 
       {/* GALLERY CAROUSEL */}
       <section className="bg-white relative overflow-hidden py-6">
-        <div className="mx-auto max-w-[1600px] relative">
-          <button
-            onClick={() =>
-              galleryRef.current?.scrollBy({ left: -700, behavior: "smooth" })
-            }
-            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white/90 shadow-md p-3 backdrop-blur transition hover:scale-105"
+        <div className="mx-auto max-w-[1600px] overflow-hidden">
+          <div
+            className="flex w-max"
+            style={styles.gallery}
           >
-            <ChevronLeft size={22} />
-          </button>
-
-          <button
-            onClick={() =>
-              galleryRef.current?.scrollBy({ left: 700, behavior: "smooth" })
-            }
-            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white/90 shadow-md p-3 backdrop-blur transition hover:scale-105"
-          >
-            <ChevronRight size={22} />
-          </button>
-
-          <div ref={galleryRef} className="flex overflow-hidden">
-            {[...GALLERY, ...GALLERY].map((img, i) => (
-              <div key={i} className="relative min-w-screen h-[78vh]">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover"
-                />
+            {[...GALLERY, ...GALLERY, ...GALLERY].map((img, i) => (
+              <div key={i} className="relative w-screen h-[78vh] shrink-0">
+              <Image
+                src="/home/imageprincipal.jpg"
+                alt="Image principale Too Pilates®"
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+              />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* SPONSORS */}
+      <section className="bg-white border-t border-b border-black/5 py-10 overflow-hidden relative">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex overflow-hidden">
+            <div
+              className="flex min-w-max items-center gap-16 md:gap-32"
+              style={styles.partners}
+            >
+              {[...SPONSORS, ...SPONSORS, ...SPONSORS].map((sponsor, index) => (
+                <div
+                  key={`${sponsor.alt}-${index}`}
+                  className="relative group flex flex-col items-center"
+                >
+                  <img
+                    src={sponsor.src}
+                    alt={sponsor.alt}
+                    className="h-10 md:h-14 object-contain transition-transform duration-300 hover:scale-105 cursor-help"
+                  />
+
+                  <div className="absolute top-full mt-2 hidden group-hover:block w-44 bg-gray-800 text-white text-[10px] py-1 px-2 rounded shadow-xl text-center z-50 pointer-events-none whitespace-normal">
+                    {sponsor.description}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-8 border-transparent border-b-gray-800"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

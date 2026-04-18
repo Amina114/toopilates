@@ -1,0 +1,16 @@
+{
+  "coaches": [
+    {
+      "id": "1",
+      "name": "Emma",
+      "lastname": "Dupont",
+      "phone": "06 12 34 56 78"
+    },
+    {
+      "id": "2",
+      "name": "Lucas",
+      "lastname": "Martin",
+      "phone": "06 87 65 43 21"
+    }
+  ]
+}

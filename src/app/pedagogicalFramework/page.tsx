@@ -360,9 +360,7 @@ export default function PedagogicalFramework() {
       <div className="relative mx-auto max-w-5xl px-6 py-16 md:py-20 z-10">
         {/* Top pill */}
         <motion.div initial="hidden" animate="show" variants={fadeUp} className="mb-8 flex justify-center">
-          <motion.div variants={fadeUp} custom={0}>
-            <Pill>Cadre pédagogique • Too Pilates®</Pill>
-          </motion.div>
+
         </motion.div>
 
         {/* Title */}

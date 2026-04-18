@@ -40,3 +40,20 @@ body {
   width: max-content;
   animation: scrollX 40s linear infinite;
 }
+@keyframes partners {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes galleryScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}

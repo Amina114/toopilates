@@ -2,35 +2,26 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion, cubicBezier } from "framer-motion";
+import planningData from "@/data/planning.json";
 
-const PLACES = [
-  {
-    name: "Gym Way Aouina",
-    schedules: [
-      { day: "Lundi", time: "18:00 - 19:00" },
-      { day: "Mercredi", time: "07:30 - 08:30" },
-      { day: "Samedi", time: "10:00 - 11:00" },
-    ],
-  },
-  {
-    name: "Studio Curves",
-    schedules: [
-      { day: "Mardi", time: "19:00 - 20:00" },
-      { day: "Jeudi", time: "12:30 - 13:30" },
-      { day: "Dimanche", time: "09:00 - 10:00" },
-    ],
-  },
-  {
-    name: "Studio Amina",
-    schedules: [
-      { day: "Lundi", time: "08:00 - 09:00" },
-      { day: "Vendredi", time: "18:30 - 19:30" },
-      { day: "Samedi", time: "11:30 - 12:30" },
-    ],
-  },
-];
+type Schedule = {
+  day: string;
+  time: string;
+};
 
-type Selected = { place: string; day: string; time: string } | null;
+type Place = {
+  name: string;
+  contact: string;
+  schedules: Schedule[];
+};
+
+type PlanningData = {
+  places: Place[];
+};
+
+const PLACES = (planningData as PlanningData).places;
+
+type Selected = { place: string; day: string; time: string; contact: string } | null;
 
 export default function PlanningPage() {
   const [open, setOpen] = useState(false);
@@ -54,7 +45,13 @@ export default function PlanningPage() {
   );
 
   const openModal = (place: string, day: string, time: string) => {
-    setSelected({ place, day, time });
+    const selectedPlace = PLACES.find((item) => item.name === place);
+    setSelected({
+      place,
+      day,
+      time,
+      contact: selectedPlace?.contact ?? "28582502",
+    });
     setOpen(true);
   };
 
@@ -73,31 +70,15 @@ export default function PlanningPage() {
       </div>
 
       <div className="relative mx-auto max-w-5xl px-6 py-16 z-10">
-        {/* Header */}
-        <motion.div initial="hidden" animate="show" variants={fadeUp} className="text-center mb-10">
-          <motion.div
-            variants={fadeUp}
-            custom={0}
-            className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur"
-          >
-            <span className="h-2 w-2 rounded-full bg-[#033844]" />
-            <span className="text-[11px] tracking-wide text-gray-700">
-              Planning cours • Too Pilates®
-            </span>
-          </motion.div>
+        <div className="mb-14 mt-10 md:mt-16 max-w-3xl mx-auto text-center">
+          <h1 className="text-4xl font-semibold tracking-tight text-[#13192e] md:text-5xl">
+            Planning cours Too Pilates®
+          </h1>
 
-          <motion.h1
-            variants={fadeUp}
-            custom={1}
-            className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]"
-          >
+          <p className="mt-5 text-lg leading-relaxed text-gray-700">
             Planning des cours Too Pilates®
-          </motion.h1>
-
-          <motion.p variants={fadeUp} custom={2} className="mt-4 text-gray-700 max-w-2xl mx-auto">
-            Choisis un studio, puis un créneau. Pour réserver, tu passes par téléphone.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Cards */}
         <div className="grid gap-6">
@@ -187,12 +168,11 @@ export default function PlanningPage() {
                   <p className="text-sm text-gray-700">
                     {selected.place} — {selected.day} ({selected.time})
                   </p>
+                  <p className="mt-3 text-sm text-gray-700">
+                    Contact salle : <strong>{selected.contact}</strong>
+                  </p>
                 </div>
               )}
-
-              <p className="text-gray-700 mt-5">
-                Contact : <strong>28582502</strong>
-              </p>
 
               <div className="mt-6 flex gap-3 justify-end">
                 <button
