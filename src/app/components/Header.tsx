@@ -9,7 +9,6 @@ const MENU_ITEMS = [
   { label: "Accueil", href: "/accueil" },
   { label: "Branches Too Pilates®", href: "/branches" },
   { label: "Coachs officiels", href: "/coachs" },
-  { label: "Sponsors", href: "/sponsors" },
   { label: "Too Pilates® Certified Instructor", href: "/certifiedInstructor" },
   { label: "Livret Too Pilates®", href: "/livret" },
   { label: "Pedagogical Framework", href: "/pedagogicalFramework" },

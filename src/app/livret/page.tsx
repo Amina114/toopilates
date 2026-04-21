@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, cubicBezier } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 const gouvernorats = [
   "Ariana",
@@ -31,16 +32,26 @@ const gouvernorats = [
   "Zaghouan",
 ];
 
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_LIVRE;
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
 type FormData = {
   sexe: string;
   age: number | "";
   gouvernorat: string;
   nom: string;
   prenom: string;
+  telephone: string;
   email: string;
 };
 
 type FormErrors = Partial<Record<keyof FormData, string>>;
+
+type EmailJSError = {
+  status?: number;
+  text?: string;
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 14, filter: "blur(4px)" },
@@ -65,54 +76,101 @@ export default function LivrePage() {
     gouvernorat: "",
     nom: "",
     prenom: "",
+    telephone: "",
     email: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     const newErrors: FormErrors = {};
+
     if (!form.sexe) newErrors.sexe = "Champ obligatoire";
 
     const ageNumber =
       typeof form.age === "string" ? parseInt(form.age) : form.age;
-    if (!ageNumber || ageNumber < 10 || ageNumber > 100)
+    if (!ageNumber || ageNumber < 10 || ageNumber > 100) {
       newErrors.age = "Âge invalide";
+    }
 
     if (!form.gouvernorat) newErrors.gouvernorat = "Champ obligatoire";
     if (!form.nom.trim()) newErrors.nom = "Nom obligatoire";
     if (!form.prenom.trim()) newErrors.prenom = "Prénom obligatoire";
-    if (!form.email.trim()) newErrors.email = "Email obligatoire";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+
+    if (!form.telephone.trim()) {
+      newErrors.telephone = "Téléphone obligatoire";
+    } else if (!/^[0-9+\s()-]{8,20}$/.test(form.telephone)) {
+      newErrors.telephone = "Téléphone invalide";
+    }
+
+    if (!form.email.trim()) {
+      newErrors.email = "Email obligatoire";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       newErrors.email = "Email invalide";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSuccess(false);
+
     if (!validate()) return;
 
-    const commandes = JSON.parse(
-      localStorage.getItem("commandesLivret") || "[]"
-    );
-    commandes.push({
-      ...form,
-      id: Date.now(),
-      date: new Date().toLocaleDateString(),
-    });
-    localStorage.setItem("commandesLivret", JSON.stringify(commandes));
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      setErrors((prev) => ({
+        ...prev,
+        email: "Configuration EmailJS manquante.",
+      }));
+      return;
+    }
 
-    setForm({
-      sexe: "",
-      age: "",
-      gouvernorat: "",
-      nom: "",
-      prenom: "",
-      email: "",
-    });
-    setSuccess(true);
+    try {
+      setLoading(true);
+
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          sexe: form.sexe,
+          age: form.age,
+          gouvernorat: form.gouvernorat,
+          nom: form.nom,
+          prenom: form.prenom,
+          telephone: form.telephone,
+          email: form.email,
+        },
+        {
+          publicKey: PUBLIC_KEY,
+        }
+      );
+
+      setForm({
+        sexe: "",
+        age: "",
+        gouvernorat: "",
+        nom: "",
+        prenom: "",
+        telephone: "",
+        email: "",
+      });
+
+      setErrors({});
+      setSuccess(true);
+    } catch (err: unknown) {
+      const error = err as EmailJSError;
+      console.error("EmailJS FAILED:", {
+        status: error?.status,
+        text: error?.text,
+        raw: err,
+      });
+      alert(error?.text || "Erreur lors de l’envoi.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contentJsonLd = useMemo(() => {
@@ -142,7 +200,6 @@ export default function LivrePage() {
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6 py-16 z-10">
-        {/* HERO */}
         <div className="grid items-center gap-10 md:grid-cols-2 mb-14">
           <motion.div
             initial="hidden"
@@ -205,20 +262,20 @@ export default function LivrePage() {
             custom={4}
             className="relative"
           >
-        <div className="relative h-[320px] md:h-[460px] overflow-hidden rounded-[32px] shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
-          <Image
-            src="/home/gallery2.jpg"
-            alt="Livret pédagogique Too Pilates"
-            fill
-            className="object-cover transition-transform duration-700 hover:scale-105"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/10" />
-        </div>
+            <div className="relative h-[320px] md:h-[460px] overflow-hidden rounded-[32px] shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+              <Image
+                src="/home/gallery2.jpg"
+                alt="Livret pédagogique Too Pilates"
+                fill
+                className="object-cover transition-transform duration-700 hover:scale-105"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-black/10" />
+            </div>
           </motion.div>
         </div>
 
-        {/* FORM CARD */}
         <motion.div
           initial="hidden"
           animate="show"
@@ -247,12 +304,7 @@ export default function LivrePage() {
                   setShowForm(!showForm);
                   setSuccess(false);
                 }}
-                className={[
-                  "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3",
-                  "text-sm font-semibold text-white shadow-md",
-                  "bg-[#033844] hover:opacity-95 transition",
-                  "focus:outline-none focus:ring-2 focus:ring-[#087389]/50",
-                ].join(" ")}
+                className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white shadow-md bg-[#033844] hover:opacity-95 transition focus:outline-none focus:ring-2 focus:ring-[#087389]/50"
               >
                 {showForm ? "Fermer le formulaire" : "Commander le livret"}
                 <span className="inline-block h-[6px] w-[6px] rounded-full bg-white/80" />
@@ -340,6 +392,18 @@ export default function LivrePage() {
                       />
                     </Field>
 
+                    <Field label="Téléphone" error={errors.telephone}>
+                      <input
+                        type="tel"
+                        placeholder="Ex: +216 12 345 678"
+                        value={form.telephone}
+                        onChange={(e) =>
+                          setForm({ ...form, telephone: e.target.value })
+                        }
+                        className={inputClass(!!errors.telephone)}
+                      />
+                    </Field>
+
                     <Field label="Email" error={errors.email}>
                       <input
                         type="email"
@@ -358,14 +422,10 @@ export default function LivrePage() {
                       type="submit"
                       whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.98 }}
-                      className={[
-                        "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3",
-                        "text-sm font-semibold text-white shadow-md",
-                        "bg-[#033844] hover:opacity-95 transition w-full md:w-auto",
-                        "focus:outline-none focus:ring-2 focus:ring-[#087389]/50",
-                      ].join(" ")}
+                      disabled={loading}
+                      className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-md bg-[#033844] hover:opacity-95 transition w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-[#087389]/50 disabled:opacity-60"
                     >
-                      Envoyer la demande
+                      {loading ? "Envoi..." : "Envoyer la demande"}
                       <span className="inline-block h-[6px] w-[6px] rounded-full bg-white/80" />
                     </motion.button>
 
@@ -383,9 +443,9 @@ export default function LivrePage() {
                         transition={{ duration: 0.4, ease: "easeOut" }}
                         className="mt-4 rounded-2xl border border-[#9CAF88]/40 bg-[#9CAF88]/15 px-4 py-3 text-[#1F2933]"
                       >
-                        <p className="font-semibold">✅ Commande envoyée !</p>
+                        <p className="font-semibold">✅ Demande envoyée !</p>
                         <p className="text-sm text-gray-700">
-                          Nous allons vous contacter rapidement pour validation.
+                          Nous allons vous contacter rapidement.
                         </p>
                       </motion.div>
                     )}
@@ -396,7 +456,6 @@ export default function LivrePage() {
           </div>
         </motion.div>
 
-        {/* IMAGE SECTION */}
         <motion.div
           initial="hidden"
           animate="show"
@@ -411,6 +470,7 @@ export default function LivrePage() {
                 alt="Méthode Too Pilates"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
 
@@ -427,7 +487,6 @@ export default function LivrePage() {
           </div>
         </motion.div>
 
-        {/* INFO SECTIONS */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <QuestionCard
             id="pourquoi"
@@ -484,8 +543,6 @@ export default function LivrePage() {
     </section>
   );
 }
-
-/* ---------- UI helpers ---------- */
 
 function inputClass(isError: boolean) {
   return [
@@ -559,7 +616,9 @@ function QuestionCard({
         <div className="relative">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <h2 className="text-2xl font-semibold text-[#1F2933]">{question}</h2>
+              <h2 className="text-2xl font-semibold text-[#1F2933]">
+                {question}
+              </h2>
               {subtitle && <p className="mt-1 text-sm text-gray-600">{subtitle}</p>}
             </div>
             <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm text-lg font-semibold text-[#3F4F3C]">

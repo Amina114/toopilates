@@ -1,16 +1,8 @@
 "use client";
 
-import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { AnimatePresence, motion, cubicBezier } from "framer-motion";
-
-interface Avis {
-  id: number;
-  nom: string;
-  prenom: string;
-  email: string;
-  message: string;
-  date: string;
-}
+import emailjs from "@emailjs/browser";
 
 interface Form {
   nom: string;
@@ -26,8 +18,16 @@ interface FormErrors {
   message?: string;
 }
 
+type EmailJSError = {
+  status?: number;
+  text?: string;
+};
+
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
 export default function AvisPage() {
-  const [avisList, setAvisList] = useState<Avis[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState<Form>({
     nom: "",
@@ -36,6 +36,8 @@ export default function AvisPage() {
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const fadeUp = {
     hidden: { opacity: 0, y: 14, filter: "blur(4px)" },
@@ -50,17 +52,6 @@ export default function AvisPage() {
       },
     }),
   };
-
-  useEffect(() => {
-    const stored = JSON.parse(
-      localStorage.getItem("avisToo Pilates®") || "[]"
-    ) as Avis[];
-    setAvisList(stored);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("avisToo Pilates®", JSON.stringify(avisList));
-  }, [avisList]);
 
   const validate = () => {
     const newErrors: FormErrors = {};
@@ -80,19 +71,57 @@ export default function AvisPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSuccess(false);
+
     if (!validate()) return;
 
-    const newAvis: Avis = {
-      ...form,
-      id: Date.now(),
-      date: new Date().toLocaleDateString(),
-    };
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      alert("Configuration EmailJS manquante.");
+      return;
+    }
 
-    setAvisList([newAvis, ...avisList]);
-    setForm({ nom: "", prenom: "", email: "", message: "" });
-    setShowForm(false);
+    try {
+      setLoading(true);
+
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          source: "Page avis",
+          nom: form.nom,
+          prenom: form.prenom,
+          email: form.email,
+          message: form.message,
+        },
+        {
+          publicKey: PUBLIC_KEY,
+        }
+      );
+
+      setForm({
+        nom: "",
+        prenom: "",
+        email: "",
+        message: "",
+      });
+
+      setErrors({});
+      setSuccess(true);
+      setShowForm(false);
+    } catch (err: unknown) {
+      const error = err as EmailJSError;
+      console.error("EmailJS FAILED:", {
+        status: error?.status,
+        text: error?.text,
+        raw: err,
+      });
+
+      alert(error?.text || "Erreur lors de l’envoi ❌");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (
@@ -157,7 +186,10 @@ export default function AvisPage() {
                 type="button"
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => setShowForm(!showForm)}
+                onClick={() => {
+                  setShowForm(!showForm);
+                  setSuccess(false);
+                }}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white shadow-md bg-[#033844] hover:opacity-95 transition"
               >
                 {showForm ? "Fermer le formulaire" : "Donner un avis"}
@@ -240,9 +272,10 @@ export default function AvisPage() {
                   <div className="mt-4 flex items-center gap-3">
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-md bg-[#3F4F3C]"
+                      disabled={loading}
+                      className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white shadow-md bg-[#3F4F3C] disabled:opacity-60"
                     >
-                      Envoyer
+                      {loading ? "Envoi..." : "Envoyer"}
                     </button>
                     <p className="text-xs text-gray-600">
                       En envoyant, tu acceptes d’être contacté(e) pour la
@@ -252,42 +285,17 @@ export default function AvisPage() {
                 </motion.form>
               )}
             </AnimatePresence>
+
+            {success && (
+              <div className="mt-4 rounded-2xl border border-[#9CAF88]/40 bg-[#9CAF88]/15 px-4 py-3 text-[#1F2933]">
+                <p className="font-semibold">✅ Avis envoyé !</p>
+                <p className="text-sm text-gray-700">
+                  Merci pour ton retour.
+                </p>
+              </div>
+            )}
           </div>
         </motion.div>
-
-        <div className="grid gap-6">
-          {avisList.length === 0 && (
-            <div className="rounded-3xl border border-black/10 bg-white/75 p-6 text-gray-600 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-              Aucun avis pour le moment.
-            </div>
-          )}
-
-          {avisList.map((avis, idx) => (
-            <motion.div
-              key={avis.id}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.04 }}
-              className="relative rounded-3xl border border-black/10 bg-white/75 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="font-semibold text-[#13192e]">
-                    {avis.prenom} {avis.nom}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    {avis.email} •{" "}
-                    <span className="text-sm text-gray-500">{avis.date}</span>
-                  </p>
-                </div>
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm">
-                  <span className="h-2 w-2 rounded-full bg-[#033844]" />
-                </span>
-              </div>
-              <p className="mt-3 text-gray-700 leading-relaxed">{avis.message}</p>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );

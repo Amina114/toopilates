@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Instagram } from "lucide-react";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const LEGAL = [
   { label: "Mentions légales", href: "/mentionsLegales" },
@@ -20,6 +21,15 @@ const SOCIAL = [
   },
 ];
 
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+type EmailJSError = {
+  status?: number;
+  text?: string;
+};
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -36,32 +46,50 @@ export default function Footer() {
       return;
     }
 
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      console.error("Env manquant:", {
+        SERVICE_ID,
+        TEMPLATE_ID,
+        PUBLIC_KEY,
+      });
+      setFeedback("Configuration EmailJS manquante dans .env.local.");
+      return;
+    }
+
     try {
       setLoading(true);
 
-      const res = await fetch("/api/footer-contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_email: email,
+          message: message,
         },
-        body: JSON.stringify({
-          email,
-          message,
-        }),
-      });
+        {
+          publicKey: PUBLIC_KEY,
+        }
+      );
 
-      const data = await res.json();
+      console.log("EmailJS SUCCESS:", response.status, response.text);
 
-      if (!res.ok) {
-        setFeedback(data.error || "Une erreur est survenue.");
-        return;
-      }
-
-      setFeedback("Message envoyé avec succès.");
+      setFeedback("Message envoyé avec succès ✅");
       setEmail("");
       setMessage("");
-    } catch {
-      setFeedback("Impossible d’envoyer le message pour le moment.");
+    } catch (err: unknown) {
+      const error = err as EmailJSError;
+
+      console.error("EmailJS FAILED:", {
+        status: error?.status,
+        text: error?.text,
+        raw: err,
+      });
+
+      setFeedback(
+        error?.text
+          ? `Erreur EmailJS: ${error.text}`
+          : "Erreur lors de l’envoi ❌"
+      );
     } finally {
       setLoading(false);
     }
@@ -120,9 +148,7 @@ export default function Footer() {
                 </button>
               </div>
 
-              {feedback && (
-                <p className="text-sm text-[#033844]">{feedback}</p>
-              )}
+              {feedback && <p className="text-sm text-[#033844]">{feedback}</p>}
             </div>
 
             <div className="mt-5 flex flex-wrap gap-2">
@@ -150,10 +176,7 @@ export default function Footer() {
             <div className="mt-4 space-y-2 text-sm text-gray-700">
               <p>
                 <span className="font-medium">Email:</span>{" "}
-                <a
-                  href="mailto:hedyammar111@gmail.com"
-                  className="hover:underline"
-                >
+                <a href="mailto:hedyammar111@gmail.com" className="hover:underline">
                   hedyammar111@gmail.com
                 </a>
               </p>
@@ -187,7 +210,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-[#075f7f]/30 pt-6 text-xs text-[#075f7f] md:flex-row md:items-center md:justify-between">
-          <p>© {year} Too Pilates® ®️. Tous droits réservés.</p>
+          <p>© {year} Too Pilates®. Tous droits réservés.</p>
 
           <div className="flex flex-wrap items-center gap-2">
             <span>Fait avec ♥ — Tunis</span>
