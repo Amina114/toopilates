@@ -14,14 +14,14 @@ const GALLERY = [
 ];
 
 const MENU_ITEMS = [
-  { label: "Accueil", href: "/accueil" },
+  { label: "Avis", href: "/accueil" },
   { label: "Branches", href: "/branches" },
   { label: "Coachs", href: "/coachs" },
   { label: "Too Pilates®", href: "/toopilates", featured: true },
   { label: "Too Pilates® Certified Instructor", href: "/certifiedInstructor" },
   { label: "Livret Too Pilates®", href: "/livret" },
   { label: "Pedagogical Framework", href: "/pedagogicalFramework" },
-  { label: "Planning", href: "/planning" },
+  { label: "Où se trouve Too Pilates®", href: "/planning" },
 ];
 
 const FEATURED_LOGO = {
@@ -122,7 +122,7 @@ export default function Home() {
                 href="/planning"
                 className="rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
               >
-                Voir le planning
+                Voir où se trouve Too Pilates®
               </Link>
             </div>
           </div>

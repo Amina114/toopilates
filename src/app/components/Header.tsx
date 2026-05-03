@@ -6,13 +6,13 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 const MENU_ITEMS = [
   { label: "Too Pilates®", href: "/toopilates" },
-  { label: "Accueil", href: "/accueil" },
+  { label: "Avis", href: "/accueil" },
   { label: "Branches Too Pilates®", href: "/branches" },
   { label: "Coachs officiels", href: "/coachs" },
   { label: "Too Pilates® Certified Instructor", href: "/certifiedInstructor" },
   { label: "Livret Too Pilates®", href: "/livret" },
   { label: "Pedagogical Framework", href: "/pedagogicalFramework" },
-  { label: "Planning", href: "/planning" },
+  { label: "Où se trouve Too Pilates®", href: "/planning" },
 ];
 
 function itemClass(active: boolean) {

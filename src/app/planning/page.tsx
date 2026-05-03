@@ -12,6 +12,7 @@ type Schedule = {
 type Place = {
   name: string;
   contact: string;
+  mapsLink?: string;
   schedules: Schedule[];
 };
 
@@ -21,7 +22,13 @@ type PlanningData = {
 
 const PLACES = (planningData as PlanningData).places;
 
-type Selected = { place: string; day: string; time: string; contact: string } | null;
+type Selected = {
+  place: string;
+  day: string;
+  time: string;
+  contact: string;
+  mapsLink: string;
+} | null;
 
 export default function PlanningPage() {
   const [open, setOpen] = useState(false);
@@ -51,6 +58,7 @@ export default function PlanningPage() {
       day,
       time,
       contact: selectedPlace?.contact ?? "28582502",
+      mapsLink: selectedPlace?.mapsLink ?? "#",
     });
     setOpen(true);
   };
@@ -72,11 +80,11 @@ export default function PlanningPage() {
       <div className="relative mx-auto max-w-5xl px-6 py-16 z-10">
         <div className="mb-14 mt-10 md:mt-16 max-w-3xl mx-auto text-center">
           <h1 className="text-4xl font-semibold tracking-tight text-[#13192e] md:text-5xl">
-            Planning cours Too Pilates®
+            Où se trouve Too Pilates®
           </h1>
 
           <p className="mt-5 text-lg leading-relaxed text-gray-700">
-            Planning des cours Too Pilates®
+            Retrouvez les lieux et créneaux des cours Too Pilates®
           </p>
         </div>
 
@@ -170,6 +178,9 @@ export default function PlanningPage() {
                   </p>
                   <p className="mt-3 text-sm text-gray-700">
                     Contact salle : <strong>{selected.contact}</strong>
+                  </p>
+                  <p className="mt-3 text-sm text-gray-700">
+                    Lieu : <a href={selected.mapsLink} className="text-[#087389] underline" target="_blank" rel="noopener noreferrer">Google Maps</a>
                   </p>
                 </div>
               )}

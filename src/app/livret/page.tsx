@@ -508,12 +508,6 @@ export default function LivrePage() {
             Ce livret s’adresse à toutes les personnes qui souhaitent découvrir ou approfondir la <strong>méthode Too Pilates®</strong>,
             une œuvre pédagogique déposée, structurée pour l’<strong>enseignement</strong>, la <strong>formation</strong> et la <strong>transmission</strong>.
 
-            <ul className="mt-3 list-disc list-inside space-y-2">
-              <li><strong>Pratiquants</strong> (débutants à avancés)</li>
-              <li><strong>Sportifs</strong></li>
-              <li><strong>Coachs / instructeurs</strong></li>
-              <li><strong>Personnes en reprise</strong></li>
-            </ul>
 
             <p className="mt-3">
               Aucun prérequis : la progression est pensée pour s’adapter à chaque physionomie, avec une logique pédagogique qui guide la pratique.
