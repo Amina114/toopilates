@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
+import coachPhoto from "../../photo/coachs/image1.png";
 import { AnimatePresence, motion, cubicBezier } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import coachesData from "@/data/coaches.json";
@@ -191,7 +192,7 @@ export default function CoachesPage() {
   }, []);
 
   return (
-    <section className="relative min-h-[100vh] overflow-hidden bg-[#F7F6F3] py-16">
+    <section className="relative min-h-[100vh] overflow-hidden bg-[var(--background)] py-16">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 -left-24 h-[420px] w-[420px] rounded-full bg-[#087389]/10 blur-3xl" />
         <div className="absolute bottom-0 right-0 h-[420px] w-[420px] rounded-full bg-[#033844]/10 blur-3xl" />
@@ -377,7 +378,7 @@ export default function CoachesPage() {
             >
               <div className="relative h-[360px] w-full overflow-hidden">
                 <Image
-                  src={index % 2 === 0 ? "/home/gallery1.jpeg" : "/home/gallery2.jpg"}
+                  src={coachPhoto}
                   alt={`${coach.name} ${coach.lastname}`}
                   fill
                   className="object-cover transition-transform duration-700 hover:scale-105"
@@ -395,7 +396,15 @@ export default function CoachesPage() {
                 </h2>
 
                 <div className="mt-4 space-y-2 text-gray-700">
-                  <p>Téléphone : {coach.phone}</p>
+                  <p>
+                    Téléphone : 
+                    <a
+                      href={`tel:${coach.phone.replace(/\s+/g, "")}`}
+                      className="text-[#087389] hover:underline"
+                    >
+                      {coach.phone}
+                    </a>
+                  </p>
                 </div>
               </div>
             </article>

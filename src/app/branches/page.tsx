@@ -1,15 +1,35 @@
 ﻿"use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef, useCallback } from "react";
+import suspensionPhoto from "../../photo/branches/suspension.jpg";
+import bandsPhoto from "../../photo/branches/bands.jpg";
+import stickPhoto from "../../photo/branches/stick.jpg";
+import masterclassPhoto from "../../photo/branches/masterclass3.png";
+import appareilPhoto from "../../photo/branches/appareil.png";
+import suspensionIcon from "../../photo/branches/icons/suspension.svg";
+import bandsIcon from "../../photo/branches/icons/bands.svg";
+import stickIcon from "../../photo/branches/icons/stick.svg";
+import masterclassIcon from "../../photo/branches/icons/masterclass.svg";
+import reformerIcon from "../../photo/branches/icons/reformer.svg";
 
-const ALL_BRANCHES = [
+const ALL_BRANCHES: Array<{
+  slug: string;
+  title: string;
+  subtitle: string;
+  image: StaticImageData;
+  icon: StaticImageData | string;
+  imageFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
+  imagePosition?: string;
+  definition: string;
+}> = [
   {
     slug: "suspension",
     title: "Pilates en Suspension",
     subtitle: "La légèreté au service du contrôle",
-    image: "/branches/suspension.jpg",
+    image: suspensionPhoto,
+    icon: suspensionIcon,
     definition:
       "Un travail en décharge partielle pour renforcer la stabilité et le gainage.",
   },
@@ -17,7 +37,8 @@ const ALL_BRANCHES = [
     slug: "bands",
     title: "Bands Pilates",
     subtitle: "Résistance ciblée et mobilité renforcée",
-    image: "/branches/bands.jpg",
+    image: bandsPhoto,
+    icon: bandsIcon,
     definition:
       "Une résistance progressive pour intensifier le travail sans brutalité.",
   },
@@ -25,7 +46,8 @@ const ALL_BRANCHES = [
     slug: "stick",
     title: "Stick Pilates",
     subtitle: "L'alignement et la structure révélés",
-    image: "/branches/stick.jpg",
+    image: stickPhoto,
+    icon: stickIcon,
     definition:
       "Le bâton guide les alignements et sécurise les appuis.",
   },
@@ -33,7 +55,8 @@ const ALL_BRANCHES = [
     slug: "masterclass",
     title: "Masterclass Too Pilates®",
     subtitle: "L'exigence dans l'immersion",
-    image: "/branches/masterclass.jpg",
+    image: masterclassPhoto,
+    icon: masterclassIcon,
     definition:
       "Des sessions immersives pour approfondir la méthode avec précision.",
   },
@@ -41,7 +64,10 @@ const ALL_BRANCHES = [
     slug: "reformer",
     title: "Reformer Too Pilates®",
     subtitle: "L'appareil emblématique revisité",
-    image: "/branches/reformer.jpg",
+    image: appareilPhoto,
+    icon: reformerIcon,
+    imageFit: "contain",
+    imagePosition: "center",
     definition:
       "Un travail global en résistance, mobilité et contrôle sur appareil.",
   },
@@ -97,7 +123,7 @@ export default function BranchesPage() {
   }, [displayedBranches.length, loadMoreBranches]);
 
   return (
-    <section className="relative min-h-[100vh] overflow-hidden bg-[#F7F6F3] py-16">
+    <section className="relative min-h-[100vh] overflow-hidden bg-[var(--background)] py-16">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 -left-24 h-[420px] w-[420px] rounded-full bg-[#087389]/10 blur-3xl" />
@@ -105,7 +131,7 @@ export default function BranchesPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.8),transparent_42%),radial-gradient(circle_at_80%_30%,rgba(8,115,137,0.10),transparent_48%),radial-gradient(circle_at_70%_85%,rgba(3,56,68,0.08),transparent_54%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         <div className="mb-14 mt-10 md:mt-16 max-w-4xl mx-auto text-center">
           <h1 className="text-4xl font-semibold tracking-tight text-[#13192e] md:text-5xl">
             Les Branches Officielles
@@ -125,6 +151,9 @@ export default function BranchesPage() {
               title={branch.title}
               subtitle={branch.subtitle}
               image={branch.image}
+              icon={branch.icon}
+              {...(branch.imageFit && { imageFit: branch.imageFit })}
+              {...(branch.imagePosition && { imagePosition: branch.imagePosition })}
               definition={branch.definition}
             />
           ))}
@@ -154,12 +183,18 @@ function BranchCard({
   title,
   subtitle,
   image,
+  icon,
+  imageFit,
+  imagePosition,
   definition,
 }: {
   slug: string;
   title: string;
   subtitle: string;
-  image: string;
+  image: StaticImageData | string;
+  icon: StaticImageData | string;
+  imageFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
+  imagePosition?: string;
   definition: string;
 }) {
   return (
@@ -170,11 +205,24 @@ function BranchCard({
             src={image}
             alt={title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="transition-transform duration-700 group-hover:scale-105"
+            style={{
+              objectFit: imageFit ?? "cover",
+              objectPosition: imagePosition ?? "center",
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
 
-          <div className="absolute left-6 top-6">
+          <div className="absolute left-6 top-6 flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 p-2 shadow-sm backdrop-blur">
+              <Image
+                src={icon}
+                alt={`${title} icône`}
+                width={24}
+                height={24}
+                className="object-contain"
+              />
+            </div>
             <span className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-white backdrop-blur">
               Branche Too Pilates®
             </span>

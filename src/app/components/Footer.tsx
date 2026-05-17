@@ -96,14 +96,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden border-t border-[#075f7f]/30 bg-gradient-to-b from-white to-gray-50 text-[#13192e] dark:border-white/10 dark:from-gray-950 dark:to-gray-950 dark:text-gray-200">
-      <div className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[#087389]/30 blur-3xl dark:bg-[#033844]/10" />
-      <div className="pointer-events-none absolute -bottom-24 right-10 h-64 w-64 rounded-full bg-[#43bac0]/30 blur-3xl dark:bg-[#033844]/10" />
+    <footer className="relative overflow-hidden border-t border-[#075f7f]/30 bg-gradient-to-b from-white to-gray-50 text-[#13192e]">
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[#087389]/30 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 right-10 h-64 w-64 rounded-full bg-[#43bac0]/30 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 py-12">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
-            <h2 className="text-3xl md:text-4xl font-light text-[#13192e] dark:text-white leading-tight">
+            <h2 className="text-3xl md:text-4xl font-light text-[#13192e] leading-tight">
               Rejoignez la communauté
               <span className="block font-semibold">Too Pilates®</span>
             </h2>
@@ -191,7 +191,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-3 mt-7 min-w-[220px] md:mt-0">
-            <h4 className="text-sm font-semibold text-[#13192e] dark:text-white">
+            <h4 className="text-sm font-semibold text-[#13192e]">
               Légal
             </h4>
             <ul className="mt-3 space-y-1.5 text-xs">

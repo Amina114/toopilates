@@ -2,6 +2,9 @@
 
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
+import image1 from "../../photo/livret/image1.png";
+import image2 from "../../photo/livret/image2.png";
+
 import { AnimatePresence, motion, cubicBezier } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
@@ -264,7 +267,7 @@ export default function LivrePage() {
           >
             <div className="relative h-[320px] md:h-[460px] overflow-hidden rounded-[32px] shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
               <Image
-                src="/home/gallery2.jpg"
+                src={image1}
                 alt="Livret pédagogique Too Pilates"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
@@ -466,10 +469,11 @@ export default function LivrePage() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative h-[260px] md:h-[340px] overflow-hidden rounded-[28px] shadow-xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
               <Image
-                src="/home/gallery3.jpeg"
-                alt="Méthode Too Pilates"
+                src={image2}
+                alt="Livret pédagogique Too Pilates"
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 hover:scale-105"
+                priority
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>

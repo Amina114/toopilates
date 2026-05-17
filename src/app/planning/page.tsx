@@ -69,15 +69,15 @@ export default function PlanningPage() {
   };
 
   return (
-    <section className="relative pb-20">
+    <section className="relative min-h-[100vh] overflow-hidden bg-[var(--background)] py-16">
       {/* Background */}
-      <div className="pointer-events-none fixed inset-0 top-0 h-screen">
+      <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#087389]/20 blur-3xl" />
         <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#033844]/10 blur-3xl" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.7),transparent_45%),radial-gradient(circle_at_80%_30%,rgba(8,115,137,0.18),transparent_50%),radial-gradient(circle_at_70%_85%,rgba(3,56,68,0.10),transparent_55%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-5xl px-6 py-16 z-10">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-16">
         <div className="mb-14 mt-10 md:mt-16 max-w-3xl mx-auto text-center">
           <h1 className="text-4xl font-semibold tracking-tight text-[#13192e] md:text-5xl">
             Où se trouve Too Pilates®

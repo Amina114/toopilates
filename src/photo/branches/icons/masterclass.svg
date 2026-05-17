@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Masterclass star icon">
+  <circle cx="256" cy="256" r="226" fill="#DCEFF0"/>
+  <g fill="none" stroke="#087389" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M256 118 L295 211 L396 219 L319 285 L343 384 L256 332 L169 384 L193 285 L116 219 L217 211 L256 118Z"/>
+  </g>
+</svg>

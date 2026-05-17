@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import appareilImage from "../../../photo/branches/under/appareil.png";
 
 const BENEFICES = [
   "Travail tridimensionnel complet",
@@ -20,7 +21,7 @@ const AUDIENCE = [
 
 export default function ReformerPage() {
   return (
-    <section className="relative min-h-[100vh] overflow-hidden bg-[#F7F6F3] py-16">
+    <section className="relative min-h-[100vh] overflow-hidden bg-[var(--background)] py-16">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 -left-24 h-[420px] w-[420px] rounded-full bg-[#087389]/10 blur-3xl" />
@@ -76,7 +77,7 @@ export default function ReformerPage() {
           >
             <div className="group relative h-[360px] overflow-hidden rounded-[32px] shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[520px]">
               <Image
-                src="/branches/reformer.jpg"
+                src={appareilImage}
                 alt="Reformer Too Pilates"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"

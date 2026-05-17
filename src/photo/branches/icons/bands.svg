@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Pilates bands icon">
+  <circle cx="256" cy="256" r="226" fill="#DCEFF0"/>
+  <g fill="none" stroke="#087389" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 300 C130 250 160 205 218 205 C260 205 285 245 314 285 C340 320 372 337 398 310 C424 283 408 238 366 224 C322 209 286 238 250 282 C214 326 176 344 150 300Z"/>
+    <path d="M183 314 L329 196"/>
+  </g>
+</svg>

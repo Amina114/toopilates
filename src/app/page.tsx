@@ -2,32 +2,93 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import sponsorsData from "@/data/sponsors.json";
 
-const GALLERY = [
-  { src: "/home/gallery1.jpeg", alt: "Too Pilates® 1" },
-  { src: "/home/gallery2.jpg", alt: "Too Pilates® 2" },
-  { src: "/home/gallery3.jpeg", alt: "Too Pilates® 3" },
-  { src: "/home/gallery4.JPG", alt: "Too Pilates® 4" },
-];
+import gallery1 from "../photo/home/iamge1.png";
+import gallery2 from "../photo/home/iamge2.png";
+import gallery3 from "../photo/home/iamge3.png";
+import gallery4 from "../photo/home/iamge4.png";
+import gallery5 from "../photo/home/iamge5.png";
+import gallery6 from "../photo/home/iamge6.png";
+import gallery7 from "../photo/home/image7.png";
 
-const MENU_ITEMS = [
-  { label: "Avis", href: "/accueil" },
-  { label: "Branches", href: "/branches" },
-  { label: "Coachs", href: "/coachs" },
-  { label: "Too Pilates®", href: "/toopilates", featured: true },
-  { label: "Too Pilates® Certified Instructor", href: "/certifiedInstructor" },
-  { label: "Livret Too Pilates®", href: "/livret" },
-  { label: "Pedagogical Framework", href: "/pedagogicalFramework" },
-  { label: "Où se trouve Too Pilates®", href: "/planning" },
+/* Navigation images */
+import navAvis from "../photo/home/navigation/image1.png";
+import navBranches from "../photo/home/navigation/image2.png";
+import navLivret from "../photo/home/navigation/iamge3.png";
+import navCoachs from "../photo/home/navigation/image4.png";
+import navCertified from "../photo/home/navigation/iamge5.png";
+import navPedagogical from "../photo/home/navigation/image6.png";
+import navPlanning from "../photo/home/image7.png";
+
+const GALLERY = [
+  { src: gallery1, alt: "Too Pilates® galerie 1" },
+  { src: gallery2, alt: "Too Pilates® galerie 2" },
+  { src: gallery3, alt: "Too Pilates® galerie 3" },
+  { src: gallery4, alt: "Too Pilates® galerie 4" },
+  { src: gallery5, alt: "Too Pilates® galerie 5" },
+  { src: gallery6, alt: "Too Pilates® galerie 6" },
+  { src: gallery7, alt: "Too Pilates® galerie 7" },
 ];
 
 const FEATURED_LOGO = {
-  src: "/home/liste/logo-white.svg",
+  src: "/home/liste/Logo-TOO-Pilates noir.png",
   alt: "Too Pilates®",
 };
+
+const MENU_ITEMS = [
+  {
+    label: "Avis",
+    href: "/accueil",
+    image: navAvis,
+    alt: "Avis Too Pilates®",
+  },
+  {
+    label: "Branches",
+    href: "/branches",
+    image: navBranches,
+    alt: "Branches Too Pilates®",
+  },
+  {
+    label: "Coachs",
+    href: "/coachs",
+    image: navCoachs,
+    alt: "Coachs Too Pilates®",
+  },
+  {
+    label: "Too Pilates®",
+    href: "/toopilates",
+    image: FEATURED_LOGO.src,
+    alt: FEATURED_LOGO.alt,
+    featured: true,
+  },
+  {
+    label: "Too Pilates® Certified Instructor",
+    href: "/certifiedInstructor",
+    image: navCertified,
+    alt: "Too Pilates® Certified Instructor",
+  },
+  {
+    label: "Livret Too Pilates®",
+    href: "/livret",
+    image: navLivret,
+    alt: "Livret Too Pilates®",
+  },
+  {
+    label: "Pedagogical Framework",
+    href: "/pedagogicalFramework",
+    image: navPedagogical,
+    alt: "Pedagogical Framework Too Pilates®",
+  },
+  {
+    label: "Où se trouve Too Pilates®",
+    href: "/planning",
+    image: navPlanning,
+    alt: "Où se trouve Too Pilates®",
+  },
+];
 
 type Sponsor = {
   src: string;
@@ -35,13 +96,8 @@ type Sponsor = {
   description: string;
 };
 
-const NAV_IMAGES = [
-  { src: "/home/liste/DSC07330.JPG", alt: "Pilates 2" },
-  { src: "/home/liste/DSC07329.JPG", alt: "Pilates 3" },
-  { src: "/home/liste/DSC07319.JPG", alt: "Pilates 4" },
-  { src: "/home/liste/DSC07316.JPG", alt: "Pilates 5" },
-];
 const SPONSORS: Sponsor[] = (sponsorsData as { sponsors: Sponsor[] }).sponsors;
+
 const styles = {
   partners: {
     animation: "partners 25s linear infinite",
@@ -50,42 +106,12 @@ const styles = {
     animation: "galleryScroll 35s linear infinite",
   },
 };
-const useAutoScroll = (ref: React.RefObject<HTMLDivElement | null>) => {
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    let interval: ReturnType<typeof setInterval>;
-
-    const start = () => {
-      interval = setInterval(() => {
-        el.scrollLeft += 0.5;
-        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) {
-          el.scrollLeft = 0;
-        }
-      }, 20);
-    };
-
-    const stop = () => clearInterval(interval);
-
-    start();
-    el.addEventListener("mouseenter", stop);
-    el.addEventListener("mouseleave", start);
-
-    return () => {
-      stop();
-      el.removeEventListener("mouseenter", stop);
-      el.removeEventListener("mouseleave", start);
-    };
-  }, [ref]);
-};
 
 export default function Home() {
   const navRef = useRef<HTMLDivElement>(null);
 
-
   return (
-    <main className="bg-[#faf8f4] text-[#13192e]">
+    <main className="bg-[var(--background)] text-[#13192e]">
       {/* HERO */}
       <section className="relative min-h-screen w-full overflow-hidden">
         <Image
@@ -93,8 +119,11 @@ export default function Home() {
           alt="Image principale Too Pilates®"
           fill
           priority
+          quality={95}
+          sizes="100vw"
           className="object-cover"
         />
+
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
 
@@ -129,114 +158,116 @@ export default function Home() {
         </div>
       </section>
 
-      {/* NAV CAROUSEL */}
-      <section className="py-14 border-b border-black/5 bg-[#faf8f4] relative">
-        <div className="mx-auto max-w-7xl px-6 relative">
-          <div className="mb-8">
-            <p className="text-sm uppercase tracking-[0.28em] text-[#087389]">
-              Navigation
-            </p>
-          </div>
+ {/* NAV CAROUSEL */}
+{/* NAV CAROUSEL */}
+<section className="relative border-b border-black/5 bg-[var(--background)] py-14">
+  <div className="relative mx-auto max-w-[1600px] px-6">
+    <div className="mb-8 flex items-center gap-6">
+      <p className="text-sm uppercase tracking-[0.28em] text-[#087389]">
+        Navigation
+      </p>
+      <div className="h-px flex-1 bg-[#087389]/60" />
+    </div>
 
-          <button
-            onClick={() =>
-              navRef.current?.scrollBy({ left: -380, behavior: "smooth" })
-            }
-            className="absolute left-2 top-[58%] -translate-y-1/2 z-20 rounded-full bg-white/90 shadow-md p-3 backdrop-blur transition hover:scale-105"
-          >
-            <ChevronLeft size={22} />
-          </button>
+    <button
+      type="button"
+      aria-label="Navigation précédente"
+      onClick={() =>
+        navRef.current?.scrollBy({ left: -520, behavior: "smooth" })
+      }
+      className="absolute left-2 top-[55%] z-20 -translate-y-1/2 rounded-full bg-white/95 p-3 shadow-md backdrop-blur transition hover:scale-105"
+    >
+      <ChevronLeft size={22} />
+    </button>
 
-          <button
-            onClick={() =>
-              navRef.current?.scrollBy({ left: 380, behavior: "smooth" })
-            }
-            className="absolute right-2 top-[58%] -translate-y-1/2 z-20 rounded-full bg-white/90 shadow-md p-3 backdrop-blur transition hover:scale-105"
-          >
-            <ChevronRight size={22} />
-          </button>
+    <button
+      type="button"
+      aria-label="Navigation suivante"
+      onClick={() =>
+        navRef.current?.scrollBy({ left: 520, behavior: "smooth" })
+      }
+      className="absolute right-2 top-[55%] z-20 -translate-y-1/2 rounded-full bg-white/95 p-3 shadow-md backdrop-blur transition hover:scale-105"
+    >
+      <ChevronRight size={22} />
+    </button>
 
+    <div
+      ref={navRef}
+      className="no-scrollbar flex gap-5 overflow-x-auto scroll-smooth pb-4"
+    >
+      {MENU_ITEMS.map((item, index) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          className={[
+            "group shrink-0 overflow-hidden rounded-[24px] bg-white transition-all duration-500",
+            "w-[220px] md:w-[250px]",
+            "shadow-lg hover:-translate-y-1 hover:shadow-2xl",
+            item.featured ? "ring-1 ring-[#E6D3A3]/70" : "",
+          ].join(" ")}
+        >
           <div
-            ref={navRef}
-            className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar"
+            className={[
+              "relative w-full overflow-hidden bg-white",
+              item.featured
+                ? "h-[230px] md:h-[250px]"
+                : "h-[330px] md:h-[365px]",
+            ].join(" ")}
           >
-            {MENU_ITEMS.map((item) => {
-              const isFeatured = item.label === "Too Pilates®";
-
-              const nonFeaturedIndex = MENU_ITEMS
-                .filter((menuItem) => menuItem.label !== "Too Pilates®")
-                .findIndex((menuItem) => menuItem.label === item.label);
-
-              const img = isFeatured
-                ? FEATURED_LOGO
-                : NAV_IMAGES[nonFeaturedIndex % NAV_IMAGES.length];
-
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={[
-                    "group relative shrink-0 overflow-hidden rounded-[30px] transition-all duration-500",
-                    "min-w-[300px] md:min-w-[320px] h-[220px]",
-                    isFeatured
-                      ? "shadow-2xl ring-1 ring-[#E6D3A3]/50"
-                      : "shadow-lg hover:shadow-xl",
-                  ].join(" ")}
-                >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className={[
-                      isFeatured
-                        ? "object-contain bg-transparent p-6"
-                        : "object-cover",
-                      "transition-transform duration-700 group-hover:scale-105",
-                    ].join(" ")}
-                  />
-
-                  {!isFeatured && (
-                    <div className="absolute inset-0 bg-black/45 transition duration-500 group-hover:bg-black/55" />
-                  )}
-
-                  {!isFeatured && (
-                    <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
-                      <span className="inline-block rounded-full bg-black/45 px-4 py-2 text-white text-sm md:text-base font-semibold tracking-[0.18em] shadow-lg backdrop-blur-sm">
-                        {item.label}
-                      </span>
-                    </div>
-                  )}
-                </Link>
-              );
-            })}
+            <Image
+              src={item.image}
+              alt={item.alt}
+              fill
+              priority={index < 3}
+              quality={100}
+              sizes="(max-width: 768px) 220px, 250px"
+              className={[
+                item.featured
+                  ? "object-contain p-12"
+                  : "object-cover",
+                "transition-transform duration-700 group-hover:scale-105",
+              ].join(" ")}
+            />
           </div>
-        </div>
-      </section>
+
+          <div className="flex min-h-[86px] flex-col items-center justify-center px-4 py-4 text-center">
+            <h3 className="text-sm font-semibold leading-snug text-[#13192e] md:text-[15px]">
+              {item.label}
+            </h3>
+
+            <span className="mt-2 text-xl text-[#087389] transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </div>
+        </Link>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* GALLERY CAROUSEL */}
-      <section className="bg-white relative overflow-hidden py-6">
+      <section className="relative overflow-hidden bg-white py-6">
         <div className="mx-auto max-w-[1600px] overflow-hidden">
-          <div
-            className="flex w-max"
-            style={styles.gallery}
-          >
+          <div className="flex w-max" style={styles.gallery}>
             {[...GALLERY, ...GALLERY, ...GALLERY].map((img, i) => (
-              <div key={i} className="relative w-screen h-[78vh] shrink-0">
-              <Image
-                src="/home/imageprincipal.jpg"
-                alt="Image principale Too Pilates®"
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover"
-              />
+              <div key={i} className="relative h-[78vh] w-screen shrink-0">
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  priority
+                  quality={95}
+                  sizes="100vw"
+                  className="object-cover"
+                />
               </div>
             ))}
           </div>
         </div>
       </section>
+
       {/* SPONSORS */}
-      <section className="bg-white border-t border-b border-black/5 py-10 overflow-hidden relative">
+      <section className="relative overflow-hidden border-y border-black/5 bg-white py-10">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex overflow-hidden">
             <div
@@ -246,17 +277,17 @@ export default function Home() {
               {[...SPONSORS, ...SPONSORS, ...SPONSORS].map((sponsor, index) => (
                 <div
                   key={`${sponsor.alt}-${index}`}
-                  className="relative group flex flex-col items-center"
+                  className="group relative flex flex-col items-center"
                 >
                   <img
                     src={sponsor.src}
                     alt={sponsor.alt}
-                    className="h-10 md:h-14 object-contain transition-transform duration-300 hover:scale-105 cursor-help"
+                    className="h-10 cursor-help object-contain transition-transform duration-300 hover:scale-105 md:h-14"
                   />
 
-                  <div className="absolute top-full mt-2 hidden group-hover:block w-44 bg-gray-800 text-white text-[10px] py-1 px-2 rounded shadow-xl text-center z-50 pointer-events-none whitespace-normal">
+                  <div className="pointer-events-none absolute top-full z-50 mt-2 hidden w-44 whitespace-normal rounded bg-gray-800 px-2 py-1 text-center text-[10px] text-white shadow-xl group-hover:block">
                     {sponsor.description}
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-8 border-transparent border-b-gray-800"></div>
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-8 border-transparent border-b-gray-800" />
                   </div>
                 </div>
               ))}
@@ -266,11 +297,11 @@ export default function Home() {
       </section>
 
       {/* VIDEO */}
-      <section className="py-14 bg-[#faf8f4] border-t border-black/5">
+      <section className="border-t border-black/5 bg-[var(--background)] py-14">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="overflow-hidden rounded-[32px] shadow-2xl border border-black/5 bg-black">
+          <div className="overflow-hidden rounded-[32px] border border-black/5 bg-black shadow-2xl">
             <video
-              className="w-full h-[70vh] object-cover"
+              className="h-[70vh] w-full object-cover"
               controls
               preload="metadata"
               src="/videos/intro.mp4"

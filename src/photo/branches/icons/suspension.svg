@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Pilates suspension icon">
+  <circle cx="256" cy="256" r="226" fill="#DCEFF0"/>
+  <g fill="none" stroke="#087389" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M256 88 L170 340 H342 L256 88Z"/>
+    <path d="M210 340 L185 402"/>
+    <path d="M302 340 L327 402"/>
+    <path d="M225 402 H287"/>
+    <path d="M238 210 H274"/>
+  </g>
+</svg>

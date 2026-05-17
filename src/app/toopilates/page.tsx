@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import tpImage1 from "../../photo/toopilates/image1.png";
+import tpImage3 from "../../photo/toopilates/image3.png";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 
@@ -61,7 +63,7 @@ export default function Home() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-[#f8f6f1] pb-24">
+    <section className="relative overflow-hidden bg-[var(--background)] pb-24">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: faqJsonLd }}
@@ -124,12 +126,13 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative"
           >
-            <div className="group relative h-[360px] overflow-hidden rounded-[32px] shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[520px]">
+            <div className="group relative overflow-hidden rounded-[32px] shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
               <Image
-                src="/home/gallery1.jpeg"
+                src={tpImage1}
                 alt="Too Pilates® pédagogie"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                width={tpImage1.width}
+                height={tpImage1.height}
+                className="w-auto max-w-full h-auto mx-auto"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent" />
@@ -148,14 +151,15 @@ export default function Home() {
 
         {/* IMAGE + INTRO VISUELLE */}
         <div className="mt-20 grid gap-8 md:grid-cols-[1.1fr_0.9fr] items-center">
-          <div className="group relative h-[320px] overflow-hidden rounded-[28px] shadow-xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
-            <Image
-              src="/home/gallery2.jpg"
-              alt="Méthode Too Pilates®"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
+            <div className="group relative overflow-hidden rounded-[28px] shadow-xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+              <Image
+                src={tpImage3}
+                alt="Méthode Too Pilates®"
+                width={tpImage3.width}
+                height={tpImage3.height}
+                className="w-auto max-w-full h-auto mx-auto"
+              />
+            </div>
 
           <div className="rounded-[28px] border border-white/60 bg-white/80 p-8 shadow-lg backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
             <p className="text-sm uppercase tracking-[0.3em] text-[#087389]">

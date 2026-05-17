@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Pilates reformer icon">
+  <circle cx="256" cy="256" r="226" fill="#DCEFF0"/>
+  <g fill="none" stroke="#087389" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M126 322 H386"/>
+    <path d="M154 322 V376"/>
+    <path d="M358 322 V376"/>
+    <path d="M166 270 H316 C348 270 374 296 374 322"/>
+    <path d="M174 270 V218 H248 V270"/>
+    <path d="M126 376 H386"/>
+  </g>
+</svg>

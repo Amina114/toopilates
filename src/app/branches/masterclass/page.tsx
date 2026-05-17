@@ -19,7 +19,7 @@ const AUDIENCE = [
 
 export default function MasterclassPage() {
   return (
-    <section className="relative min-h-[100vh] overflow-hidden bg-[#F7F6F3] py-16">
+    <section className="relative min-h-[100vh] overflow-hidden bg-[var(--background)] py-16">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 -left-24 h-[420px] w-[420px] rounded-full bg-[#087389]/10 blur-3xl" />

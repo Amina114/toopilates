@@ -124,7 +124,7 @@ export default function CoachesPage() {
   };
 
   return (
-    <section className="relative min-h-[100vh] overflow-hidden bg-[#F7F6F3] py-16">
+    <section className="relative min-h-[100vh] overflow-hidden bg-[var(--background)] py-16">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#087389]/20 blur-3xl" />
         <div className="absolute -bottom-48 -right-48 h-[560px] w-[560px] rounded-full bg-[#033844]/10 blur-3xl" />
