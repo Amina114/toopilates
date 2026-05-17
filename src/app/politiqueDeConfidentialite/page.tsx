@@ -9,12 +9,7 @@ export default function PrivacyPolicyPage() {
 
       <div className="relative mx-auto max-w-5xl px-6 py-16 z-10">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 shadow-sm backdrop-blur">
-            <span className="h-2 w-2 rounded-full bg-[#033844]" />
-            <span className="text-[11px] tracking-wide text-gray-700">
-              Politique de confidentialité • Too Pilates®
-            </span>
-          </div>
+
 
           <h1 className="mt-6 text-4xl md:text-5xl font-semibold tracking-tight text-[#13192e]">
             Politique de confidentialité
@@ -55,7 +50,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <p className="text-sm text-gray-500">
-            Dernière mise à jour : XX/XX/2026
+            Dernière mise à jour : 31/05/2026
           </p>
         </article>
       </div>

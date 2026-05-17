@@ -98,20 +98,15 @@ export default function PlanningPage() {
               transition={{ delay: placeIdx * 0.05 }}
               className="relative rounded-3xl border border-black/10 bg-white/75 shadow-xl backdrop-blur p-6 md:p-8 transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
             >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <h2 className="text-xl md:text-2xl font-semibold text-[#13192e]">
-                    {place.name}
-                  </h2>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Clique sur un créneau pour voir la réservation.
-                  </p>
-                </div>
+            <div>
+              <h2 className="text-xl md:text-2xl font-semibold text-[#13192e]">
+                {place.name}
+              </h2>
 
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/70 shadow-sm">
-                  <span className="h-2 w-2 rounded-full bg-[#033844]" />
-                </span>
-              </div>
+              <p className="mt-1 text-sm text-gray-600">
+                Clique sur un créneau pour voir la réservation.
+              </p>
+            </div>
 
               <div className="mt-6 grid gap-3">
                 {place.schedules.map((s, idx) => (
@@ -123,9 +118,7 @@ export default function PlanningPage() {
                     className="w-full rounded-2xl border border-black/10 bg-white/70 backdrop-blur px-4 py-4 shadow-sm hover:bg-white/85 transition flex items-center justify-between gap-3"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#033844]/10 border border-black/10">
-                        <span className="h-2 w-2 rounded-full bg-[#033844]" />
-                      </span>
+
                       <div className="text-left">
                         <p className="font-semibold text-[#13192e]">{s.day}</p>
                         <p className="text-sm text-gray-600">{s.time}</p>

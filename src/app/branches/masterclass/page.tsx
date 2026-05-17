@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { p } from "framer-motion/client";
+import masterclass from "../../../photo/branches/under/masterclass2.png";
 
 const BENEFICES = [
   "Compréhension approfondie de la méthode",
@@ -75,7 +77,7 @@ export default function MasterclassPage() {
           >
             <div className="group relative h-[360px] overflow-hidden rounded-[32px] shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-[520px]">
               <Image
-                src="/branches/masterclass.jpg"
+                src={masterclass}
                 alt="Masterclass Too Pilates"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"

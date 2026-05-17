@@ -7,7 +7,7 @@ import suspensionPhoto from "../../photo/branches/suspension.jpg";
 import bandsPhoto from "../../photo/branches/bands.jpg";
 import stickPhoto from "../../photo/branches/stick.jpg";
 import masterclassPhoto from "../../photo/branches/masterclass3.png";
-import appareilPhoto from "../../photo/branches/appareil.png";
+import appareilPhoto from "../../photo/branches/reformer2.png";
 import suspensionIcon from "../../photo/branches/icons/suspension.svg";
 import bandsIcon from "../../photo/branches/icons/bands.svg";
 import stickIcon from "../../photo/branches/icons/stick.svg";
@@ -66,8 +66,8 @@ const ALL_BRANCHES: Array<{
     subtitle: "L'appareil emblématique revisité",
     image: appareilPhoto,
     icon: reformerIcon,
-    imageFit: "contain",
-    imagePosition: "center",
+    imageFit: "cover",
+    imagePosition: "center 45%",
     definition:
       "Un travail global en résistance, mobilité et contrôle sur appareil.",
   },
@@ -223,9 +223,7 @@ function BranchCard({
                 className="object-contain"
               />
             </div>
-            <span className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs uppercase tracking-[0.25em] text-white backdrop-blur">
-              Branche Too Pilates®
-            </span>
+
           </div>
         </div>
 
