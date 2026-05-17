@@ -22,6 +22,7 @@ import navCoachs from "../photo/home/navigation/image4.png";
 import navCertified from "../photo/home/navigation/iamge5.png";
 import navPedagogical from "../photo/home/navigation/image6.png";
 import navPlanning from "../photo/home/image7.png";
+import heroImage from "../photo/home/home_image.jpg";
 
 const GALLERY = [
   { src: gallery1, alt: "Too Pilates® galerie 1" },
@@ -113,9 +114,9 @@ export default function Home() {
   return (
     <main className="bg-[var(--background)] text-[#13192e]">
       {/* HERO */}
-      <section className="relative min-h-screen w-full overflow-hidden">
+      <section className="relative h-[55vh] max-h-[70vh] w-full overflow-hidden sm:h-[58vh] md:h-[60vh] lg:h-[65vh]">
         <Image
-          src="/home/imageprincipal.jpg"
+          src={heroImage}
           alt="Image principale Too Pilates®"
           fill
           priority
@@ -129,15 +130,6 @@ export default function Home() {
 
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <div className="text-center max-w-4xl">
-            <h1 className="text-white text-4xl md:text-6xl xl:text-7xl font-semibold tracking-tight leading-tight">
-              Philosophie de transmission
-            </h1>
-
-            <p className="mt-6 mx-auto max-w-2xl text-white/85 text-base md:text-lg leading-relaxed">
-              Une approche du mouvement où la pédagogie, la précision et la
-              conscience corporelle se rejoignent pour transmettre bien plus
-              qu’une pratique.
-            </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
