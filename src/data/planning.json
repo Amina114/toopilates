@@ -1,33 +1,23 @@
 {
   "places": [
     {
-      "name": "Gym Way Aouina",
+      "name": "Glow Pilates club",
       "contact": "25 123 456",
       "mapsLink": "https://www.google.com/maps/search/?api=1&query=Gym+Way+Aouina",
       "schedules": [
         { "day": "Lundi", "time": "18:00 - 19:00" },
         { "day": "Mercredi", "time": "07:30 - 08:30" },
-        { "day": "Samedi", "time": "10:00 - 11:00" }
+        { "day": "Dimanche", "time": "10:00 - 11:00" }
       ]
     },
     {
-      "name": "Studio Curves",
+      "name": "Curves Pilates club",
       "contact": "29 234 567",
       "mapsLink": "https://www.google.com/maps/search/?api=1&query=Studio+Curves",
       "schedules": [
         { "day": "Mardi", "time": "19:00 - 20:00" },
         { "day": "Jeudi", "time": "12:30 - 13:30" },
         { "day": "Dimanche", "time": "09:00 - 10:00" }
-      ]
-    },
-    {
-      "name": "Studio Amina",
-      "contact": "24 345 678",
-      "mapsLink": "https://www.google.com/maps/search/?api=1&query=Studio+Amina",
-      "schedules": [
-        { "day": "Lundi", "time": "08:00 - 09:00" },
-        { "day": "Vendredi", "time": "18:30 - 19:30" },
-        { "day": "Samedi", "time": "11:30 - 12:30" }
       ]
     }
   ]

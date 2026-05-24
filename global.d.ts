@@ -5,3 +5,4 @@ declare module '*.jpeg';
 declare module '*.svg';
 declare module '*.webp';
 declare module '*.gif';
+declare module '*.mp4';

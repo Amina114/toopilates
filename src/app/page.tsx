@@ -13,7 +13,6 @@ import gallery4 from "../photo/home/iamge4.png";
 import gallery5 from "../photo/home/iamge5.png";
 import gallery6 from "../photo/home/iamge6.png";
 import gallery7 from "../photo/home/image7.png";
-
 /* Navigation images */
 import navAvis from "../photo/home/navigation/image1.png";
 import navBranches from "../photo/home/navigation/image2.png";
@@ -22,7 +21,7 @@ import navCoachs from "../photo/home/navigation/image4.png";
 import navCertified from "../photo/home/navigation/iamge5.png";
 import navPedagogical from "../photo/home/navigation/image6.png";
 import navPlanning from "../photo/home/image7.png";
-import heroImage from "../photo/home/home_image.jpg";
+import heroImage from "../photo/home/home_image.png";
 
 const GALLERY = [
   { src: gallery1, alt: "Too Pilates® galerie 1" },
@@ -113,42 +112,45 @@ export default function Home() {
 
   return (
     <main className="bg-[var(--background)] text-[#13192e]">
-      {/* HERO */}
-      <section className="relative h-[55vh] max-h-[70vh] w-full overflow-hidden sm:h-[58vh] md:h-[60vh] lg:h-[65vh]">
-        <Image
-          src={heroImage}
-          alt="Image principale Too Pilates®"
-          fill
-          priority
-          quality={95}
-          sizes="100vw"
-          className="object-cover"
-        />
+  {/* HERO */}
+  <section className="relative w-full overflow-hidden bg-[#f4efe6]">
+    <div className="relative w-full">
+      <Image
+        src={heroImage}
+        alt="Image principale Too Pilates®"
+        priority
+        quality={100}
+        sizes="100vw"
+        className="h-auto w-full object-contain"
+        style={{
+          filter: "brightness(1.05) contrast(1.12) saturate(1.1)",
+        }}
+      />
 
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+      {/* Overlay plus léger pour ne pas assombrir l'image */}
+      <div className="absolute inset-0 bg-black/10" />
 
-        <div className="absolute inset-0 flex items-center justify-center px-6">
-          <div className="text-center max-w-4xl">
+      <div className="absolute inset-0 flex items-center justify-center px-6">
+        <div className="text-center max-w-4xl">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/toopilates"
+              className="rounded-full bg-[#E6D3A3] px-6 py-3 text-sm font-semibold text-[#13192e] transition hover:opacity-90"
+            >
+              Découvrir Too Pilates®
+            </Link>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/toopilates"
-                className="rounded-full bg-[#E6D3A3] px-6 py-3 text-sm font-semibold text-[#13192e] transition hover:opacity-90"
-              >
-                Découvrir Too Pilates®
-              </Link>
-
-              <Link
-                href="/planning"
-                className="rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
-              >
-                Voir où se trouve Too Pilates®
-              </Link>
-            </div>
+            <Link
+              href="/planning"
+              className="rounded-full border border-white/40 bg-white/15 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+            >
+              Voir où se trouve Too Pilates®
+            </Link>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
  {/* NAV CAROUSEL */}
 {/* NAV CAROUSEL */}
@@ -202,24 +204,29 @@ export default function Home() {
             className={[
               "relative w-full overflow-hidden bg-white",
               item.featured
-                ? "h-[230px] md:h-[250px]"
-                : "h-[330px] md:h-[365px]",
+                 ? "h-[230px] md:h-[250px]"
+                 : "h-[300px] md:h-[320px]",
             ].join(" ")}
           >
-            <Image
-              src={item.image}
-              alt={item.alt}
-              fill
-              priority={index < 3}
-              quality={100}
-              sizes="(max-width: 768px) 220px, 250px"
-              className={[
-                item.featured
-                  ? "object-contain p-12"
-                  : "object-cover",
-                "transition-transform duration-700 group-hover:scale-105",
-              ].join(" ")}
-            />
+          <Image
+            src={item.image}
+            alt={item.alt}
+            fill
+            priority={index < 3}
+            quality={100}
+            sizes="(max-width: 768px) 500px, 700px"
+            className={[
+              item.featured
+                ? "object-contain p-12"
+                : "object-cover object-center",
+              "transition-transform duration-500",
+            ].join(" ")}
+            style={{
+              filter: item.featured
+                ? "none"
+                : "brightness(1.04) contrast(1.08) saturate(1.05)",
+            }}
+          />
           </div>
 
           <div className="flex min-h-[86px] flex-col items-center justify-center px-4 py-4 text-center">
@@ -287,20 +294,21 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* VIDEO */}
-      <section className="border-t border-black/5 bg-[var(--background)] py-14">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="overflow-hidden rounded-[32px] border border-black/5 bg-black shadow-2xl">
-            <video
-              className="h-[70vh] w-full object-cover"
-              controls
-              preload="metadata"
-              src="/videos/intro.mp4"
-            />
-          </div>
-        </div>
-      </section>
+        {/* VIDEO */}
+    <section className="border-t border-black/5 bg-[var(--background)]">
+      <div className="w-full overflow-hidden bg-black shadow-2xl">
+        <video
+          className="h-screen w-full object-cover"
+          controls
+          preload="metadata"
+          autoPlay
+          muted
+          playsInline
+        >
+          <source src="/home/video.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </section>
     </main>
   );
 }
