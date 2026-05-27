@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-const appareilImage = "/photo/branches/under/appareil.png";
+const appareilImage = "/photo/branches/under/appareil.webp";
 
 const BENEFICES = [
   "Travail tridimensionnel complet",

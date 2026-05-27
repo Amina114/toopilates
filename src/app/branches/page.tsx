@@ -8,7 +8,7 @@ const ALL_BRANCHES: Array<{
   slug: string;
   title: string;
   subtitle: string;
-  image: StaticImageData;
+  image: StaticImageData | string;
   icon: StaticImageData | string;
   imageFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
   imagePosition?: string;
@@ -18,7 +18,7 @@ const ALL_BRANCHES: Array<{
     slug: "suspension",
     title: "Pilates en Suspension",
     subtitle: "La légèreté au service du contrôle",
-    image: "/photo/branches/suspension.jpg",
+    image: "/photo/branches/suspension.webp",
     icon: "/photo/branches/icons/suspension.svg",
     definition:
       "Un travail en décharge partielle pour renforcer la stabilité et le gainage.",
@@ -27,7 +27,7 @@ const ALL_BRANCHES: Array<{
     slug: "bands",
     title: "Bands Pilates",
     subtitle: "Résistance ciblée et mobilité renforcée",
-    image: "/photo/branches/bands.jpg",
+    image: "/photo/branches/bands.webp",
     icon: "/photo/branches/icons/bands.svg",
     definition:
       "Une résistance progressive pour intensifier le travail sans brutalité.",
@@ -36,7 +36,7 @@ const ALL_BRANCHES: Array<{
     slug: "stick",
     title: "Stick Pilates",
     subtitle: "L'alignement et la structure révélés",
-    image: "/photo/branches/stick.jpg",
+    image: "/photo/branches/stick.webp",
     icon: "/photo/branches/icons/stick.svg",
     definition:
       "Le bâton guide les alignements et sécurise les appuis.",
@@ -45,7 +45,7 @@ const ALL_BRANCHES: Array<{
     slug: "masterclass",
     title: "Masterclass Too Pilates®",
     subtitle: "L'exigence dans l'immersion",
-    image: "/photo/branches/masterclass3.png",
+    image: "/photo/branches/masterclass3.webp",
     icon: "/photo/branches/icons/masterclass.svg",
     definition:
       "Des sessions immersives pour approfondir la méthode avec précision.",
@@ -54,7 +54,7 @@ const ALL_BRANCHES: Array<{
     slug: "reformer",
     title: "Reformer Too Pilates®",
     subtitle: "L'appareil emblématique revisité",
-    image: "/photo/branches/reformer2.png",
+    image: "/photo/branches/reformer2.webp",
     icon: "/photo/branches/icons/reformer.svg",
     imageFit: "cover",
     imagePosition: "center 45%",

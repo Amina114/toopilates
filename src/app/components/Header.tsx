@@ -84,7 +84,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src={isTransparent ? "/logo-white.svg" : "/Logo Too Pilates.svg"}
+              src={isTransparent ? "/logo-white.svg" : "/Logo-TOO-Pilates.svg"}
               alt="Too Pilates®"
               width={140}
               height={60}

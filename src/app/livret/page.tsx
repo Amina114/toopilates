@@ -2,8 +2,8 @@
 
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
-const image1 = "/photo/livret/image1.png";
-const image2 = "/photo/livret/image2.png";
+const image1 = "/photo/livret/image1.webp";
+const image2 = "/photo/livret/image2.webp";
 
 import { AnimatePresence, motion, cubicBezier } from "framer-motion";
 import emailjs from "@emailjs/browser";
@@ -36,7 +36,7 @@ const gouvernorats = [
 ];
 
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_LIVRE;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_LIVRE_COACH;
 const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
 type FormData = {

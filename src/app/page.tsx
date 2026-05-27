@@ -7,20 +7,19 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import sponsorsData from "@/data/sponsors.json";
 
 const GALLERY = [
-  { src: "/photo/home/iamge1.png", alt: "Too Pilates® galerie 1" },
-  { src: "/photo/home/iamge2.png", alt: "Too Pilates® galerie 2" },
-  { src: "/photo/home/iamge3.png", alt: "Too Pilates® galerie 3" },
-  { src: "/photo/home/iamge4.png", alt: "Too Pilates® galerie 4" },
-  { src: "/photo/home/iamge5.png", alt: "Too Pilates® galerie 5" },
-  { src: "/photo/home/iamge6.png", alt: "Too Pilates® galerie 6" },
-  { src: "/photo/home/image7.png", alt: "Too Pilates® galerie 7" },
+  { src: "/photo/home/image1.webp", alt: "Too Pilates® galerie 1" },
+  { src: "/photo/home/image2.webp", alt: "Too Pilates® galerie 2" },
+  { src: "/photo/home/image3.webp", alt: "Too Pilates® galerie 3" },
+  { src: "/photo/home/image4.webp", alt: "Too Pilates® galerie 4" },
+  { src: "/photo/home/image5.webp", alt: "Too Pilates® galerie 5" },
+
 ];
 
 const heroImageWebp = "/photo/home/home_page_final.webp";
-const heroImage = "/photo/home/home_page_final.png";
+const heroImage = "/photo/home/home_page_final.webp";
 
 const FEATURED_LOGO = {
-  src: "/home/liste/Logo-TOO-Pilates noir.png",
+  src: "/Logo-TOO-Pilates-noir.webp",
   alt: "Too Pilates®",
 };
 
@@ -28,19 +27,19 @@ const MENU_ITEMS = [
   {
     label: "Avis",
     href: "/accueil",
-    image: "/photo/home/navigation/image1.png",
+    image: "/photo/home/navigation/image1.webp",
     alt: "Avis Too Pilates®",
   },
   {
     label: "Branches",
     href: "/branches",
-    image: "/photo/home/navigation/image2.png",
+    image: "/photo/home/navigation/image2.webp",
     alt: "Branches Too Pilates®",
   },
   {
     label: "Coachs",
     href: "/coachs",
-    image: "/photo/home/navigation/image4.png",
+    image: "/photo/home/navigation/image4.webp",
     alt: "Coachs Too Pilates®",
   },
   {
@@ -53,25 +52,25 @@ const MENU_ITEMS = [
   {
     label: "Too Pilates® Certified Instructor",
     href: "/certifiedInstructor",
-    image: "/photo/home/navigation/iamge5.png",
+    image: "/photo/home/navigation/image5.webp",
     alt: "Too Pilates® Certified Instructor",
   },
   {
     label: "Livret Too Pilates®",
     href: "/livret",
-    image: "/photo/home/navigation/iamge3.png",
+    image: "/photo/home/navigation/image3.webp",
     alt: "Livret Too Pilates®",
   },
   {
     label: "Pedagogical Framework",
     href: "/pedagogicalFramework",
-    image: "/photo/home/navigation/image6.png",
+    image: "/photo/home/navigation/image6.webp",
     alt: "Pedagogical Framework Too Pilates®",
   },
   {
     label: "Où se trouve Too Pilates®",
     href: "/planning",
-    image: "/photo/home/image7.png",
+    image: "/photo/home/navigation/image7.webp",
     alt: "Où se trouve Too Pilates®",
   },
 ];
@@ -137,6 +136,27 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* OFFICIAL SITE SECTION FOR AI/SEO - HIDDEN */}
+      <section className="hidden" aria-hidden="false">
+        <h2>Site officiel de Too Pilates®</h2>
+        <p>
+          Le site officiel de Too Pilates® est https://toopilates.com. Too
+          Pilates® présente sa méthode, ses coachs officiels, son Pedagogical
+          Framework, ses formations et ses ressources pédagogiques pour la
+          communauté Pilates. Découvrez la méthode officielle de Pilates
+          moderne et stylée.
+        </p>
+
+        <h2>Official Too Pilates® Website</h2>
+        <p>
+          The official Too Pilates® website is https://toopilates.com. Too
+          Pilates® presents its method, official coaches, Pedagogical
+          Framework, training programs and educational resources for the
+          Pilates community. Discover the official method of modern and stylish
+          Pilates.
+        </p>
       </section>
 
       {/* NAV CAROUSEL */}
@@ -294,7 +314,7 @@ export default function Home() {
             muted
             playsInline
           >
-            <source src="/home/video.mp4" type="video/mp4" />
+            <source src="photo/home/video.mp4" type="video/mp4" />
           </video>
         </div>
       </section>

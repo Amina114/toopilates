@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-const suspensionImage = "/photo/branches/under/Suspension.png";
+const suspensionImage = "/photo/branches/under/Suspension.webp";
 
 const BENEFICES = [
   "Renforcement profond du centre",
