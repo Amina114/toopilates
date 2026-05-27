@@ -3,8 +3,10 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import tpImage1 from "../../photo/toopilates/image1.png";
-import tpImage3 from "../../photo/toopilates/image3.png";
+const tpImage1Webp = "/photo/toopilates/image1.webp";
+const tpImage1 = "/photo/toopilates/image1.png";
+const tpImage3Webp = "/photo/toopilates/image3.webp";
+const tpImage3 = "/photo/toopilates/image3.png";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 
@@ -127,14 +129,16 @@ export default function Home() {
             className="relative"
           >
             <div className="group relative overflow-hidden rounded-[32px] shadow-2xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
-              <Image
-                src={tpImage1}
-                alt="Too Pilates® pédagogie"
-                width={tpImage1.width}
-                height={tpImage1.height}
-                className="w-auto max-w-full h-auto mx-auto"
-                priority
-              />
+              <picture>
+                <source srcSet={tpImage1Webp} type="image/webp" />
+                <Image
+                  src={tpImage1}
+                  alt="Too Pilates® pédagogie"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  priority
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent" />
             </div>
 
@@ -152,13 +156,15 @@ export default function Home() {
         {/* IMAGE + INTRO VISUELLE */}
         <div className="mt-20 grid gap-8 md:grid-cols-[1.1fr_0.9fr] items-center">
             <div className="group relative overflow-hidden rounded-[28px] shadow-xl transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
-              <Image
-                src={tpImage3}
-                alt="Méthode Too Pilates®"
-                width={tpImage3.width}
-                height={tpImage3.height}
-                className="w-auto max-w-full h-auto mx-auto"
-              />
+              <picture>
+                <source srcSet={tpImage3Webp} type="image/webp" />
+                <Image
+                  src={tpImage3}
+                  alt="Méthode Too Pilates®"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </picture>
             </div>
 
           <div className="rounded-[28px] border border-white/60 bg-white/80 p-8 shadow-lg backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-2xl">

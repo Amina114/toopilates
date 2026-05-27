@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import bandsImage from "../../../photo/branches/under/Bands.png";
+const bandsImage = "/photo/branches/under/Bands.png";
 
 const BENEFICES = [
   "Meilleure activation musculaire",

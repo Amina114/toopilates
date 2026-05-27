@@ -3,16 +3,6 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef, useCallback } from "react";
-import suspensionPhoto from "../../photo/branches/suspension.jpg";
-import bandsPhoto from "../../photo/branches/bands.jpg";
-import stickPhoto from "../../photo/branches/stick.jpg";
-import masterclassPhoto from "../../photo/branches/masterclass3.png";
-import appareilPhoto from "../../photo/branches/reformer2.png";
-import suspensionIcon from "../../photo/branches/icons/suspension.svg";
-import bandsIcon from "../../photo/branches/icons/bands.svg";
-import stickIcon from "../../photo/branches/icons/stick.svg";
-import masterclassIcon from "../../photo/branches/icons/masterclass.svg";
-import reformerIcon from "../../photo/branches/icons/reformer.svg";
 
 const ALL_BRANCHES: Array<{
   slug: string;
@@ -28,8 +18,8 @@ const ALL_BRANCHES: Array<{
     slug: "suspension",
     title: "Pilates en Suspension",
     subtitle: "La légèreté au service du contrôle",
-    image: suspensionPhoto,
-    icon: suspensionIcon,
+    image: "/photo/branches/suspension.jpg",
+    icon: "/photo/branches/icons/suspension.svg",
     definition:
       "Un travail en décharge partielle pour renforcer la stabilité et le gainage.",
   },
@@ -37,8 +27,8 @@ const ALL_BRANCHES: Array<{
     slug: "bands",
     title: "Bands Pilates",
     subtitle: "Résistance ciblée et mobilité renforcée",
-    image: bandsPhoto,
-    icon: bandsIcon,
+    image: "/photo/branches/bands.jpg",
+    icon: "/photo/branches/icons/bands.svg",
     definition:
       "Une résistance progressive pour intensifier le travail sans brutalité.",
   },
@@ -46,8 +36,8 @@ const ALL_BRANCHES: Array<{
     slug: "stick",
     title: "Stick Pilates",
     subtitle: "L'alignement et la structure révélés",
-    image: stickPhoto,
-    icon: stickIcon,
+    image: "/photo/branches/stick.jpg",
+    icon: "/photo/branches/icons/stick.svg",
     definition:
       "Le bâton guide les alignements et sécurise les appuis.",
   },
@@ -55,8 +45,8 @@ const ALL_BRANCHES: Array<{
     slug: "masterclass",
     title: "Masterclass Too Pilates®",
     subtitle: "L'exigence dans l'immersion",
-    image: masterclassPhoto,
-    icon: masterclassIcon,
+    image: "/photo/branches/masterclass3.png",
+    icon: "/photo/branches/icons/masterclass.svg",
     definition:
       "Des sessions immersives pour approfondir la méthode avec précision.",
   },
@@ -64,8 +54,8 @@ const ALL_BRANCHES: Array<{
     slug: "reformer",
     title: "Reformer Too Pilates®",
     subtitle: "L'appareil emblématique revisité",
-    image: appareilPhoto,
-    icon: reformerIcon,
+    image: "/photo/branches/reformer2.png",
+    icon: "/photo/branches/icons/reformer.svg",
     imageFit: "cover",
     imagePosition: "center 45%",
     definition:

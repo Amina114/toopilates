@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { p } from "framer-motion/client";
-import masterclass from "../../../photo/branches/under/masterclass2.png";
+const masterclass = "/photo/branches/under/masterclass2.png";
 
 const BENEFICES = [
   "Compréhension approfondie de la méthode",

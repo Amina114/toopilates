@@ -2,8 +2,8 @@
 
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
-import image1 from "../../photo/livret/image1.png";
-import image2 from "../../photo/livret/image2.png";
+const image1 = "/photo/livret/image1.png";
+const image2 = "/photo/livret/image2.png";
 
 import { AnimatePresence, motion, cubicBezier } from "framer-motion";
 import emailjs from "@emailjs/browser";

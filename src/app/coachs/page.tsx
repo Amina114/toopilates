@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
-import coachPhoto from "../../photo/coachs/image1.png";
+const coachPhoto = "/photo/coachs/image1.png";
 import { AnimatePresence, motion, cubicBezier } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import coachesData from "@/data/coaches.json";

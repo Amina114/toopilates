@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import stickImage from "../../../photo/branches/under/Stick.png";
+const stickImage = "/photo/branches/under/Stick.png";
 
 const BENEFICES = [
   "Travail de précision posturale",
