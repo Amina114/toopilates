@@ -31,6 +31,9 @@ type SeoMetadataParams = {
   path?: string;
   keywords?: string[];
   image?: string;
+  verification?: {
+    google?: string;
+  };
 };
 
 export function createSeoMetadata({
@@ -39,6 +42,7 @@ export function createSeoMetadata({
   path = "/",
   keywords = [],
   image = "/Logo-TOO-Pilates-noir.png",
+   verification,
 }: SeoMetadataParams): Metadata {
   const canonicalUrl = `${SITE_URL}${path}`;
 
@@ -47,6 +51,7 @@ export function createSeoMetadata({
     title,
     description,
     keywords: [...defaultKeywords, ...keywords],
+      verification,
     authors: [{ name: "Too Pilates®" }],
     creator: "Too Pilates®",
     publisher: "Too Pilates®",
