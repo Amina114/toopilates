@@ -16,6 +16,13 @@ export const defaultKeywords = [
   "méthode Pilates moderne",
   "Pedagogical Framework",
   "Too Pilates Method",
+  "too pialtes",
+  "too pilates tunis",
+  "too pilates tunisie",
+  "toopilates tunis",
+  "toopilates tunisie",
+  "too pilates officiel",
+  "site officiel too pilates",
 ];
 
 type SeoMetadataParams = {
@@ -87,12 +94,17 @@ export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Too Pilates®",
-  alternateName: [
-    "Too Pilates",
-    "Toopilates",
-    "Too Pilates Method",
-    "Too Pilates Tunisie",
-  ],
+    alternateName: [
+      "Too Pilates",
+      "Toopilates",
+      "Too Pilates officiel",
+      "Too Pilates site officiel",
+      "Too Pilates Method",
+      "Too Pilates Tunisie",
+      "Too Pilates Tunis",
+      "Toopilates Tunisie",
+      "Toopilates Tunis",
+    ],
   url: SITE_URL,
   logo: `${SITE_URL}/Logo-TOO-Pilates-noir.png`,
   description:
