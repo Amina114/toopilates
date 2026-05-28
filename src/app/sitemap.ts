@@ -1,78 +1,78 @@
 import type { MetadataRoute } from "next";
-
+export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://toopilates.com";
 
   return [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/accueil`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/branches`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/coachs`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/certifiedInstructor`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/livret`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/pedagogicalFramework`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/planning`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "yearly",
       priority: 0.6,
     },
     {
       url: `${baseUrl}/toopilates`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/mentionsLegales`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/politiqueDeConfidentialite`,
-      lastModified: new Date(),
+      lastModified: "2026-05-28",
       changeFrequency: "yearly",
       priority: 0.3,
     },
