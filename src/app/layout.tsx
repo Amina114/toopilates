@@ -17,6 +17,9 @@ const inter = Inter({
 
 export const metadata: Metadata = createSeoMetadata({
   title: "Too Pilates® | Site officiel",
+  verification: {
+    google: "dw3eI4lDlnHJ1aiBY7lFSAfgvlYNlIW6KSOfCyxzxII",
+  },
   description:
     "Site officiel de Too Pilates® : méthode Pilates moderne, coaching, formation, Pedagogical Framework, coachs officiels et ressources pédagogiques à Tunis.",
   path: "/",
