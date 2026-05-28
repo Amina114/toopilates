@@ -270,7 +270,7 @@ export default function Home() {
                       src={sponsor.src}
                       alt={sponsor.alt}
                       loading="lazy"
-                      className="h-10 cursor-help object-contain transition-transform duration-300 hover:scale-105 md:h-14"
+                      className="h-16 w-auto cursor-help object-contain transition-transform duration-300 hover:scale-105 md:h-20"
                     />
 
                     <div className="pointer-events-none absolute top-full z-50 mt-2 hidden w-44 whitespace-normal rounded bg-gray-800 px-2 py-1 text-center text-[10px] text-white shadow-xl group-hover:block">
