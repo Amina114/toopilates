@@ -1,32 +1,48 @@
-import Link from "next/link";
-
 export const metadata = {
-  title: "Contact — Amina Chabchoub",
-  description: "Contact : Amina Chabchoub — WhatsApp & LinkedIn",
+  title: "Contact Too Pilates® | WhatsApp, Instagram et email",
+  description:
+    "Contact officiel Too Pilates® : contactez l’équipe Too Pilates pour les formations, coachs, événements, planning et informations sur la méthode.",
+  alternates: {
+    canonical: "https://toopilates.com/contact/",
+  },
 };
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto max-w-4xl px-6 py-20 text-[#13192e]">
-      <h1 className="text-4xl font-semibold">Contact — Amina Chabchoub</h1>
-
-      <div className="mt-8 space-y-6 text-lg">
-        <p className="text-xl font-medium">Amina Chabchoub</p>
-
-        <p>
-          WhatsApp: <a href="https://wa.me/21628582502" className="underline text-[#087389]">+216 28582502</a>
+    <main className="min-h-screen bg-[var(--background)] text-[#13192e] py-16 px-6">
+      <section className="mx-auto max-w-4xl rounded-[32px] border border-black/10 bg-white/80 p-10 shadow-xl">
+        <h1 className="mb-4 text-4xl font-semibold tracking-tight">
+          Contact Too Pilates®
+        </h1>
+        <p className="mb-6 text-lg leading-relaxed text-gray-700">
+          Pour toute question sur les formations, les coachs ou le planning,
+          contacte-nous via WhatsApp, Instagram ou email.
         </p>
 
-        <p>
-          LinkedIn: <a href="https://www.linkedin.com/in/amina-chabchoub/" target="_blank" rel="noreferrer" className="underline text-[#087389]">https://www.linkedin.com/in/amina-chabchoub/</a>
-        </p>
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="rounded-3xl border border-black/10 bg-[#f4efe6] p-6">
+            <h2 className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#087389]">
+              Email
+            </h2>
+            <p className="text-sm text-gray-800">contact@toopilates.fr</p>
+            <p className="text-sm text-gray-800">hedyammar111@gmail.com</p>
+          </div>
 
-        <p className="text-sm text-gray-600">Pour toute demande, veuillez contacter Amina via WhatsApp ou LinkedIn.</p>
+          <div className="rounded-3xl border border-black/10 bg-[#f4efe6] p-6">
+            <h2 className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#087389]">
+              WhatsApp
+            </h2>
+            <p className="text-sm text-gray-800">+216 56 134 950</p>
+          </div>
 
-        <p>
-          <Link href="/" className="text-sm text-[#075f7f] underline">Retour à l’accueil</Link>
-        </p>
-      </div>
+          <div className="rounded-3xl border border-black/10 bg-[#f4efe6] p-6">
+            <h2 className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#087389]">
+              Instagram
+            </h2>
+            <p className="text-sm text-gray-800">@toopilates</p>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

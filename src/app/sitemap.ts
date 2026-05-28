@@ -1,80 +1,39 @@
 import type { MetadataRoute } from "next";
-export const dynamic = "force-static";
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://toopilates.com";
+import { SITE_URL } from "./seoConfig";
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: "2026-05-28",
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/accueil`,
-      lastModified: "2026-05-28",
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/branches`,
-      lastModified: "2026-05-28",
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/coachs`,
-      lastModified: "2026-05-28",
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/certifiedInstructor`,
-      lastModified: "2026-05-28",
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/livret`,
-      lastModified: "2026-05-28",
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/pedagogicalFramework`,
-      lastModified: "2026-05-28",
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/planning`,
-      lastModified: "2026-05-28",
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: "2026-05-28",
-      changeFrequency: "yearly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/toopilates`,
-      lastModified: "2026-05-28",
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/mentionsLegales`,
-      lastModified: "2026-05-28",
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/politiqueDeConfidentialite`,
-      lastModified: "2026-05-28",
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-  ];
+export const dynamic = "force-static";
+
+const lastModified = new Date("2026-05-28");
+
+const routes = [
+  { path: "/", priority: 1, changeFrequency: "weekly" },
+  { path: "/toopilates/", priority: 0.95, changeFrequency: "monthly" },
+  { path: "/branches/", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/branches/bands/", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/branches/masterclass/", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/branches/reformer/", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/branches/stick/", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/branches/suspension/", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/coachs/", priority: 0.85, changeFrequency: "monthly" },
+  { path: "/certifiedInstructor/", priority: 0.85, changeFrequency: "monthly" },
+  { path: "/pedagogicalFramework/", priority: 0.85, changeFrequency: "monthly" },
+  { path: "/livret/", priority: 0.75, changeFrequency: "monthly" },
+  { path: "/planning/", priority: 0.8, changeFrequency: "weekly" },
+  { path: "/accueil/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/contact/", priority: 0.6, changeFrequency: "yearly" },
+  { path: "/mentionsLegales/", priority: 0.3, changeFrequency: "yearly" },
+  {
+    path: "/politiqueDeConfidentialite/",
+    priority: 0.3,
+    changeFrequency: "yearly",
+  },
+] as const;
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return routes.map((route) => ({
+    url: `${SITE_URL}${route.path}`,
+    lastModified,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }));
 }

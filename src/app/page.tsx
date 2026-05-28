@@ -8,7 +8,6 @@ import sponsorsData from "@/data/sponsors.json";
 
 const GALLERY = [
   { src: "/photo/home/image1.webp", alt: "Too Pilates® galerie 1" },
-  { src: "/photo/home/image2.webp", alt: "Too Pilates® galerie 2" },
   { src: "/photo/home/image3.webp", alt: "Too Pilates® galerie 3" },
   { src: "/photo/home/image4.webp", alt: "Too Pilates® galerie 4" },
   { src: "/photo/home/image5.webp", alt: "Too Pilates® galerie 5" },
@@ -97,67 +96,50 @@ export default function Home() {
 
   return (
     <main className="bg-[var(--background)] text-[#13192e]">
-      {/* HERO */}
-      <section className="relative w-full overflow-hidden bg-[#f4efe6]">
-        <div className="relative h-[70vh] w-full md:h-[80vh]">
-          <picture>
-            <source srcSet={heroImageWebp} type="image/webp" />
-            <Image
-              src={heroImage}
-              alt="Image principale Too Pilates®"
-              priority
-              quality={80}
-              sizes="100vw"
-              fill
-              className="object-cover"
-              style={{
-                filter: "brightness(1.05) contrast(1.12) saturate(1.1)",
-              }}
-            />
-          </picture>
+{/* HERO */}
+    <section className="relative w-full overflow-hidden bg-[#061b55]">
+      <div className="relative w-full aspect-[16/9] overflow-hidden">
+        <Image
+          src={heroImageWebp}
+          alt="Image principale Too Pilates® Pedagogical Framework"
+          fill
+          priority
+          fetchPriority="high"
+          quality={90}
+          sizes="100vw"
+          className="object-contain object-center"
+        />
 
-          <div className="absolute inset-0 bg-black/10" />
+        {/* Dégradé léger en bas pour que les boutons soient lisibles */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-black/45 to-transparent" />
 
-          <div className="absolute inset-x-0 bottom-8 z-20 flex justify-center px-6 md:bottom-12">
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/toopilates"
-                className="rounded-full bg-[#E6D3A3] px-6 py-3 text-sm font-semibold text-[#13192e] transition hover:opacity-90"
-              >
-                Découvrir Too Pilates®
-              </Link>
+        {/* Buttons en bas de l'image */}
+        <div className="absolute inset-x-0 bottom-4 z-20 flex justify-center px-4 sm:bottom-6 md:bottom-8">
+          <div className="flex w-full max-w-4xl flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/toopilates"
+              className="w-full rounded-full bg-[#E6D3A3] px-6 py-3 text-center text-sm font-semibold text-[#13192e] transition hover:opacity-90 sm:w-auto"
+            >
+              Découvrir Too Pilates®
+            </Link>
 
-              <Link
-                href="/planning"
-                className="rounded-full bg-[#E6D3A3] px-6 py-3 text-sm font-semibold text-[#13192e] transition hover:opacity-90"
-              >
-                Voir où se trouve Too Pilates®
-              </Link>
-            </div>
+            <Link
+              href="/planning"
+              className="w-full rounded-full bg-white/90 px-6 py-3 text-center text-sm font-semibold text-[#13192e] transition hover:opacity-90 sm:w-auto"
+            >
+              Voir où se trouve Too Pilates®
+            </Link>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* OFFICIAL SITE SECTION FOR AI/SEO - HIDDEN */}
-      <section className="hidden" aria-hidden="false">
-        <h2>Site officiel de Too Pilates®</h2>
+    <div className="mx-auto max-w-6xl px-6 py-4 text-center text-sm text-white">
         <p>
-          Le site officiel de Too Pilates® est https://toopilates.com. Too
-          Pilates® présente sa méthode, ses coachs officiels, son Pedagogical
-          Framework, ses formations et ses ressources pédagogiques pour la
-          communauté Pilates. Découvrez la méthode officielle de Pilates
-          moderne et stylée.
+          Too Pilates® — méthode moderne de Pilates, coaching personnalisé et
+          formation professionnelle à Tunis.
         </p>
-
-        <h2>Official Too Pilates® Website</h2>
-        <p>
-          The official Too Pilates® website is https://toopilates.com. Too
-          Pilates® presents its method, official coaches, Pedagogical
-          Framework, training programs and educational resources for the
-          Pilates community. Discover the official method of modern and stylish
-          Pilates.
-        </p>
-      </section>
+      </div>
+    </section>
 
       {/* NAV CAROUSEL */}
       <section className="relative border-b border-black/5 bg-[var(--background)] py-14">
@@ -252,7 +234,7 @@ export default function Home() {
 
       {/* GALLERY CAROUSEL */}
       <section className="relative overflow-hidden bg-white py-6">
-        <div className="mx-auto max-w-[1600px] overflow-hidden">
+        <div className="w-full overflow-hidden">
           <div className="flex w-max" style={styles.gallery}>
             {[...GALLERY, ...GALLERY, ...GALLERY].map((img, i) => (
               <div key={i} className="relative h-[78vh] w-screen shrink-0">
