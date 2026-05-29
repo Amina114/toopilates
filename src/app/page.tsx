@@ -98,34 +98,35 @@ export default function Home() {
     <main className="bg-[var(--background)] text-[#13192e]">
 {/* HERO */}
   <section className="relative w-full overflow-hidden bg-[#061b55]">
-    <div className="relative w-full overflow-hidden bg-[#061b55] aspect-[16/9] min-h-[190px] sm:min-h-[360px] sm:h-auto">
+    <div className="relative w-full overflow-hidden bg-[#061b55]">
       <Image
         src={heroImageWebp}
         alt="Image principale Too Pilates® Pedagogical Framework"
-        fill
+        width={1920}
+        height={1080}
         priority
         fetchPriority="high"
         quality={90}
         sizes="100vw"
-        className="object-contain object-center"
+        className="block h-auto w-full"
       />
 
-      {/* Dégradé léger en bas pour que les boutons restent lisibles */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-black/45 to-transparent sm:h-32" />
+      {/* Dégradé léger en bas */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-20 bg-gradient-to-t from-black/45 to-transparent sm:h-32" />
 
-      {/* Buttons en bas de l'image */}
-      <div className="absolute inset-x-0 bottom-1 z-20 flex justify-center px-2 sm:bottom-6 md:bottom-8">
-        <div className="flex max-w-[96vw] flex-row flex-wrap items-center justify-center gap-1.5 sm:max-w-4xl sm:gap-3">
+      {/* Buttons sur l'image */}
+      <div className="absolute inset-x-0 bottom-3 z-20 flex justify-center px-2 sm:bottom-8">
+        <div className="flex max-w-[96vw] flex-row flex-wrap items-center justify-center gap-2 sm:gap-3">
           <Link
             href="/toopilates"
-            className="rounded-full bg-[#E6D3A3] px-2 py-1 text-center text-[9px] font-semibold leading-tight text-[#13192e] transition hover:opacity-90 sm:px-6 sm:py-3 sm:text-sm"
+            className="rounded-full bg-[#E6D3A3] px-2.5 py-1.5 text-center text-[10px] font-semibold leading-tight text-[#13192e] transition hover:opacity-90 sm:px-6 sm:py-3 sm:text-sm"
           >
             Découvrir Too Pilates®
           </Link>
 
           <Link
             href="/planning"
-            className="rounded-full bg-white/90 px-2 py-1 text-center text-[9px] font-semibold leading-tight text-[#13192e] transition hover:opacity-90 sm:px-6 sm:py-3 sm:text-sm"
+            className="rounded-full bg-white/90 px-2.5 py-1.5 text-center text-[10px] font-semibold leading-tight text-[#13192e] transition hover:opacity-90 sm:px-6 sm:py-3 sm:text-sm"
           >
             Voir où se trouve Too Pilates®
           </Link>
