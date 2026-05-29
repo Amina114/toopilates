@@ -97,49 +97,49 @@ export default function Home() {
   return (
     <main className="bg-[var(--background)] text-[#13192e]">
 {/* HERO */}
-    <section className="relative w-full overflow-hidden bg-[#061b55]">
-      <div className="relative w-full aspect-[16/9] overflow-hidden">
-        <Image
-          src={heroImageWebp}
-          alt="Image principale Too Pilates® Pedagogical Framework"
-          fill
-          priority
-          fetchPriority="high"
-          quality={90}
-          sizes="100vw"
-          className="object-contain object-center"
-        />
+  <section className="relative w-full overflow-hidden bg-[#061b55]">
+    <div className="relative w-full overflow-hidden h-[58vh] min-h-[360px] sm:h-auto sm:aspect-[16/9]">
+      <Image
+        src={heroImageWebp}
+        alt="Image principale Too Pilates® Pedagogical Framework"
+        fill
+        priority
+        fetchPriority="high"
+        quality={90}
+        sizes="100vw"
+        className="object-contain object-top sm:object-center"
+      />
 
-        {/* Dégradé léger en bas pour que les boutons soient lisibles */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-black/45 to-transparent" />
+      {/* Dégradé léger en bas pour que les boutons soient lisibles */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-black/45 to-transparent sm:h-32" />
 
-        {/* Buttons en bas de l'image */}
-        <div className="absolute inset-x-0 bottom-4 z-20 flex justify-center px-4 sm:bottom-6 md:bottom-8">
-          <div className="flex w-full max-w-4xl flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="/toopilates"
-              className="w-full rounded-full bg-[#E6D3A3] px-6 py-3 text-center text-sm font-semibold text-[#13192e] transition hover:opacity-90 sm:w-auto"
-            >
-              Découvrir Too Pilates®
-            </Link>
+      {/* Buttons en bas de l'image */}
+      <div className="absolute inset-x-0 bottom-2 z-20 flex justify-center px-3 sm:bottom-6 md:bottom-8">
+        <div className="flex max-w-[95vw] flex-row flex-wrap items-center justify-center gap-2 sm:max-w-4xl sm:gap-3">
+          <Link
+            href="/toopilates"
+            className="rounded-full bg-[#E6D3A3] px-3 py-2 text-center text-[11px] font-semibold leading-tight text-[#13192e] transition hover:opacity-90 sm:px-6 sm:py-3 sm:text-sm"
+          >
+            Découvrir Too Pilates®
+          </Link>
 
-            <Link
-              href="/planning"
-              className="w-full rounded-full bg-white/90 px-6 py-3 text-center text-sm font-semibold text-[#13192e] transition hover:opacity-90 sm:w-auto"
-            >
-              Voir où se trouve Too Pilates®
-            </Link>
-          </div>
+          <Link
+            href="/planning"
+            className="rounded-full bg-white/90 px-3 py-2 text-center text-[11px] font-semibold leading-tight text-[#13192e] transition hover:opacity-90 sm:px-6 sm:py-3 sm:text-sm"
+          >
+            Voir où se trouve Too Pilates®
+          </Link>
         </div>
       </div>
+    </div>
 
     <div className="mx-auto max-w-6xl px-6 py-4 text-center text-sm text-white">
-        <p>
-          Too Pilates® — méthode moderne de Pilates, coaching personnalisé et
-          formation professionnelle à Tunis.
-        </p>
-      </div>
-    </section>
+      <p>
+        Too Pilates® — méthode moderne de Pilates, coaching personnalisé et
+        formation professionnelle à Tunis.
+      </p>
+    </div>
+  </section>
 
       {/* NAV CAROUSEL */}
       <section className="relative border-b border-black/5 bg-[var(--background)] py-14">
@@ -260,26 +260,28 @@ export default function Home() {
               className="flex min-w-max items-center gap-16 md:gap-32"
               style={styles.partners}
             >
-              {[...SPONSORS, ...SPONSORS, ...SPONSORS].map(
-                (sponsor, index) => (
-                  <div
-                    key={`${sponsor.alt}-${index}`}
-                    className="group relative flex flex-col items-center"
-                  >
+            {[...SPONSORS, ...SPONSORS, ...SPONSORS].map(
+              (sponsor, index) => (
+                <div
+                  key={`${sponsor.alt}-${index}`}
+                  className="group relative flex flex-col items-center"
+                >
+                  <div className="flex h-20 w-36 items-center justify-center md:h-24 md:w-44">
                     <img
                       src={sponsor.src}
                       alt={sponsor.alt}
                       loading="lazy"
-                      className="h-16 w-auto cursor-help object-contain transition-transform duration-300 hover:scale-105 md:h-20"
+                      className="max-h-full max-w-full cursor-help object-contain transition-transform duration-300 hover:scale-105"
                     />
-
-                    <div className="pointer-events-none absolute top-full z-50 mt-2 hidden w-44 whitespace-normal rounded bg-gray-800 px-2 py-1 text-center text-[10px] text-white shadow-xl group-hover:block">
-                      {sponsor.description}
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-8 border-transparent border-b-gray-800" />
-                    </div>
                   </div>
-                )
-              )}
+
+                  <div className="pointer-events-none absolute top-full z-50 mt-2 hidden w-44 whitespace-normal rounded bg-gray-800 px-2 py-1 text-center text-[10px] text-white shadow-xl group-hover:block">
+                    {sponsor.description}
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-8 border-transparent border-b-gray-800" />
+                  </div>
+                </div>
+              )
+            )}
             </div>
           </div>
         </div>
