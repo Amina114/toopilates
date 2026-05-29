@@ -31,7 +31,7 @@
       "description": ""
     },
     {
-      "src": "/sponsors/LOGO Doppel Herz aktiv_Plan de travail 1.png",
+      "src": "/sponsors/LOGO Doppel Herz aktiv_Plan de travail 1.webp",
       "alt": "Doppel Herz Aktiv",
       "description": ""
     },
@@ -43,6 +43,11 @@
     {
       "src": "/sponsors/SVR---LOGO---BLACK.webp",
       "alt": "SVR",
+      "description": ""
+    },
+    {
+      "src": "/sponsors/logo oceane AI.webp",
+      "alt": "Oceane AI",
       "description": ""
     }
   ]
